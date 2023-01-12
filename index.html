@@ -8,11 +8,10 @@
     <title>CLOUD-IA Homepage</title>
 </head>
 <body>
-    <h1>CLOUD-IA</h1>
     <div class ="wrapper">
         <header>
             <nav>
-                <div class="logo">LOGO</div>
+                <div class="logo">CLOUD-IA</div>
                 <div class="menu">
                     <ul>
                         <li><a href="">HOME</a></li>
@@ -25,16 +24,27 @@
                 </div>
             </nav>
         </header>
-    </div>
     <div class="content">
         <h2>Willkommen auf Europas erster Cloud-Selling Website</h2>
         <p>Wir bei Cloud-IA haben uns dem Verkauf der freiesten Sache der Welt verschrieben: Wolken</p>
         <br><br>   
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nobis aliquam minima corrupti perspiciatis dolores sequi sit odio dignissimos repellendus. Ea necessitatibus aliquam vel voluptatum accusamus ipsam recusandae rem repellendus.</p>
     </div> 
+</div>
     <footer>
         <a href="/impressum.html">Impressum</a> <a href="">Help</a>
     </footer>
     <br>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script>
+        $(window).scroll(function(){
+            if($(window).scrollTop()) {
+                $("nav").addClass("black");
+            }
+            else {
+                $("nav").removeClass("black");
+            }
+        }  )    
+    </script>
 </body>
 </html>

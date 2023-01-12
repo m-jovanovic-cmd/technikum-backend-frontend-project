@@ -31,7 +31,44 @@ header {
     margin: 16px 36px;
     color: white;
     font-weight: bold;
+    font-size: 24px;
 }
+
+nav {
+    position:fixed;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: white;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    transition: 1s;
+}
+
+nav.black ul {
+    background: #000;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
 
 a {
     color: #FFFFFF;
@@ -45,3 +82,4 @@ footer {
     margin-top: auto;
     background-color: #89A6FB;
 }
+
