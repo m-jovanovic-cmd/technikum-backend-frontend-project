@@ -83,3 +83,12 @@ footer {
     background-color: #89A6FB;
 }
 
+details > summary {
+    list-style: none;
+  }
+  
+  details > summary::marker, /* Latest Chrome, Edge, Firefox */ 
+  details > summary::-webkit-details-marker /* Safari */ {
+    display: none;
+  }
+
