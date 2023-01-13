@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
     background-color: #78C3FB;
     margin: 0;
     padding: 0;
@@ -23,6 +24,7 @@ header {
     font-size: 20px;
     line-height: 30px;
     text-align: justify;
+    padding-left: 2em;
 }
 
 .logo {
@@ -35,7 +37,7 @@ header {
 }
 
 nav {
-    position:fixed;
+    position: fixed;
     width: 100%;
 }
 
@@ -83,3 +85,87 @@ footer {
     background-color: #89A6FB;
 }
 
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.5s ease;
+}
+
+.overlay .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.image-container:hover .overlay {
+    background-color: transparent;
+}
+
+.aboutUs_container {
+	position: relative;
+	width: 400px;
+}
+
+.aboutUs_img {
+	display: block;
+	width: 100%;
+}
+
+.aboutUs_overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	color: #ffffff;
+	font-family: 'Quicksand', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.25s;
+}
+
+.aboutUs_overlay-primary {
+	background: hsla(205, 82%, 72%, 0.5);
+}
+
+.aboutUs_overlay>* {
+	transform: translateY(20px);
+	transition: transform 0.25s;
+}
+
+.aboutUs_overlay:hover {
+	opacity: 1;
+}
+
+.aboutUs_overlay:hover>* {
+	transform: translateY(0);
+}
+
+.aboutUs_title {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.aboutUs_description {
+	font-size: 1.25em;
+	margin-top: 0.25em;
+}
