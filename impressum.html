@@ -8,7 +8,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Impressum</h1>
+    <div class ="wrapper">
+        <header>
+            <nav>
+                <div class="logo">CLOUD-IA</div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="./index.html">HOME</a></li>
+                        <li><a href="">SERVICES</a></li>
+                        <li><a href="">ABOUT</a></li>
+                        <li><a href="">GALLERY</a></li>
+                        <li><a href="./impressum.html">IMPRESSUM</a></li>
+                        <li><a href="./help.html">HELP</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="content">
+            <h1>Impressum</h1>
     <br>
     <h2>Firma</h2>
     <b><p>CLOUD-IA</p></b>
@@ -34,11 +51,23 @@
         <input type="email" name="elektronischepost" id="email">
         <button type="submit">Absenden</button>
     </form>
+</div>
     <br><br>
     <footer>
         <a href="/index.html">Index</a> <a href="/ressources/AGB.pdf" download>AGB</a>  <a href="">Help</a>
     </footer>
+    </div>
+        </div> 
+        <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script>
+        $(window).scroll(function(){
+            if($(window).scrollTop()) {
+                $("nav").addClass("black");
+            }
+            else {
+                $("nav").removeClass("black");
+            }
+        }  )    
+    </script>
 </body>
 </html>
-
-<!-- Kommentar iwas -->
