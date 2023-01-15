@@ -1,6 +1,7 @@
 html,
 body {
     background-color: #78C3FB;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -20,11 +21,16 @@ header {
 
 .content {
     width: 100%;
+    width: 1080px;
+    margin: auto;
     margin: 4em auto;
+    margin-bottom: 0;
     font-size: 20px;
     line-height: 30px;
     text-align: justify;
+    color: #7e8daf;
     padding-left: 2em;
+
 }
 
 .logo {
@@ -35,6 +41,7 @@ header {
     font-weight: bold;
     font-size: 24px;
 }
+
 
 nav {
     position: fixed;
@@ -74,17 +81,74 @@ nav ul li a {
 
 a {
     color: #FFFFFF;
+    color: #437d95
 }
 
+/*
 h1 {
     color: #FFFFFF;
 }
-
+*/
 footer {
-    margin-top: auto;
+    padding: 30px;
     background-color: #89A6FB;
+    background-color: #F0F0F0;
+    text-align: center;
 }
 
+p {
+    width: 550px;
+    text-align: justify;
+    /* Blocksatz in paragraph*/
+}
+
+details>summary {
+    list-style: none;
+
+}
+
+
+details>summary::marker,
+/* Latest Chrome, Edge, Firefox */
+details>summary::-webkit-details-marker
+
+/* Safari */
+    {
+    display: none;
+}
+
+input,
+select,
+textarea,
+button {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* macht felder etwas größer bei gleicher schriftgröße*/
+    border-radius: 10px;
+    /*abgerundete ecken*/
+    border-color: #C0C0C0;
+
+
+    box-sizing: border-box;
+    /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
+}
+
+input,
+select,
+textarea {
+    width: 60%;
+    color: #7e8daf;
+    box-shadow: none;
+    border-style: solid;
+
+}
+
+button {
+    background-color: #a8a8a8;
+    color: #FFFFFF;
+
+=======
 .image-container {
     position: relative;
 }
