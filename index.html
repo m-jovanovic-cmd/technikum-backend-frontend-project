@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>CLOUD-IA Homepage</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>CLOUD-IA Homepage</title>
+    </head>
 
-<body>
-    <div class="wrapper">
-        <header>
-            <nav>
-                <div class="logo">CLOUD-IA</div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="./index.html">HOME</a></li>
-                        <li><a href="">SERVICES</a></li>
-                        <li><a href="./aboutUs.html">ABOUT US</a></li>
-                        <li><a href="">GALLERY</a></li>
-                        <li><a href="./impressum.html">IMPRESSUM</a></li>
-                        <li><a href="./faq.html">FAQ</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class="content">
-            <h2>Willkommen auf Europas erster Cloud-Selling Website</h2>
-            <p>Wir bei Cloud-IA haben uns dem Verkauf der freiesten Sache der Welt verschrieben: Wolken</p>
-            <br><br>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nobis aliquam minima corrupti perspiciatis
-                dolores sequi sit odio dignissimos repellendus. Ea necessitatibus aliquam vel voluptatum accusamus ipsam
-                recusandae rem repellendus.</p>
+    <body>
+        <div class="wrapper">
+            <header>
+                <nav>
+                    <div class="logo">CLOUD-IA</div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="./index.html">HOME</a></li>
+                            <li><a href="">SERVICES</a></li>
+                            <li><a href="./aboutUs.html">ABOUT US</a></li>
+                            <li><a href="">GALLERY</a></li>
+                            <li><a href="./impressum.html">IMPRESSUM</a></li>
+                            <li><a href="./faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <div class="content">
+                <h2>Willkommen auf Europas erster Cloud-Selling Website</h2>
+                <p>Wir bei Cloud-IA haben uns dem Verkauf der freiesten Sache der Welt verschrieben: Wolken</p>
+                <br><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nobis aliquam minima corrupti
+                    perspiciatis
+                    dolores sequi sit odio dignissimos repellendus. Ea necessitatibus aliquam vel voluptatum accusamus
+                    ipsam
+                    recusandae rem repellendus.</p>
+            </div>
         </div>
-    </div>
-    <footer>
-        <a href="/impressum.html">Impressum</a> <a href="">Help</a>
-    </footer>
-    <br>
-    <!--Fügt der Klasse "nav" noch "black" hinzu wenn runtergescrollt wird - 
+        <footer>
+            <a href="/impressum.html">Impressum</a> <a href="/faq.html">Help</a>
+        </footer>
+        <br>
+        <!--Fügt der Klasse "nav" noch "black" hinzu wenn runtergescrollt wird - 
         bei scrollTop wird die Scrollposition als int übergeben also 0 wenn on Top 
         daher 0 == false-->
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script>
-        $(window).scroll(function () {
-            if ($(window).scrollTop()) {
-                $("nav").addClass("black");
-            }
-            else {
-                $("nav").removeClass("black");
-            }
-        })    
-    </script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+        <script>
+            $(window).scroll(function () {
+                if ($(window).scrollTop()) {
+                    $("nav").addClass("black");
+                }
+                else {
+                    $("nav").removeClass("black");
+                }
+            })    
+        </script>
+    </body>
+
 </html>
