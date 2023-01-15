@@ -41,6 +41,11 @@ header {
     font-size: 24px;
 }
 
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
 
 nav {
     position: fixed;
