@@ -121,8 +121,6 @@ button {
     border-radius: 10px;
     /*abgerundete ecken*/
     border-color: #C0C0C0;
-
-
     box-sizing: border-box;
     /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
 }
