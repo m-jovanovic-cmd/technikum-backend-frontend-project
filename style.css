@@ -77,18 +77,11 @@ nav ul li a {
     letter-spacing: 2px;
 }
 
-
-
 a {
     color: #FFFFFF;
     color: #437d95
 }
 
-/*
-h1 {
-    color: #FFFFFF;
-}
-*/
 footer {
     padding: 30px;
     background-color: #89A6FB;
@@ -147,8 +140,9 @@ textarea {
 button {
     background-color: #a8a8a8;
     color: #FFFFFF;
+}
 
-=======
+
 .image-container {
     position: relative;
 }
