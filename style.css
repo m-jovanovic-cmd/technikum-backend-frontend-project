@@ -1,6 +1,5 @@
 html,
 body {
-    background-color: #78C3FB;
     background-color: #ffffff;
     margin: 0;
     padding: 0;
@@ -20,7 +19,7 @@ header {
 }
 
 .content {
-    width: 100%;
+    width: 100%, 1080px;
     width: 1080px;
     margin: auto;
     margin: 4em auto;
@@ -40,6 +39,11 @@ header {
     color: white;
     font-weight: bold;
     font-size: 24px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
 }
 
 
@@ -219,12 +223,11 @@ button {
 .aboutUs_title {
     font-size: 2em;
     font-weight: bold;
+    text-align: center;
 }
 
 .aboutUs_description {
     font-size: 1.25em;
     margin-top: 0.25em;
-    width: 100%;
-    width: 100%;
     text-align: center;
 }
