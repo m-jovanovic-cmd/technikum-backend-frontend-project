@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>Kundenregistrierung</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <nav>
+                    <div class="logo"><a href="./index.html">CLOUD-IA</a></div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="./index.html">HOME</a></li>
+                            <li><a href="">SERVICES</a></li>
+                            <li><a href="./aboutUs.html">ABOUT US</a></li>
+                            <li><a href="">GALLERY</a></li>
+                            <li><a href="./impressum.html">IMPRESSUM</a></li>
+                            <li><a href="./faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <div class="content">
+                <h1>Kundenregistrierung</h1>
+                <br>
+                <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
+                <form method="post">
+                    <label for="Anrede">Anrede</label>
+                    <br>
+                    <select name="Anrede" class="form-control" id="anrede-registrierung">
+                        <option value="0" label="Anrede" selected="selected">Anrede</option>
+                        <option value="Herr">Herr</option>
+                        <option value="Frau">Frau</option>
+                    </select>
+                    <br>
+                    <label for="Vorname">Vorname</label> <!--Für Screen-read Users da Inhalt vorgelesen wird-->
+                    <br>
+                    <input type="text" name="Vorname" id="Vorname-registrierung">
+                    <br>
+                    <label for="Nachname">Nachname</label>
+                    <br>
+                    <input type="text" name="Nachname" id="Nachname-registrierung">
+                    <br>
+                    <label for="email">E-Mail</label>
+                    <br>
+                    <input type="email" name="elektronischepost" id="email-registrierung">
+                    <br>
+                    <label for="plz">Postleitzahl</label>
+                    <br>
+                    <input type="text" name="plz" id="plz-registrierung">
+                    <br>
+                    <label for="ort">Ort</label> 
+                    <br>
+                    <input type="text" name="ort" id="ort-registrierung">
+                    <br>
+                    <label for="strasse">Straße</label> 
+                    <br>
+                    <input type="text" name="strasse" id="strasse-registrierung">
+                    <br>
+                    <label for="hausnummer">Hausnummer</label> 
+                    <br>
+                    <input type="text" name="hausnummer" id="hausnummer-registrierung">
+                    <br>
+                    <label for="Was beschäftigt Sie?"></label>
+                    <br>
+                    <button type="submit">Absenden</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <footer>
+            <a href="./index.html">Home</a> <a href="">Services</a> <a href="./aboutUs.html">About Us</a> <a href="">Gallery</a> <a href="/impressum.html">Impressum</a> <a href="/faq.html">Help</a>
+        </footer>
+        <br>
+        <!--Fügt der Klasse "nav" noch "black" hinzu wenn runtergescrollt wird - 
+        bei scrollTop wird die Scrollposition als int übergeben also 0 wenn on Top 
+        daher 0 == false-->
+        <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+        <script>
+            $(window).scroll(function () {
+                if ($(window).scrollTop()) {
+                    $("nav").addClass("black");
+                }
+                else {
+                    $("nav").removeClass("black");
+                }
+            })    
+        </script>
+    </body>
+
+</html>

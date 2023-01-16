@@ -50,6 +50,7 @@ header {
 nav {
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
 
 nav ul {
@@ -176,14 +177,22 @@ button {
     background-color: transparent;
 }
 
-.aboutUs_container {
+.aboutUs_text {
+    padding: 0px 0px 20px 0px;
+    font-size: 15px;
+}
+
+.aboutUs_container {    
     position: relative;
     width: 400px;
+    overflow: hidden;
 }
 
 .aboutUs_img {
     display: block;
     width: 100%;
+    float:initial;
+    flex-basis: 40%
 }
 
 .aboutUs_overlay {
