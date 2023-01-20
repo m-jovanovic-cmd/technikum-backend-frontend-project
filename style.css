@@ -133,6 +133,18 @@ button {
     /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
 }
 
+#anrede-registrierung {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* macht felder etwas größer bei gleicher schriftgröße*/
+    border-radius: 10px;
+    /*abgerundete ecken*/
+    border-color: #C0C0C0;
+    box-sizing: border-box;
+    border-width: 2px;
+}
+
 input,
 select,
 textarea {
@@ -242,4 +254,8 @@ button {
     font-size: 1.25em;
     margin-top: 0.25em;
     text-align: center;
+}
+
+#buttonSpace {
+    margin-right: 10px;
 }
