@@ -1,0 +1,97 @@
+html,
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.content {
+    width: 100%, 1080px;
+    margin: 10px 15px 10px 15px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+    color: #7e8daf;
+    padding-left: 2em;
+
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    background: url(/images/backgroundwolke.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    .test {
+        float:left;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .test {
+        float: left;
+        overflow: hidden;
+        flex-grow: 100;
+        margin-right: 15px;
+    }
+    
+    .tester {
+        float: left;
+    }
+}
+
+.login-button {
+    margin-right: 10px;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+    background-color: #7e8daf !important;
+    border-color: #7e8daf !important;
+}
+
+.btn-primary:hover {
+    background-color: #495163 !important;
+    border-color: #495163 !important;
+}
+
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+ul li {
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+footer p {
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+footer a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+footer a:link, a:visited {
+    color: #7e8daf;
+}
+
+footer a:hover {
+    color: #495163;
+}

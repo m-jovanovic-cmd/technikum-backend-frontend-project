@@ -6,9 +6,12 @@ body {
     width: 100%;
 }
 
+
+
 body {
     font-family: sans-serif;
 }
+
 
 header {
     width: 100%;
@@ -20,7 +23,7 @@ header {
 
 .content {
     width: 100%, 1080px;
-    width: 1080px;
+    /*width: 1080px;*/
     margin: auto;
     margin: 4em auto;
     margin-bottom: 0;
