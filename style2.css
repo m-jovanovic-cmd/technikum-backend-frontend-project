@@ -18,21 +18,44 @@ body {
     text-align: justify;
     color: #7e8daf;
     padding-left: 2em;
-
 }
 
 header {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     background: url(/images/backgroundwolke.jpg) no-repeat 50% 50%;
     background-size: cover;
     background-attachment: fixed;
 }
 
-header h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+/*https://www.youtube.com/watch?v=mikht2lEnI0 
+Es wird einem Text eine Background color gegeben die durch webkit-background-clip auf die Textteile beschränkt ist
+Danach wird die Position des Backgrounds (was nur die Farbe ist) verschoben
+Dieses Verschieben wird anschließend als Animation behandelt und alternierend unendlich oft wiederholt*/
+.headertext {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    /*-webkit-text-stroke: 1px #FFFFFF;*/
+    color: transparent;
+    background-image: linear-gradient(#FFFFFF, #FFFFFF);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: 0 -500px;
+    animation: backcolor 5s linear infinite alternate;
+}
+
+@keyframes backcolor {
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.headertext h2 {
+    font-size: 90px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -94,4 +117,8 @@ footer a:link, a:visited {
 
 footer a:hover {
     color: #495163;
+}
+
+footer .row {
+    width: 100%;
 }
