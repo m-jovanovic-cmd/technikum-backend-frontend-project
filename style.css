@@ -185,7 +185,7 @@ button {
     font-size: 15px;
 }
 
-.aboutUs_container {    
+.aboutUs_container {
     position: relative;
     width: 400px;
     overflow: hidden;
@@ -194,7 +194,7 @@ button {
 .aboutUs_img {
     display: block;
     width: 100%;
-    float:initial;
+    float: initial;
     flex-basis: 40%
 }
 
