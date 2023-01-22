@@ -67,7 +67,6 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
     .headertext h2 {
         font-size: 50px;
     }
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -83,7 +82,7 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
         flex-grow: 100;
         margin-right: 15px;
     }
-    
+
     .tester {
         float: left;
     }
