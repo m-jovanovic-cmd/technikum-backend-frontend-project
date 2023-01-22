@@ -1,6 +1,8 @@
 J: Aufklappbarer Text bei FAQ -Erledigt
 J: Für alles ein eigenes Feld: Kontaktformular FAQ + Name und Email - Erledigt
 
+M: Responsive Bootstrap Grid System:    Index - Done
+                                        About Us - Done
+                                        Kundenregistrierung - in Progress
 
-
-
+M > J: Welche CSS Regeln müssen übernommen werden damit Kundenregistrierung wieder angepasst ist?

@@ -8,6 +8,11 @@ body {
 
 body {
     font-family: sans-serif;
+    
+}
+
+.main {
+    margin-top: 2rem;
 }
 
 .content {
@@ -17,7 +22,7 @@ body {
     line-height: 30px;
     text-align: justify;
     color: #7e8daf;
-    padding-left: 2em;
+    padding: 0 2em 0 2em;
 }
 
 header {
@@ -58,6 +63,13 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
     font-size: 90px;
 }
 
+@media only screen and (max-width: 630px) {
+    .headertext h2 {
+        font-size: 50px;
+    }
+
+}
+
 @media only screen and (max-width: 768px) {
     .test {
         float:left;
@@ -94,6 +106,7 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
 footer {
     background-color: #f8f9fa;
     text-align: center;
+    padding-bottom: 2rem;
 }
 
 ul li {
@@ -121,4 +134,77 @@ footer a:hover {
 
 footer .row {
     width: 100%;
+}
+
+/* ABOUT US PROPERTIES FÜR DEN OVERLAY HOVER EFFEKT */
+.aboutUs_aside p {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+ }
+
+.aboutUs_text {
+    padding: 0px 0px 20px 0px;
+    font-size: 15px;
+}
+
+.aboutUs_container {
+    position: relative;
+    width: 350px;
+    overflow: hidden;
+}
+
+.aboutUs_img {
+    display: block;
+    width: 100%;
+    float: initial;
+    flex-basis: 40%
+}
+
+.aboutUs_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.aboutUs_overlay-primary {
+    background: hsla(205, 82%, 72%, 0.5);
+}
+
+.aboutUs_overlay>* {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.aboutUs_overlay:hover {
+    opacity: 1;
+}
+
+.aboutUs_overlay:hover>* {
+    transform: translateY(0);
+}
+
+.aboutUs_title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.aboutUs_description {
+    font-size: 1.25em;
+    margin-top: 0.25em;
+    text-align: center;
 }
