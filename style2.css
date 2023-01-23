@@ -216,6 +216,7 @@ footer .row {
 
 
 /*Kundenregistrierung Format für Buttons & Textfelder*/
+#FAQ,
 input,
 select,
 textarea,
@@ -229,4 +230,10 @@ button {
     border-color: #C0C0C0;
     box-sizing: border-box;
     /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
+}
+
+/*removed die pfeile bei den ein-und ausklappbaren Texten bei FAQ*/
+details>summary {
+    list-style: none;
+
 }
