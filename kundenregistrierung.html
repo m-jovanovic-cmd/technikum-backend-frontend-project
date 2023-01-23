@@ -1,73 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style2.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
-    <script src="/components/navbar/loadNavbar.js" defer></script>
-    <script src="/components/footer/loadFooter.js" defer></script>
-    <script src="/components/loginModal/loginModal.js" defer></script>
-    <title>Kundenregistrierung</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style2.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
+        <script src="/components/navbar/loadNavbar.js" defer></script>
+        <script src="/components/footer/loadFooter.js" defer></script>
+        <script src="/components/loginModal/loginModal.js" defer></script>
+        <title>Kundenregistrierung</title>
+    </head>
 
-<body>
-    <div class="sticky-top" id="navbarContainer"></div>
-    <header>
-    </header>
-    <div class="content">
-        <h1>Kundenregistrierung</h1>
-        <br>
-        <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
-        <form method="post" action="./index.html">
-            <label for="Anrede">Anrede</label>
+    <body>
+        <div class="sticky-top" id="navbarContainer"></div>
+        <header>
+        </header>
+        <div class="content">
+            <h1>Kundenregistrierung</h1>
             <br>
-            <select name="Anrede" class="form-control" id="anrede-registrierung" style="width:200px">
-                <!--width bestimmt länge von Feld-->
-                <option value=" 0" label=" " selected="selected"> </option>
-                <option value="Herr">Herr</option>
-                <option value="Frau">Frau</option>
-            </select>
-            <label for="Vorname">Vorname</label>
-            <!--Für Screen-read Users da Inhalt vorgelesen wird-->
-            <br>
-            <input type="text" name="Vorname" id="Vorname-registrierung">
-            <br>
-            <label for="Nachname">Nachname</label>
-            <br>
-            <input type="text" name="Nachname" id="Nachname-registrierung">
-            <br>
-            <label for="email">E-Mail</label>
-            <br>
-            <input type="email" name="elektronischepost" id="email-registrierung">
-            <br>
-            <label for="plz">Postleitzahl</label>
-            <br>
-            <input type="text" name="plz" id="plz-registrierung">
-            <br>
-            <label for="ort">Ort</label>
-            <br>
-            <input type="text" name="ort" id="ort-registrierung">
-            <br>
-            <label for="strasse">Straße</label>
-            <br>
-            <input type="text" name="strasse" id="strasse-registrierung">
-            <br>
-            <label for="hausnummer">Hausnummer</label>
-            <br>
-            <input type="text" name="hausnummer" id="hausnummer-registrierung">
-            <br>
-            <label for="Was beschäftigt Sie?"></label>
-            <br>
-            <button type="submit">Absenden</button>
-        </form>
-    </div>
-    <div id="footerContainer"></div>
-    <div id="loginModalContainer"></div>
-</body>
+            <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
+            <form method="POST" action="./index.html">
+                <label for="Anrede">Anrede</label>
+                <br>
+                <select name="Anrede" class="form-control" id="anrede-registrierung" style="width:200px">
+                    <!--width bestimmt länge von Feld-->
+                    <option value=" 0" label=" " selected="selected"> </option>
+                    <option value="Herr">Herr</option>
+                    <option value="Frau">Frau</option>
+                </select>
+                <label for="Vorname">Vorname</label>
+                <!--Für Screen-read Users da Inhalt vorgelesen wird-->
+                <br>
+                <input type="text" name="Vorname" id="Vorname-registrierung">
+                <br>
+                <label for="Nachname">Nachname</label>
+                <br>
+                <input type="text" name="Nachname" id="Nachname-registrierung">
+                <br>
+                <label for="email">E-Mail</label>
+                <br>
+                <input type="email" name="elektronischepost" id="email-registrierung">
+                <br>
+                <label for="plz">Postleitzahl</label>
+                <br>
+                <input type="text" name="plz" id="plz-registrierung">
+                <br>
+                <label for="ort">Ort</label>
+                <br>
+                <input type="text" name="ort" id="ort-registrierung">
+                <br>
+                <label for="strasse">Straße</label>
+                <br>
+                <input type="text" name="strasse" id="strasse-registrierung">
+                <br>
+                <label for="hausnummer">Hausnummer</label>
+                <br>
+                <input type="text" name="hausnummer" id="hausnummer-registrierung">
+                <br>
+                <label for="Was beschäftigt Sie?"></label>
+                <br>
+                <button type="submit">Absenden</button>
+            </form>
+        </div>
+        <div id="footerContainer"></div>
+        <div id="loginModalContainer"></div>
+    </body>
 
 </html>
