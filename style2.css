@@ -1,3 +1,8 @@
+/*
+* {
+    border: 1px solid red;
+}*/
+
 html,
 body {
     background-color: #ffffff;
@@ -109,9 +114,11 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
 }
 
 footer {
+    display: flex;
     background-color: #f8f9fa;
     text-align: center;
     padding-bottom: 2rem;
+    justify-content: center;
 }
 
 ul li {
@@ -240,5 +247,14 @@ footer .row {
 /*removed die pfeile bei den ein-und ausklappbaren Texten bei FAQ*/
 details>summary {
     list-style: none;
+}
 
+footer ul {
+    padding-left: 0 !important;
+}
+
+footer img:hover {
+    width: 28px;
+    transition: 0.3s;
+    animation: alternate-reverse;
 }
