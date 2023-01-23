@@ -8,7 +8,7 @@ body {
 
 body {
     font-family: sans-serif;
-    
+
 }
 
 .main {
@@ -38,7 +38,7 @@ Es wird einem Text eine Background color gegeben die durch webkit-background-cli
 Danach wird die Position des Backgrounds (was nur die Farbe ist) verschoben
 Dieses Verschieben wird anschließend als Animation behandelt und alternierend unendlich oft wiederholt*/
 .headertext {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 100%;
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
 
 @media only screen and (max-width: 768px) {
     .test {
-        float:left;
+        float: left;
     }
 }
 
@@ -92,7 +92,9 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
     margin-right: 10px;
 }
 
-.btn-primary, .btn-primary:active, .btn-primary:visited {
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
     background-color: #7e8daf !important;
     border-color: #7e8daf !important;
 }
@@ -119,11 +121,15 @@ footer p {
     margin: 10px 0px 10px 0px;
 }
 
-footer a:link, a:visited, a:hover, a:active {
+footer a:link,
+a:visited,
+a:hover,
+a:active {
     text-decoration: none;
 }
 
-footer a:link, a:visited {
+footer a:link,
+a:visited {
     color: #7e8daf;
 }
 
@@ -142,7 +148,7 @@ footer .row {
     align-items: center;
     justify-content: center;
 
- }
+}
 
 .aboutUs_text {
     padding: 0px 0px 20px 0px;
@@ -206,4 +212,21 @@ footer .row {
     font-size: 1.25em;
     margin-top: 0.25em;
     text-align: center;
+}
+
+
+/*Kundenregistrierung Format für Buttons & Textfelder*/
+input,
+select,
+textarea,
+button {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* macht felder etwas größer bei gleicher schriftgröße*/
+    border-radius: 10px;
+    /*abgerundete ecken*/
+    border-color: #C0C0C0;
+    box-sizing: border-box;
+    /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
 }
