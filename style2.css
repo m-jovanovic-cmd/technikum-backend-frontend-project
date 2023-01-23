@@ -225,13 +225,16 @@ footer .row {
 
 
 /*Kundenregistrierung Format für Buttons & Textfelder*/
-#kundenregistrierung input select, textarea, button {
+#FAQ,
+#kundenregistrierung input select,
+textarea,
+button {
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
     /* macht felder etwas größer bei gleicher schriftgröße*/
     border: 1px #C0C0C0;
-    border-radius: 10px !important;
+    border-color: #495163;
     /*abgerundete ecken*/
     box-sizing: border-box;
     /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
@@ -241,4 +244,36 @@ footer .row {
 details>summary {
     list-style: none;
 
+}
+
+.defaultborderbutton {
+    border-color: #495163 !important;
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 130px;
+
+}
+
+textarea {
+    border-color: #495163 !important;
+    border-width: 2px;
+
+}
+
+.defaultbordertextarea {
+    border-color: #495163 !important;
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 235px;
+}
+
+.defaulttextarea {
+    border: 1px solid #495163;
+    width: 235px;
 }
