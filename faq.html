@@ -1,32 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./style.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style2.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
+        <script src="/components/navbar/loadNavbar.js" defer></script>
+        <script src="/components/footer/loadFooter.js" defer></script>
+        <script src="/components/loginModal/loginModal.js" defer></script>
         <title>FAQ</title>
     </head>
+
     <body>
+        <div class="sticky-top" id="navbarContainer"></div>
         <div class="wrapper">
-            <header>
-                <nav>
-                    <div class="logo"><a href="./index.html">CLOUD-IA</a></div>
-                    <div class="menu">
-                        <ul>
-                            <li><a href="./index.html">HOME</a></li>
-                            <li><a href="">SERVICES</a></li>
-                            <li><a href="./aboutUs.html">ABOUT US</a></li>
-                            <li><a href="">GALLERY</a></li>
-                            <li><a href="./impressum.html">IMPRESSUM</a></li>
-                            <li><a href="./faq.html">FAQ</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <div class="content">
+            <div class="content FAQ">
                 <h1>FAQ</h1>
                 <br>
                 <details> <!--Einklappbarer Text-->
@@ -79,7 +74,7 @@
                 </details>
 
                 <p>
-                <br><br>
+                    <br><br>
                 <h3>Es sind noch Fragen bei Ihnen offen geblieben? <br> Zögern Sie nicht uns jederzeit zu kontaktieren.
                 </h3>
                 </p>
@@ -100,67 +95,67 @@
 
                     <label for="country">Land</label>
                     <br>
-                    <select name="country" class="form-control" id="country">
+                    <select name="country" class="form-control" id="country" style="width:200px">
                         <option value="0" label="Wählen Sie ein Land aus ..." selected="selected">Wählen Sie ein Land
                             aus
                             ... </option>
-                            <option value="AL" label="Albania">Albania</option>
-                            <option value="AD" label="Andorra">Andorra</option>
-                            <option value="AT" label="Austria">Austria</option>
-                            <option value="BY" label="Belarus">Belarus</option>
-                            <option value="BE" label="Belgium">Belgium</option>
-                            <option value="BA" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                            <option value="BG" label="Bulgaria">Bulgaria</option>
-                            <option value="HR" label="Croatia">Croatia</option>
-                            <option value="CY" label="Cyprus">Cyprus</option>
-                            <option value="CZ" label="Czech Republic">Czech Republic</option>
-                            <option value="DK" label="Denmark">Denmark</option>
-                            <option value="DD" label="East Germany">East Germany</option>
-                            <option value="EE" label="Estonia">Estonia</option>
-                            <option value="FO" label="Faroe Islands">Faroe Islands</option>
-                            <option value="FI" label="Finland">Finland</option>
-                            <option value="FR" label="France">France</option>
-                            <option value="DE" label="Germany">Germany</option>
-                            <option value="GI" label="Gibraltar">Gibraltar</option>
-                            <option value="GR" label="Greece">Greece</option>
-                            <option value="GG" label="Guernsey">Guernsey</option>
-                            <option value="HU" label="Hungary">Hungary</option>
-                            <option value="IS" label="Iceland">Iceland</option>
-                            <option value="IE" label="Ireland">Ireland</option>
-                            <option value="IM" label="Isle of Man">Isle of Man</option>
-                            <option value="IT" label="Italy">Italy</option>
-                            <option value="JE" label="Jersey">Jersey</option>
-                            <option value="LV" label="Latvia">Latvia</option>
-                            <option value="LI" label="Liechtenstein">Liechtenstein</option>
-                            <option value="LT" label="Lithuania">Lithuania</option>
-                            <option value="LU" label="Luxembourg">Luxembourg</option>
-                            <option value="MK" label="Macedonia">Macedonia</option>
-                            <option value="MT" label="Malta">Malta</option>
-                            <option value="FX" label="Metropolitan France">Metropolitan France</option>
-                            <option value="MD" label="Moldova">Moldova</option>
-                            <option value="MC" label="Monaco">Monaco</option>
-                            <option value="ME" label="Montenegro">Montenegro</option>
-                            <option value="NL" label="Netherlands">Netherlands</option>
-                            <option value="NO" label="Norway">Norway</option>
-                            <option value="PL" label="Poland">Poland</option>
-                            <option value="PT" label="Portugal">Portugal</option>
-                            <option value="RO" label="Romania">Romania</option>
-                            <option value="RU" label="Russia">Russia</option>
-                            <option value="SM" label="San Marino">San Marino</option>
-                            <option value="RS" label="Serbia">Serbia</option>
-                            <option value="CS" label="Serbia and Montenegro">Serbia and Montenegro</option>
-                            <option value="SK" label="Slovakia">Slovakia</option>
-                            <option value="SI" label="Slovenia">Slovenia</option>
-                            <option value="ES" label="Spain">Spain</option>
-                            <option value="SJ" label="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-                            <option value="SE" label="Sweden">Sweden</option>
-                            <option value="CH" label="Switzerland">Switzerland</option>
-                            <option value="UA" label="Ukraine">Ukraine</option>
-                            <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist
-                                Republics</option>
-                            <option value="GB" label="United Kingdom">United Kingdom</option>
-                            <option value="VA" label="Vatican City">Vatican City</option>
-                            <option value="AX" label="Åland Islands">Åland Islands</option>
+                        <option value="AL" label="Albania">Albania</option>
+                        <option value="AD" label="Andorra">Andorra</option>
+                        <option value="AT" label="Austria">Austria</option>
+                        <option value="BY" label="Belarus">Belarus</option>
+                        <option value="BE" label="Belgium">Belgium</option>
+                        <option value="BA" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="BG" label="Bulgaria">Bulgaria</option>
+                        <option value="HR" label="Croatia">Croatia</option>
+                        <option value="CY" label="Cyprus">Cyprus</option>
+                        <option value="CZ" label="Czech Republic">Czech Republic</option>
+                        <option value="DK" label="Denmark">Denmark</option>
+                        <option value="DD" label="East Germany">East Germany</option>
+                        <option value="EE" label="Estonia">Estonia</option>
+                        <option value="FO" label="Faroe Islands">Faroe Islands</option>
+                        <option value="FI" label="Finland">Finland</option>
+                        <option value="FR" label="France">France</option>
+                        <option value="DE" label="Germany">Germany</option>
+                        <option value="GI" label="Gibraltar">Gibraltar</option>
+                        <option value="GR" label="Greece">Greece</option>
+                        <option value="GG" label="Guernsey">Guernsey</option>
+                        <option value="HU" label="Hungary">Hungary</option>
+                        <option value="IS" label="Iceland">Iceland</option>
+                        <option value="IE" label="Ireland">Ireland</option>
+                        <option value="IM" label="Isle of Man">Isle of Man</option>
+                        <option value="IT" label="Italy">Italy</option>
+                        <option value="JE" label="Jersey">Jersey</option>
+                        <option value="LV" label="Latvia">Latvia</option>
+                        <option value="LI" label="Liechtenstein">Liechtenstein</option>
+                        <option value="LT" label="Lithuania">Lithuania</option>
+                        <option value="LU" label="Luxembourg">Luxembourg</option>
+                        <option value="MK" label="Macedonia">Macedonia</option>
+                        <option value="MT" label="Malta">Malta</option>
+                        <option value="FX" label="Metropolitan France">Metropolitan France</option>
+                        <option value="MD" label="Moldova">Moldova</option>
+                        <option value="MC" label="Monaco">Monaco</option>
+                        <option value="ME" label="Montenegro">Montenegro</option>
+                        <option value="NL" label="Netherlands">Netherlands</option>
+                        <option value="NO" label="Norway">Norway</option>
+                        <option value="PL" label="Poland">Poland</option>
+                        <option value="PT" label="Portugal">Portugal</option>
+                        <option value="RO" label="Romania">Romania</option>
+                        <option value="RU" label="Russia">Russia</option>
+                        <option value="SM" label="San Marino">San Marino</option>
+                        <option value="RS" label="Serbia">Serbia</option>
+                        <option value="CS" label="Serbia and Montenegro">Serbia and Montenegro</option>
+                        <option value="SK" label="Slovakia">Slovakia</option>
+                        <option value="SI" label="Slovenia">Slovenia</option>
+                        <option value="ES" label="Spain">Spain</option>
+                        <option value="SJ" label="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                        <option value="SE" label="Sweden">Sweden</option>
+                        <option value="CH" label="Switzerland">Switzerland</option>
+                        <option value="UA" label="Ukraine">Ukraine</option>
+                        <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist
+                            Republics</option>
+                        <option value="GB" label="United Kingdom">United Kingdom</option>
+                        <option value="VA" label="Vatican City">Vatican City</option>
+                        <option value="AX" label="Åland Islands">Åland Islands</option>
                     </select>
                     <br>
                     <label for="Was beschäftigt Sie?"></label>
@@ -181,21 +176,8 @@
                 </form>
             </div>
             <br><br>
-            <footer>
-                <a href="./index.html">Home</a> <a href="">Services</a> <a href="./aboutUs.html">About Us</a> <a href="">Gallery</a> <a href="/impressum.html">Impressum</a> <a href="/faq.html">Help</a>
-            </footer>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-        <script>
-            $(window).scroll(function () {
-                if ($(window).scrollTop()) {
-                    $("nav").addClass("black");
-                }
-                else {
-                    $("nav").removeClass("black");
-                }
-            })    
-        </script>
+            <div id="footerContainer"></div>
+            <div id="loginModalContainer"></div>
     </body>
 
 </html>
