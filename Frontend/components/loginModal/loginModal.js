@@ -1,1 +1,1 @@
-$("#loginModalContainer").load("/components/loginModal/loginModal.html");
+$("#loginModalContainer").load("/Frontend/components/loginModal/loginModal.html");
