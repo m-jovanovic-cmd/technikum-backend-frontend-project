@@ -1,0 +1,191 @@
+header {
+    border: 1px solid red;
+}
+
+html,
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+
+}
+
+.main {
+    margin-top: 2rem;
+}
+
+.content {
+    width: 100%, 1080px;
+    margin: 10px 15px 10px 15px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+    color: #7e8daf;
+    padding: 0 2em 0 2em;
+}
+
+#Impressum-Main {
+    text-align: left;
+}
+
+header {
+    width: 100%;
+    height: 80vh;
+    background: url(/Frontend/images/backgroundwolke.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+@keyframes backcolor {
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.headertext h2 {
+    font-size: 90px;
+}
+
+@media only screen and (max-width: 630px) {
+    .headertext h2 {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .test {
+        float: left;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .test {
+        float: left;
+        overflow: hidden;
+        flex-grow: 100;
+        margin-right: 15px;
+    }
+
+    .tester {
+        float: left;
+    }
+}
+
+.login-button {
+    margin-right: 10px;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #7e8daf !important;
+    border-color: #7e8daf !important;
+}
+
+.btn-primary:hover {
+    background-color: #495163 !important;
+    border-color: #495163 !important;
+}
+
+footer {
+    display: flex;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding-bottom: 2rem;
+    justify-content: center;
+}
+
+ul li {
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+footer p {
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+footer a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+footer a:link,
+a:visited {
+    color: #7e8daf;
+}
+
+footer a:hover {
+    color: #495163;
+}
+
+footer .row {
+    width: 100%;
+}
+
+footer img:hover {
+    width: 28px;
+    transition: 0.3s;
+    animation: alternate-reverse;
+}
+
+
+.defaultborderbutton {
+    border-color: #495163 !important;
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 130px;
+
+}
+
+textarea {
+    border-color: #495163 !important;
+    border-width: 2px;
+
+}
+
+.defaultbordertextarea {
+    border-color: #495163 !important;
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 235px;
+}
+
+.defaulttextarea {
+    border: 1px solid #495163;
+    width: 235px;
+}
+
+footer img:hover {
+    width: 28px;
+    transition: 0.3s;
+    animation: alternate-reverse;
+}
+
+#kasten {
+    width: 100%;
+    height: 500px;
+    background-color: rgb(54, 145, 165);
+}
+
+.rounded-circle {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    border-radius: 50%;
+}
