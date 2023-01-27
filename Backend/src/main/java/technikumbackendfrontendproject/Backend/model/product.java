@@ -6,9 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
-@Entity(name = "product")
+@Entity(name = "Product")
 
-public class product {
+public class Product {
 
     @Id
     @GeneratedValue
@@ -36,7 +36,7 @@ public class product {
 
     //CONSTRUCTORS
 
-    public product(Long id, String name, String description, String imageUrl, double price, int quantity, String type) {
+    public Product(Long id, String name, String description, String imageUrl, double price, int quantity, String type) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,7 +46,7 @@ public class product {
         this.type = type;
     }
 
-    public product() {
+    public Product() {
 
     }
 
