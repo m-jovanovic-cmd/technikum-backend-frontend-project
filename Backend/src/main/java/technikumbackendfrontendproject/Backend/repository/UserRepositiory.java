@@ -1,10 +1,10 @@
 package technikumbackendfrontendproject.Backend.repository;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.model.User;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface UserRepositiory extends JpaRepository<User, Long> {
+    
 }
