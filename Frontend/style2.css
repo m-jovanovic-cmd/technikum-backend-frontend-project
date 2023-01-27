@@ -300,3 +300,11 @@ footer img:hover {
     transition: 0.3s;
     animation: alternate-reverse;
 }
+
+
+/*Mainwrapper für seitenabstand*/
+
+#MainFormatingWrapper {
+    padding-right: 30%;
+    padding-bottom: 30%;
+}
