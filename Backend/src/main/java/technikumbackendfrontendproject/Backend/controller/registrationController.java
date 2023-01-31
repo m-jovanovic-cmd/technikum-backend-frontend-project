@@ -13,7 +13,7 @@ import technikumbackendfrontendproject.Backend.service.RegistrationService;
 
 @RestController
 @RequestMapping("/registration")
-public class registrationController {
+public class RegistrationController {
     
     @Autowired
     private RegistrationService registrationService;
