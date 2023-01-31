@@ -1,6 +1,7 @@
 $("#register-button").on("click", e =>{
 
     const regData = {
+        "gender": $("#anrede-registrierung").val(),
         "vorname": $("#vorname-registrierung").val(),
         "nachname": $("#nachname-registrierung").val(),
         "eMail": $("#email-registrierung").val(),

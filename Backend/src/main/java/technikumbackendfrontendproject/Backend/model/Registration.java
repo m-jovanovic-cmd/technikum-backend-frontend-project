@@ -1,7 +1,5 @@
 package technikumbackendfrontendproject.Backend.model;
 
-import org.springframework.lang.NonNull;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

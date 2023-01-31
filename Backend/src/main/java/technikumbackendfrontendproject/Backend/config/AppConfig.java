@@ -2,7 +2,6 @@ package technikumbackendfrontendproject.Backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import technikumbackendfrontendproject.Backend.service.RegistrationService;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
