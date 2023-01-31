@@ -308,3 +308,8 @@ footer img:hover {
     padding-right: 30%;
     padding-bottom: 30%;
 }
+
+.produkt {
+    border: 1px solid red;
+    padding: 20px 15px 20px 15px;
+}
