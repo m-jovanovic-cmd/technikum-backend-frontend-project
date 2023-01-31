@@ -5,6 +5,17 @@ import org.springframework.stereotype.Repository;
 import technikumbackendfrontendproject.Backend.model.Registration;
 
 @Repository
-public interface RegisterRepository extends JpaRepository<Registration, Long>{
-    
+public interface RegisterRepository extends JpaRepository<Registration, Long> {
+
 }
+
+/*
+ * Repos sind interfaces!
+ * 
+ * Extende zu JPA repo
+ * 
+ * Links sage ich Repo was ihr übergeben wird (die klasse Registration),
+ * Long für die ID die er generated (siehe in model- Registration)
+ * 
+ * > Daten gehen in die Datenbank
+ */
