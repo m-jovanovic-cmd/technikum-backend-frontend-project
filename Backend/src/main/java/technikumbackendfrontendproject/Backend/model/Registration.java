@@ -5,9 +5,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+/*
+ * @Entity
+ * Wie die Tabelle heißen wird
+ * 
+ * Klasse Registration
+ * Erstellen ID mit typ Long
+ * @ID -validation
+ * @GeneratedVAlue generiert ID automatisch
+ * @Column dafür wird ne Spalte verwendet
+ * @Column macht ned Spalte mit vorname und speichert den String vorname hinein
+ * 
+ * Unten befindet sich Constructor siehe Kommentar
+ * Constructor overload (mehrer Constructoren)
+ * Einen ohne ID, und leeren Constructor (leeres Objekt (von Klasse Registration) für den Methodenaufruf, zwecks Einfachheit, kann auch enstehen wenn werte fehlen)
+ * 
+ * Getter und Setter für alles generiert, zunächst leer, dann werden werte eingefüllt (automatisch)
+ */
+
 @Entity(name = "registration")
 public class Registration {
-    
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -34,8 +52,7 @@ public class Registration {
     @Column(name = "hausnummer")
     private String hausnummer;
 
-
-    //CONSTRUCTORS
+    // CONSTRUCTORS
 
     public Registration(Long id, String vorname, String nachname, String eMail, String plz, String ort, String strasse,
             String hausnummer) {
@@ -48,9 +65,9 @@ public class Registration {
         this.strasse = strasse;
         this.hausnummer = hausnummer;
     }
-    
+
     public Registration(String vorname, String nachname, String eMail, String plz, String ort, String strasse,
-    String hausnummer) {
+            String hausnummer) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.eMail = eMail;
@@ -62,9 +79,8 @@ public class Registration {
 
     public Registration() {
     }
-    
 
-    //GETTER & SETTER
+    // GETTER & SETTER
 
     public Long getId() {
         return id;
