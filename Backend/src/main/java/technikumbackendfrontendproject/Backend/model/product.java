@@ -1,6 +1,5 @@
 package technikumbackendfrontendproject.Backend.model;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,37 +17,40 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "produkttyp")
+    private String produkttyp;
 
-    @Column(name = "imageUrl")
-    private String imageUrl;
+    @Column(name = "beschreibung")
+    private String beschreibung;
 
-    @Column(name = "price")
-    private double price;
+    @Column(name = "image")
+    private byte[] data;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "filename")
+    private String filename;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "filetype")
+    private String filetype;
 
-
-    //CONSTRUCTORS
-
-    public Product(Long id, String name, String description, String imageUrl, double price, int quantity, String type) {
+    
+    // CONSTRUCTORS
+    
+    public Product(Long id, String name, String produkttyp, String beschreibung) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.price = price;
-        this.quantity = quantity;
-        this.type = type;
+        this.produkttyp = produkttyp;
+        this.beschreibung = beschreibung;
+    }
+
+    public Product(String name, String produkttyp, String beschreibung) {
+        this.name = name;
+        this.produkttyp = produkttyp;
+        this.beschreibung = beschreibung;
     }
 
     public Product() {
-
     }
+
 
     // GETTER & SETTER
 
@@ -56,55 +58,55 @@ public class Product {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public String getProdukttyp() {
+        return produkttyp;
+    }
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getFiletype() {
+        return filetype;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public void setProdukttyp(String produkttyp) {
+        this.produkttyp = produkttyp;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    public void setFiletype(String filetype) {
+        this.filetype = filetype;
+    }    
 }

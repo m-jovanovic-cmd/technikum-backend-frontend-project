@@ -1,4 +1,4 @@
-package technikumbackendfrontendproject.Backend.controller;
+/*package technikumbackendfrontendproject.Backend.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -37,4 +37,4 @@ public class productController {
         product = repo.save(product);
         return ResponseEntity.created(URI.create("hhtp://localhost:8080/products")).body(product);
     }
-}
+}*/
