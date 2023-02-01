@@ -14,54 +14,54 @@ public class Registration {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "vorname")
-    private String vorname;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column(name = "nachname")
-    private String nachname;
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "eMail")
     private String eMail;
 
-    @Column(name = "plz")
-    private String plz;
+    @Column(name = "postcode")
+    private String postcode;
 
-    @Column(name = "ort")
-    private String ort;
+    @Column(name = "location")
+    private String location;
 
-    @Column(name = "strasse")
-    private String strasse;
+    @Column(name = "street")
+    private String street;
 
-    @Column(name = "hausnummer")
-    private String hausnummer;
+    @Column(name = "streetNumber")
+    private String streetnumber;
 
+    
     // CONSTRUCTORS
-
-    public Registration(Long id, String vorname, String nachname, String eMail, String plz, String ort, String strasse,
-            String hausnummer) {
+    
+    public Registration(Long id, String firstName, String lastName, String eMail, String postcode, String location, String street, String streetnumber) {
         this.id = id;
-        this.vorname = vorname;
-        this.nachname = nachname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.eMail = eMail;
-        this.plz = plz;
-        this.ort = ort;
-        this.strasse = strasse;
-        this.hausnummer = hausnummer;
+        this.postcode = postcode;
+        this.location = location;
+        this.street = street;
+        this.streetnumber = streetnumber;
     }
-
-    public Registration(String vorname, String nachname, String eMail, String plz, String ort, String strasse,
-            String hausnummer) {
-        this.vorname = vorname;
-        this.nachname = nachname;
+    
+    public Registration(String firstName, String lastName, String eMail, String postcode, String location, String street, String streetnumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.eMail = eMail;
-        this.plz = plz;
-        this.ort = ort;
-        this.strasse = strasse;
-        this.hausnummer = hausnummer;
+        this.postcode = postcode;
+        this.location = location;
+        this.street = street;
+        this.streetnumber = streetnumber;
     }
 
     public Registration() {
-    }
+        }
+            
 
     // GETTER & SETTER
 
@@ -73,20 +73,20 @@ public class Registration {
         this.id = id;
     }
 
-    public String getVorname() {
-        return vorname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNachname() {
-        return nachname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String geteMail() {
@@ -97,48 +97,38 @@ public class Registration {
         this.eMail = eMail;
     }
 
-    public String getPlz() {
-        return plz;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPlz(String plz) {
-        this.plz = plz;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
-    public String getOrt() {
-        return ort;
+    public String getLocation() {
+        return location;
     }
 
-    public void setOrt(String ort) {
-        this.ort = ort;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getStrasse() {
-        return strasse;
+    public String getStreet() {
+        return street;
     }
 
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getHausnummer() {
-        return hausnummer;
+    public String getStreetnumber() {
+        return streetnumber;
     }
 
-    public void setHausnummer(String hausnummer) {
-        this.hausnummer = hausnummer;
+    public void setStreetnumber(String streetnumber) {
+        this.streetnumber = streetnumber;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 /*
  * @Entity
@@ -149,7 +139,7 @@ public class Registration {
  * @ID -validation
  * @GeneratedVAlue generiert ID automatisch
  * @Column dafür wird ne Spalte verwendet
- * @Column macht ned Spalte mit vorname und speichert den String vorname hinein
+ * @Column macht ned Spalte mit firstName und speichert den String firstName hinein
  * 
  * Unten befindet sich Constructor siehe Kommentar
  * Constructor overload (mehrer Constructoren)

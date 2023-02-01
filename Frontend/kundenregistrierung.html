@@ -17,57 +17,53 @@
         <script src="components/footer/loadFooter.js" defer></script>
         <script src="components/loginModal/loginModal.js" defer></script>
         <script src="./registration.js" defer></script>
-        <title>Kundenregistrierung</title>
+        <title>Kundenregistration</title>
     </head>
 
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <div class="content kundenregistrierung">
-            <h1>Kundenregistrierung</h1>
+        <div class="content kundenregistration">
+            <h1>Kundenregistration</h1>
             <br>
-            <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
+            <!--E-Mail-Adresse, Gender (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
             <form>
-                <label for="Anrede">Anrede</label>
+                <label for="Gender">Gender</label>
                 <br>
-                <select name="Anrede" class="defaultbordertextarea" id="anrede-registrierung">
+                <select name="Gender" class="defaultbordertextarea" id="gender-registration">
                     <option value="0" label=" " selected="selected"> </option>
                     <option value="Herr">Herr</option>
                     <option value="Frau">Frau</option>
-                    <option value="Divers">Other</option>
+                    <option value="Other">Other</option>
                 </select>
                 <br>
-                <label for="Vorname">Vorname</label>
                 <!--Für Screen-read Users da Inhalt vorgelesen wird-->
+                <label for="firstName-registration">Vorname</label>
                 <br>
-                <input type="text" name="Vorname" id="vorname-registrierung">
+                <input type="text" name="Vorname" id="firstName-registration">
                 <br>
-                <label for="Nachname">Nachname</label>
+                <label for="lastName-registration">Nachname</label>
                 <br>
-                <input type="text" name="Nachname" id="nachname-registrierung">
+                <input type="text" name="Nachname" id="lastName-registration">
                 <br>
-                <label for="email">E-Mail</label>
+                <label for="email-registration">E-Mail</label>
                 <br>
-                <input type="email" name="elektronischepost" id="email-registrierung">
+                <input type="email" name="elektronischepost" id="email-registration">
                 <br>
-                <label for="plz">Postleitzahl</label>
+                <label for="postcode-registration">Postleitzahl</label>
                 <br>
-                <input type="text" name="plz" id="plz-registrierung">
+                <input type="text" name="plz" id="postcode-registration">
                 <br>
-                <label for="ort">Ort</label>
+                <label for="location-registration">Ort</label>
                 <br>
-                <input type="text" name="ort" id="ort-registrierung">
+                <input type="text" name="ort" id="location-registration">
                 <br>
-                <label for="strasse">Straße</label>
+                <label for="street-registration">Straße</label>
                 <br>
-                <input type="text" name="strasse" id="strasse-registrierung">
+                <input type="text" name="strasse" id="street-registration">
                 <br>
-                <label for="hausnummer">Hausnummer</label>
+                <label for="streetNumber-registration">Hausnummer</label>
                 <br>
-                <input type="text" name="hausnummer" id="hausnummer-registrierung">
-                <br>
-                <label>Photos: </label>
-                <br>
-                <input type="file" name="image" accept="image/png, image/jpeg" />
+                <input type="text" name="hausnummer" id="streetNumber-registration">
                 <br>
                 <label for="Was beschäftigt Sie?"></label>
                 <br>

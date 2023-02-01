@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import technikumbackendfrontendproject.Backend.model.Registration;
 
 @Repository
-public interface RegisterRepository extends JpaRepository<Registration, Long> {
+public interface RegistrationRepository extends JpaRepository<Registration, Long> {
 
 }
 

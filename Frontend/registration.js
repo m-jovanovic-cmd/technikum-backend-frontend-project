@@ -4,17 +4,17 @@ $("#register-button").on("click", e => {
     //regData ist eine Instanz eines Registration Objekts, siehe model Registration.java
     const regData = {
         //"anrede": $("#anrede-registrierung").val(),
-        "vorname": $("#vorname-registrierung").val(),
-        "nachname": $("#nachname-registrierung").val(),
-        "eMail": $("#email-registrierung").val(),
-        "plz": $("#plz-registrierung").val(),
-        "ort": $("#ort-registrierung").val(),
-        "strasse": $("#strasse-registrierung").val(),
-        "hausnummer": $("#hausnummer-registrierung").val()
+        "firstName": $("#firstName-registration").val(),
+        "lastName": $("#lastName-registration").val(),
+        "eMail": $("#email-registration").val(),
+        "postcode": $("#postcode-registration").val(),
+        "location": $("#location-registration").val(),
+        "street": $("#street-registration").val(),
+        "streetNumber": $("#streetNumber-registration").val()
     }
 
     $.ajax({
-        url: "http://localhost:8080/registration/register",
+        url: "http://localhost:8080/api/registrations",
         type: "POST",
         cors: true,
         contentType: "application/json",

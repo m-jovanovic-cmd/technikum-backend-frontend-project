@@ -2,32 +2,17 @@ package technikumbackendfrontendproject.Backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import technikumbackendfrontendproject.Backend.model.Registration;
-import technikumbackendfrontendproject.Backend.repository.RegisterRepository;
+import technikumbackendfrontendproject.Backend.repository.RegistrationRepository;
 
 public class RegistrationService {
 
     @Autowired
-    private RegisterRepository registerRepo;
+    private RegistrationRepository registrationRepo;
 
     public void createRegistration(Registration registration) {
-        registerRepo.save(registration);
+        registrationRepo.save(registration);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
