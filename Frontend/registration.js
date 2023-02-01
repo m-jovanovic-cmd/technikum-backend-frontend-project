@@ -24,6 +24,15 @@ $("#register-button").on("click", e => {
     });
 });
 
+
+
+
+
+
+
+
+
+
 /* 
  *   Wenn Button geklickt wird (siehe Zeile 1) dann werden alle Dinge die in der runden Klammer von on sind :)
  *   const (wie final in Java)

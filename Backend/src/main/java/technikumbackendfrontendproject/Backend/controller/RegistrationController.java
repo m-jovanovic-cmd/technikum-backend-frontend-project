@@ -11,18 +11,29 @@ import technikumbackendfrontendproject.Backend.model.Registration;
 import technikumbackendfrontendproject.Backend.service.RegistrationService;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/registration") // API
 public class RegistrationController {
     
     @Autowired
     private RegistrationService registrationService;
 
-    @PostMapping("/register")
+    @PostMapping("/register")  //registrations
     public ResponseEntity<Long> createRegistration(@RequestBody Registration registration) {
         registrationService.createRegistration(registration);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  * Zusammengefasst > "Macht viele coole Sachen" - Zitat Mladen

@@ -14,6 +14,22 @@ public class RegistrationService {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  * Siehe erklären Autowired
  * 

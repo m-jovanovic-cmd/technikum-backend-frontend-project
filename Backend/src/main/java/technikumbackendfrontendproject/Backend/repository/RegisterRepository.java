@@ -9,6 +9,22 @@ public interface RegisterRepository extends JpaRepository<Registration, Long> {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  * Repos sind interfaces!
  * 
