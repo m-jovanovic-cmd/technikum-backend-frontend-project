@@ -53,7 +53,6 @@ Dieses Verschieben wird anschließend als Animation behandelt und alternierend u
     align-items: center;
     justify-content: center;
     color: white;
-    /*-webkit-text-stroke: 1px #FFFFFF;*/
     color: transparent;
     background-image: linear-gradient(#FFFFFF, #FFFFFF);
     background-repeat: no-repeat;
