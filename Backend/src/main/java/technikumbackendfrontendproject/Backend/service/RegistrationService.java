@@ -3,14 +3,13 @@ package technikumbackendfrontendproject.Backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import technikumbackendfrontendproject.Backend.model.Registration;
 import technikumbackendfrontendproject.Backend.repository.RegistrationRepository;
 
-@Service
+
 public class RegistrationService {
 
-    //@Autowired
+    @Autowired
     private RegistrationRepository registrationRepo;
 
     public void createRegistration(Registration registration) {

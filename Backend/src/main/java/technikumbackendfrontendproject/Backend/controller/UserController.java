@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
-    private UserService testService;
-
+    private UserService userService;
     
-    @PostMapping("/create")
-    public ResponseEntity<Long> createUser(@RequestBody String email) {
-        testService.createUser(email);
+    @PostMapping("/users")
+    public ResponseEntity<Long> createUser(@RequestBody User user) {
+        userService.registerUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

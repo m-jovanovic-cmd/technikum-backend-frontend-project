@@ -1,9 +1,12 @@
 package technikumbackendfrontendproject.Backend.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity(name = "Product")
 
@@ -23,14 +26,8 @@ public class Product {
     @Column(name = "beschreibung")
     private String beschreibung;
 
-    @Column(name = "image")
-    private byte[] data;
-
-    @Column(name = "filename")
-    private String filename;
-
-    @Column(name = "filetype")
-    private String filetype;
+    //@ManyToMany(mappedBy = "products")
+    //private Set<Cart> carts;
 
     
     // CONSTRUCTORS
@@ -70,18 +67,6 @@ public class Product {
         return beschreibung;
     }
 
-    public byte[] getData() {
-        return data;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public String getFiletype() {
-        return filetype;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -98,15 +83,11 @@ public class Product {
         this.beschreibung = beschreibung;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    /*public Set<Cart> getCarts() {
+        return carts;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public void setFiletype(String filetype) {
-        this.filetype = filetype;
-    }    
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    } */
 }

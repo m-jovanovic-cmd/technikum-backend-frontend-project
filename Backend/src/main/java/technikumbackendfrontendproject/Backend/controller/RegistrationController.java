@@ -1,8 +1,11 @@
 package technikumbackendfrontendproject.Backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +20,16 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
+    
     @PostMapping("/registrations")
     public ResponseEntity<Long> createRegistration(@RequestBody Registration registration) {
         registrationService.createRegistration(registration);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/registrations")
+    public List<Registration> findAll() {
+        return registrationService.findAll();
     }
 }
 

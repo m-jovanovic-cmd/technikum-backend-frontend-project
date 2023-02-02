@@ -6,15 +6,11 @@ import technikumbackendfrontendproject.Backend.repository.UserRepositiory;
 public class UserService {
 
     @Autowired
-    private UserRepositiory testRepo;
+    private UserRepositiory userRepositiory;
 
-    public void createUser(String email) {
-        User testUser = new User(email);
-        testUser.getEmail();
-        testRepo.save(testUser);
-    }
-
-    private boolean checkEmail(User user){
-        return true;
+    public void registerUser(User user) {
+        user.setRole("Customer");
+        user.setStatus("active");
+        userRepositiory.save(user);
     }
 }
