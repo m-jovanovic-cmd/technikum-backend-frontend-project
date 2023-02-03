@@ -1,13 +1,16 @@
-/*package technikumbackendfrontendproject.Backend.model;
+package technikumbackendfrontendproject.Backend.model;
 
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "cart")
 public class Cart {
@@ -23,14 +26,25 @@ public class Cart {
     @Column(name = "orderstatus")
     private Long orderstatus;
 
-    
-    //versuch fremdschlüssel UserID zu implementieren
     @ManyToOne
-    @JoinColumn(name = "ID")
-    private Set<User> user;
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
+
+    @OneToMany(mappedBy = "cart")
+    @JsonBackReference
+    private Set<Position> positions;
+
+    // Constructors
+
+    public Cart() {
+    }
+
+    public Cart(User user) {
+        this.user = user;
+    }
 
 
-    // GETTER & SETTER
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -40,12 +54,35 @@ public class Cart {
         this.id = id;
     }
 
-    public Set<Product> getProduct() {
-        return product;
+    public Long getTotal() {
+        return total;
     }
 
-    public void setProduct(Set<Product> product) {
-        this.product = product;
+    public void setTotal(Long total) {
+        this.total = total;
     }
+
+    public Long getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(Long orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }  
 }
-*/

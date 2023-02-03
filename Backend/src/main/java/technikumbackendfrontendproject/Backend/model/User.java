@@ -16,19 +16,19 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(name = "firstname", nullable = false)
+    private String firstName;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "lastname", nullable = false)
+    private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "postcode")
@@ -52,15 +52,15 @@ public class User {
 
     // CONSTRUCTORS
 
-    public User(Long id, String gender, String username, String password, String firstname, String lastname,
+    public User(Long id, String gender, String username, String password, String firstName, String lastName,
             String email, String postcode, String location, String street, String streetnumber, String status,
             String role) {
         this.id = id;
         this.gender = gender;
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -70,13 +70,13 @@ public class User {
         this.role = role;
     }
 
-    public User(String gender, String username, String password, String firstname, String lastname, String email,
+    public User(String gender, String username, String password, String firstName, String lastName, String email,
             String postcode, String location, String street, String streetnumber, String status, String role) {
         this.gender = gender;
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -124,20 +124,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

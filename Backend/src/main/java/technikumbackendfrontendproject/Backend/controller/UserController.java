@@ -13,13 +13,13 @@ import technikumbackendfrontendproject.Backend.service.UserService;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
     
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<Long> createUser(@RequestBody User user) {
         userService.registerUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
