@@ -1,5 +1,4 @@
 package technikumbackendfrontendproject.Backend.service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.User;
