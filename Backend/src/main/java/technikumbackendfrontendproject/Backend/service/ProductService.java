@@ -33,6 +33,7 @@ public class ProductService {
     }
 
     public Product save(Product product) {
+        product.setStatus(true);
         return productRepository.save(product);
     }
 
@@ -60,5 +61,4 @@ public class ProductService {
         product2.setStatus(true);
         return save(product2);
     }
-    
 }

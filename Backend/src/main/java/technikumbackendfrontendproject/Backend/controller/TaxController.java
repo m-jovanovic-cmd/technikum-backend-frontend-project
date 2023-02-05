@@ -15,7 +15,7 @@ import technikumbackendfrontendproject.Backend.repository.TaxRepository;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/taxes")
 public class TaxController {
     
     private TaxRepository taxRepository;

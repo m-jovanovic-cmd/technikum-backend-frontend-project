@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
     
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/carts")
 public class CartController {
 
     private CartService cartService;
@@ -23,7 +23,7 @@ public class CartController {
     }
 
     @ResponseStatus(code = CREATED)
-    @PostMapping("/carts")
+    @PostMapping
     public Cart create(@RequestBody Cart cart) {
         return cartService.save(cart);
     }

@@ -38,7 +38,7 @@ public class Product {
     private boolean status;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "tax_id", nullable = false)
+    @JoinColumn(name = "taxId", nullable = false)
     private Tax tax;
 
     
@@ -124,6 +124,6 @@ public class Product {
     }
 
     public void setTax(Tax tax) {
-        this.tax = tax;
+        this.tax =tax;
     }   
 }
