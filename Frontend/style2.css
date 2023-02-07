@@ -233,7 +233,6 @@ footer .row {
 /*Kundenregistrierung Format für Buttons & Textfelder*/
 #FAQ,
 #kundenregistrierung input select,
-textarea,
 button {
     padding: 10px;
     margin-top: 5px;
@@ -279,21 +278,6 @@ textarea {
 
 }
 
-.defaultbordertextarea {
-    border-color: #495163 !important;
-    border-width: 1px;
-    font-size: medium;
-    padding: 6px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 235px;
-}
-
-.defaulttextarea {
-    border: 1px solid #495163;
-    width: 235px;
-}
-
 footer img:hover {
     width: 28px;
     transition: 0.3s;
@@ -311,4 +295,8 @@ footer img:hover {
 .produkt {
     border: 1px solid red;
     padding: 20px 15px 20px 15px;
+}
+
+#subject {
+    border: 1px solid black;
 }
