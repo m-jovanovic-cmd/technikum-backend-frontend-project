@@ -260,7 +260,6 @@ footer img:hover {
     animation: alternate-reverse;
 }
 
-
 .defaultborderbutton {
     border-color: #495163 !important;
     border-width: 1px;
@@ -277,13 +276,6 @@ textarea {
     border-width: 2px;
 
 }
-
-footer img:hover {
-    width: 28px;
-    transition: 0.3s;
-    animation: alternate-reverse;
-}
-
 
 /*Mainwrapper für seitenabstand*/
 
