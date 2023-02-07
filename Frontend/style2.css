@@ -312,3 +312,9 @@ footer img:hover {
     border: 1px solid red;
     padding: 20px 15px 20px 15px;
 }
+
+
+/*Bild passt sich an*/
+.produkte_img {
+    width: 100%;
+}

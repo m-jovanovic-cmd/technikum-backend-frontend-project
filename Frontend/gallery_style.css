@@ -253,3 +253,8 @@ footer img:hover {
     object-fit: contain;
     border-radius: 99px;
 }
+
+.produkte_img {
+    width: 100%;
+    height: auto;
+}
