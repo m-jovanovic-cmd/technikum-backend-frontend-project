@@ -297,6 +297,10 @@ footer img:hover {
     padding: 20px 15px 20px 15px;
 }
 
+.produkte_img {
+    width: 100%;
+}
+
 #subject {
     border: 1px solid black;
 }
