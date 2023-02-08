@@ -27,16 +27,18 @@
             <br>
             <!--E-Mail-Adresse, Gender (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
             <form>
-                <label for="Gender">Gender</label>
+                <label for="Anrede">Anrede</label>
                 <br>
-                <select name="Gender" class="defaultbordertextarea" id="gender-registration">
+                <select name="Anrede" class="defaultbordertextarea" id="gender-registration">
                     <option value="Bitte wählen" label=" " selected="selected"> </option>
                     <option value="Herr">Herr</option>
                     <option value="Frau">Frau</option>
-                    <option value="Other">Other</option>
+                    <option value="Anderes">Anderes</option>
                 </select>
                 <br>
-                <!--Für Screen-read Users da Inhalt vorgelesen wird-->
+                <!--Für Screen-read Users da Inhalt vorgelesen wird
+                    for bei label verknüpft id von input mit label
+                -->
                 <label for="username-registration">Username</label>
                 <br>
                 <input type="text" name="Username" id="username-registration">
@@ -76,7 +78,7 @@
                 <label for="Was beschäftigt Sie?"></label>
                 <br>
                 <button class="defaultborderbutton" type="button" id="register-button">Absenden</button>
-            </form>            
+            </form>
         </div>
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
