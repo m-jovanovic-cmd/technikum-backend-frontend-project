@@ -28,7 +28,7 @@
                     <div class="col-lg-8 col-sm-12">
                         <h2>Firma</h2>
                         <div id="Impressum-Main">
-                            <b>
+                            <b> <!--bold text-->
                                 <p>CLOUD-IA</p>
                             </b>
                             <p>Musterstraße 1-11 <br> Stiege 7a <br> Tür 5 <br>1010 Österreich</p>
@@ -65,8 +65,19 @@
                             <p>Melden Sie sich auch für unseren Newsletter an, <br> um von den neuesten Sales zu
                                 erfahren:
                             </p>
+                            <!--form > container für text fields,chechboxes,submit buttons
+                                input type > welche form von input? text/radio/checknox/submit (button)/(clickable) button
+                                type: passwort/email
+                                label: for screen users > read out loud label
+                                Die HTML <span> Tag wird für die Gruppierung und Anwenden von Stilen auf Inline-Elemente verwendet.
+                                ID:
+                            
+                            -->
                             <form method="POST">
                                 <label for="email">E-Mail</label>
+                                <!--
+                                    name wird verwendet als javascript referenz und vom server, wenn das Formular abgeschickt wird
+                                -->
                                 <input type="email" name="elektronischepost" id="email">
                                 <button type="submit">Absenden</button>
                             </form>
