@@ -6,7 +6,8 @@ $("#createProductButton").on("click", e =>{
         "imageUrl": $("#imageUrlInput").val(),
         "price": $("#priceInput").val(),
         "quantity": $("#quantityInput").val(),
-        "type": $("#typeInput").val()
+        "type": $("#typeInput").val(),
+        "taxId": $("#taxIdInput").val()
     }
 
     $.ajax({
