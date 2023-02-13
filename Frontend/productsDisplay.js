@@ -24,7 +24,7 @@ function createProductDisplay(product) {
     const title = $(`<h2>${product.name}</h2><br>`);
     const img = $(`<img src="${product.imageUrl}" class="products_img" alt="Ein Bild von ${product.name}">`);
     const description = $(`<p>${product.description}</p>`);
-    const quantityPrice = $(`<p>Type: ${product.type}<br>Menge: ${product.quantity}<br>Preis: ${product.price}€</p>`);
+    const quantityPrice = $(`<p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>`);
 
     div.append(title);
     div.append(img);

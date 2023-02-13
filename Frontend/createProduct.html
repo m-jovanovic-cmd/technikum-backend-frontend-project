@@ -11,42 +11,46 @@
     <script src="components/footer/loadFooter.js" defer></script>
     <script src="components/loginModal/loginModal.js" defer></script>
     <script src="./createProduct.js" defer></script>
+    <script src="components/successHandler/successHandler.js" defer></script>
     <title>createProduct</title>
 </head>
 <body>
     <div class="sticky-top" id="navbarContainer"></div>
-    <form>
-        <div>
-            <p>Name</p>
-            <input id="nameInput">
-        </div>
-        <div>
-            <p>Description</p>
-            <input id="descriptionInput">
-        </div>
-        <div>
-            <p>Price</p>
-            <input id="priceInput">
-        </div>
-        <div>
-            <p>Quantity</p>
-            <input id="quantityInput">
-        </div>
-        <div>
-            <p>Type</p>
-            <input id="typeInput">
-        </div>
-        <div>
-            <p>Image URL</p>
-            <input id="imageUrlInput">
-        </div>
-        <div>
-            <p>Tax ID</p>
-            <input id="taxIdInput">
-        </div>
-        <div>
-            <button id="createProductButton" type="button">Create!</button>
-        </div>
-    </form>
+    <div class="toast-container"></div>
+    <div class="container">
+        <form>
+            <div class="input-field">
+                <p>Name</p>
+                <input id="nameInput">
+            </div>
+            <div class="input-field">
+                <p>Description</p>
+                <input id="descriptionInput">
+            </div>
+            <div class="input-field">
+                <p>Price</p>
+                <input id="priceInput">
+            </div>
+            <div class="input-field">
+                <p>Quantity</p>
+                <input id="quantityInput">
+            </div>
+            <div class="input-field">
+                <p>Type</p>
+                <input id="typeInput">
+            </div>
+            <div class="input-field">
+                <p>Image URL</p>
+                <input id="imageUrlInput">
+            </div>
+            <div class="input-field">
+                <p>Tax ID</p>
+                <input id="taxIdInput">
+            </div>
+            <div>
+                <button id="createProductButton" type="button">Create!</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

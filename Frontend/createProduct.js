@@ -1,5 +1,8 @@
 $("#createProductButton").on("click", e =>{
 
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
+
     const product = {
         "name": $("#nameInput").val(),
         "description": $("#descriptionInput").val(),
@@ -16,7 +19,22 @@ $("#createProductButton").on("click", e =>{
         cors: true,
         contentType: "application/json",
         data: JSON.stringify(product),
-        success: console.log,
-        error: console.error
+        success: success => {
+            console.log;
+            $("input").val("");
+            handleSuccess("Produkterstellung");
+        },
+        error: error => {
+            console.log(error);
+            if (error.status === 400) {
+                for (let err of error.responseJSON.errors) {
+                    const input = $("#" + err.field + "Input");
+                    input.addClass("input-error");
+    
+                    const parent = input.parent();
+                    parent.append(`<p class="error-message">${err.defaultMessage}</p>`);
+                }
+            }
+        }
     });
 });

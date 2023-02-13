@@ -57,4 +57,3 @@ public class PositionService {
         return positionRepository.save(position);
     }
 }
-
