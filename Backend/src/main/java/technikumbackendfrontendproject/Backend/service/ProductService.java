@@ -45,6 +45,7 @@ public class ProductService {
         }
 
         product.setTax(tax.get());
+        product.setStatus(true);
         return save(product);
     }
 
