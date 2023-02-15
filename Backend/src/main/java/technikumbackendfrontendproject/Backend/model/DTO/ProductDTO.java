@@ -11,11 +11,13 @@ import jakarta.validation.constraints.PositiveOrZero;
 public class ProductDTO {
 
     private Long id;
+    
     @NotBlank
     @Length(min = 4, max = 100)
-
     private String name;
+
     private String description;
+
     private String imageUrl;
 
     @DecimalMin("0.01")

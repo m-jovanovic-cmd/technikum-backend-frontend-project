@@ -293,6 +293,9 @@ textarea {
 
 }
 
+/*//////////////////////////////////////////////////////*/
+/* Wird das wo verwendet??? */
+/*//////////////////////////////////////////////////////*/
 .defaultbordertextarea {
     border-color: #495163 !important;
     border-width: 1px;
@@ -300,11 +303,6 @@ textarea {
     padding: 6px;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 235px;
-}
-
-.defaulttextarea {
-    border: 1px solid #495163;
     width: 235px;
 }
 
@@ -358,4 +356,8 @@ footer img:hover {
     position: fixed !important;
     top: 70px;
     right: 20px;
+}
+
+#subject {
+    border: 1px solid black;
 }

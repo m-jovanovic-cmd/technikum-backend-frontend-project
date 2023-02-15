@@ -45,10 +45,8 @@ public class ProductService {
         }
 
         product.setTax(tax.get());
-        product.setStatus(true);
         return save(product);
     }
-
 
     public Product setStatus(Long id) {
         var product = productRepository.findById(id);
