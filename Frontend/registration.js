@@ -1,6 +1,6 @@
 $("#register-button").on("click", e => {
 
-    //regData ist eine Instanz eines Registration Objekts, siehe model Registration.java
+    //regData ist eine Instanz eines Registration Objekts, siehe model User.java
     const regData = {
         "gender": $("#gender-registration").val(),
         "username": $("#username-registration").val(),
