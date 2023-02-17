@@ -34,3 +34,7 @@ build/
 
 ### Shit ###
 application.properties
+
+#ignore application.properties
+resources/*
+src/main/resources/*
