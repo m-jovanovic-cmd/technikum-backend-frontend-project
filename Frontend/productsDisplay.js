@@ -1,6 +1,7 @@
 $.get({
     url: "http://localhost:8080/api/products",
     cors: true,
+    headers: { "Authorization": sessionStorage.getItem("token") },
     success: function(products) { displayAllProducts(products) },
     error: console.error
 });
@@ -30,7 +31,6 @@ function createProductDisplay(product) {
     div.append(img);
     div.append(description);
     div.append(quantityPrice);
-
 
     return div;
 }

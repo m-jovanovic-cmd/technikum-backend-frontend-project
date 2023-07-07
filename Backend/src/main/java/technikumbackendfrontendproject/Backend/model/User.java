@@ -19,8 +19,13 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
+    //TO DO should be hashed
+    //SHA1 oder SHA256 und salting
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "admin", nullable = false)
+    private boolean admin;
 
     @Column(name = "firstname", nullable = false)
     private String firstName;
@@ -195,4 +200,8 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }  
+
+    public boolean isAdmin() {
+        return admin;
+    }
 }

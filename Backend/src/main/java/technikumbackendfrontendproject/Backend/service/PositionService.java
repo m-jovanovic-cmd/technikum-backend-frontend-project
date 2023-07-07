@@ -9,19 +9,19 @@ import technikumbackendfrontendproject.Backend.model.Position;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.PositionRepository;
-import technikumbackendfrontendproject.Backend.repository.UserRepositiory;
+import technikumbackendfrontendproject.Backend.repository.UserRepository;
 
 @Service
 public class PositionService {
     
     private final PositionRepository positionRepository;
-    private final UserRepositiory userRepositiory;
+    private final UserRepository userRepositiory;
 
     private final CartService cartService;
     private final ProductService productService;
 
 
-    public PositionService(PositionRepository positionRepository, UserRepositiory userRepositiory, CartService cartService, ProductService productService) {
+    public PositionService(PositionRepository positionRepository, UserRepository userRepositiory, CartService cartService, ProductService productService) {
         this.positionRepository = positionRepository;
         this.cartService = cartService;
         this.userRepositiory = userRepositiory;

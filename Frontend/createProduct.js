@@ -3,6 +3,8 @@ $("#createProductButton").on("click", e =>{
     $(".input-error").removeClass("input-error");
     $(".error-message").remove();
 
+
+    // Klasse?
     const product = {
         "name": $("#nameInput").val(),
         "description": $("#descriptionInput").val(),
@@ -12,6 +14,7 @@ $("#createProductButton").on("click", e =>{
         "type": $("#typeInput").val(),
         "taxId": $("#taxIdInput").val()
     }
+
 
     $.ajax({
         url: "http://localhost:8080/api/products",

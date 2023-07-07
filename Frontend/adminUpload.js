@@ -1,5 +1,6 @@
 $("#upload-button").on("click", e => {
 
+    // Klasse?
     const prodData = {
         "name": $("#produktname").val(),
         "produkttyp": $("#produkttyp").val(),
