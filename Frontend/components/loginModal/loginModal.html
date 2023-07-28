@@ -6,8 +6,8 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form method="POST">
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="modal-body">
                     <label for="text">Username</label>
                     <br>
                     <input type="text" name="usernameLogin" id="usernameLogin">
@@ -17,12 +17,12 @@
                     <input type="password" name="passwordLogin" id="passwordLogin">
                     <br>
                     <a href="./kundenregistrierung.html">Neu hier?</a>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Absenden</button>
-            </div>
+                </div>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Absenden</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
