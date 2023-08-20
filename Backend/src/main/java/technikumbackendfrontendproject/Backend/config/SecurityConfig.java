@@ -35,7 +35,8 @@ public class SecurityConfig {
                     // Disable csrf
         httpSecurity.csrf().disable()
                     // Enable cors
-                    .cors().disable()
+                    .cors()
+                    .and()
                     // Set session management to stateless
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
