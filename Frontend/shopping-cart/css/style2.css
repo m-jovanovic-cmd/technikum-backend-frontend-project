@@ -1,0 +1,363 @@
+/*
+* {
+    border: 1px solid red;
+}*/
+
+html,
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    font-family: sans-serif;
+
+}
+
+.main {
+    margin-top: 2rem;
+}
+
+.content {
+    width: 100%, 1080px;
+    margin: 10px 15px 10px 15px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+    color: #7e8daf;
+    padding: 0 2em 0 2em;
+}
+
+#Impressum-Main {
+    text-align: left;
+}
+
+header {
+    width: 100%;
+    height: 80vh;
+    background: url(/Frontend/images/backgroundwolke.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/*https://www.youtube.com/watch?v=mikht2lEnI0 
+Es wird einem Text eine Background color gegeben die durch webkit-background-clip auf die Textteile beschränkt ist
+Danach wird die Position des Backgrounds (was nur die Farbe ist) verschoben
+Dieses Verschieben wird anschließend als Animation behandelt und alternierend unendlich oft wiederholt
+
+was macht justify-content? - ausrichtung mitte, links/rechtsbündig
+
+*/
+
+
+.headertext {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    /*color of font is gone*/
+    color: transparent;
+    /*der weiße block der sich immer wieder über den text bewegt*/
+    background-image: linear-gradient(#FFFFFF, #FFFFFF);
+    /*no-reapeat > bild wird nur einmal angezeigt*/
+    background-repeat: no-repeat;
+    /*mithilfe von webkit-background-clip wird der weiße balken nur über dem text gezeigt*/
+    -webkit-background-clip: text;
+    /*sagt wie weit sich der block bewegen darf*/
+    background-position: 0 -500px;
+    /*bewegt den block über den text und macht diesen sichtbar, alternate hilft, das der balken auf und abwert bewegt wird*/
+    animation: backcolor 5s linear infinite alternate;
+}
+
+@keyframes backcolor {
+    100% {
+        background-position: 0 0;
+    }
+
+    0% {
+        background-position: 0 -500px;
+    }
+}
+
+.headertext h2 {
+    font-size: 90px;
+}
+
+@media only screen and (max-width: 630px) {
+    .headertext h2 {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .test {
+        float: left;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .test {
+        float: left;
+        overflow: hidden;
+        flex-grow: 100;
+        margin-right: 15px;
+    }
+
+    .tester {
+        float: left;
+    }
+}
+
+.login-button {
+    margin-right: 10px;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #7e8daf !important;
+    border-color: #7e8daf !important;
+}
+
+.btn-primary:hover {
+    background-color: #495163 !important;
+    border-color: #495163 !important;
+}
+
+footer {
+    display: flex;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding-bottom: 2rem;
+    justify-content: center;
+}
+
+ul li {
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+footer p {
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+footer a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+footer a:link,
+a:visited {
+    color: #7e8daf;
+}
+
+footer a:hover {
+    color: #495163;
+}
+
+footer .row {
+    width: 100%;
+}
+
+/* ABOUT US PROPERTIES FÜR DEN OVERLAY HOVER EFFEKT */
+.aboutUs_aside p {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.aboutUs_text {
+    padding: 0px 0px 20px 0px;
+    font-size: 15px;
+}
+
+.aboutUs_container {
+    position: relative;
+    width: 350px;
+    overflow: hidden;
+}
+
+.aboutUs_img {
+    display: block;
+    width: 100%;
+    float: initial;
+    flex-basis: 40%
+}
+
+.aboutUs_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.aboutUs_overlay-primary {
+    background: hsla(205, 82%, 72%, 0.5);
+}
+
+.aboutUs_overlay>* {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.aboutUs_overlay:hover {
+    opacity: 1;
+}
+
+.aboutUs_overlay:hover>* {
+    transform: translateY(0);
+}
+
+.aboutUs_title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.aboutUs_description {
+    font-size: 1.25em;
+    margin-top: 0.25em;
+    text-align: center;
+}
+
+
+#KontaktListe {
+    padding-left: 0px !important;
+}
+
+
+/*Kundenregistrierung Format für Buttons & Textfelder*/
+#FAQ,
+#kundenregistrierung input select,
+textarea,
+button {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* macht felder etwas größer bei gleicher schriftgröße*/
+    border: 1px #C0C0C0;
+    border-color: #495163;
+    /*abgerundete ecken*/
+    box-sizing: border-box;
+    /*https://stackoverflow.com/questions/60488779/why-is-the-size-of-select-smaller-than-input-in-html*/
+}
+
+/*removed die pfeile bei den ein-und ausklappbaren Texten bei FAQ*/
+details>summary {
+    list-style: none;
+}
+
+footer ul {
+    padding-left: 0 !important;
+}
+
+footer img:hover {
+    width: 28px;
+    transition: 0.3s;
+    animation: alternate-reverse;
+}
+
+.defaultborderbutton {
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 130px;
+
+}
+
+textarea {
+    border-color: #495163 !important;
+    border-width: 2px;
+
+}
+
+/*//////////////////////////////////////////////////////*/
+/* Wird das wo verwendet??? */
+/*//////////////////////////////////////////////////////*/
+.defaultbordertextarea {
+    border-color: #495163 !important;
+    border-width: 1px;
+    font-size: medium;
+    padding: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 235px;
+}
+
+footer img:hover {
+    width: 28px;
+    transition: 0.3s;
+    animation: alternate-reverse;
+}
+
+
+/*Mainwrapper für seitenabstand*/
+
+#MainFormatingWrapper {
+    padding-right: 30%;
+    padding-bottom: 30%;
+}
+
+.product {
+    border: 1px solid red;
+    padding: 20px 15px 20px 15px;
+}
+
+/*Bild passt sich an*/
+.products_img {
+    width: 100%;
+}
+
+.input-error {
+    border: 2px solid red;
+}
+
+.error-message {
+    font-size: 0.8rem;
+    color: red;
+}
+
+.input-field>* {
+    margin-bottom: 0;
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+#success-message {
+    font-size: 0.8rem;
+    color: rgb(105, 226, 121);
+}
+
+.toast-container {
+    position: fixed !important;
+    top: 70px;
+    right: 20px;
+}
+
+#subject {
+    border: 1px solid black;
+}
