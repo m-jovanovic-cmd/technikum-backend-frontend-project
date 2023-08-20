@@ -18,7 +18,7 @@ import technikumbackendfrontendproject.Backend.service.TokenService;
 public class SecurityConfig {
 
     private final TokenService tokenService;
-// /////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Init
     // /////////////////////////////////////////////////////////////////////////
 
@@ -35,13 +35,13 @@ public class SecurityConfig {
                     // Disable csrf
         httpSecurity.csrf().disable()
                     // Enable cors
-                    .cors()
-                    .and()
+                    .cors().disable()
+
                     // Set session management to stateless
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users").permitAll()
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/public/**").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()

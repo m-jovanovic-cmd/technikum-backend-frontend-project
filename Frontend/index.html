@@ -2,12 +2,10 @@
 <html lang="en">
 
     <head>
-        <!--welches character-set wird hier verwendet?-->
         <meta charset="utf-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./style2.css">
-        <!--links (zB bootstrap) und scripts werden hier verlinkt und geladen-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -16,34 +14,20 @@
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
         <script src="components/navbar/loadNavbar.js" defer></script>
-        <!--wird hier navbar und footer& loginmodal reingeladen und verlinkt, 
-            das es gerufen werden kann? Darum script tag? 
-            was macht defer? > erledigt die organisation wie eine seite für den user dargestellt wird/ Ladereihenfolge-->
         <script src="components/footer/loadFooter.js" defer></script>
         <script src="components/loginModal/loginModal.js" defer></script>
         <title>Index</title>
-        <!--was im tab steht-->
     </head>
 
     <body>
-        <!--
-            sticky-top > bootstrapklasse; div klebt oben
-            id markiert den punkt wo skript ausgeführt wird
-        -->
         <div class="sticky-top" id="navbarContainer"></div>
         <header>
-            <!--Text shows on website and disappears again-->
             <div class="headertext">
                 <h2>Willkommen<br>auf<br>Cloud-IA</h2>
             </div>
         </header>
-        <!--class content && container-fluid? bootstrap klassen, wie sich inhalt verhalten soll-->
         <div class="content container-fluid">
             <h2>Europas erste Cloud-Selling Website</h2>
-            <!--col-lg-8 col-sm-12 > responsiveness der webiste mithilfe von colums, rows(reihen)
-                row - Zeile
-                columns - spalte
-            -->
             <div class="row">
                 <div class="col-lg-8 col-sm-12">
                     <p>Wir bei Cloud-IA haben uns dem Verkauf der freiesten Sache der Welt verschrieben: Wolken</p>
@@ -66,9 +50,6 @@
         </div>
         </div>
         <div id="footerContainer"></div>
-        <!--macht das der login button rechts angezeigt wird
-            vorteil, verhindert redundanz und weniger fehleranfällig, code immer wieder so zu laden
-        -->
         <div id="loginModalContainer"></div>
     </body>
 
