@@ -14,8 +14,6 @@ $("#register-button").on("click", e => {
         "streetnumber": $("#streetNumber-registration").val()
     }
 
-    console.log(regData);
-
     $.ajax({
         url: "http://localhost:8080/api/users",
         type: "POST",
