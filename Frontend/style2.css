@@ -361,3 +361,36 @@ footer img:hover {
 #subject {
     border: 1px solid black;
 }
+
+
+
+/*CART CSS*/
+.card-container {
+    padding: 2rem 0rem;
+}
+
+.card-table-image thead td,
+.card-table-image thead th {
+    border: 0;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.card-table-image td,
+.card-table-image th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.card-table-image td.qty,
+.card-table-image th.qty {
+    max-width: 2rem;
+}
+
+.card-price {
+    margin-left: 1rem;
+}
+
+.card-modal-footer {
+    padding-top: 0rem;
+}
