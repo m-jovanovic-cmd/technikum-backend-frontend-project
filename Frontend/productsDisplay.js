@@ -1,8 +1,10 @@
 $.get({
     url: "http://localhost:8080/api/products",
     cors: true,
-    headers: { "Authorization": sessionStorage.getItem("token") },
-    success: function(products) { displayAllProducts(products) },
+    headers: { },
+    success: (products) => { 
+        displayAllProducts(products) 
+    },
     error: console.error
 });
 
@@ -17,8 +19,8 @@ function displayAllProducts(products) {
             productsContainer.append(row);
         }
         row.append(createProductDisplay(products[i]));
-    }
-}
+    };
+};
 
 function createProductDisplay(product) {
     const div = $(`<div class="col-lg-4 col-md-6 col-sm-12 product"></div>`);
@@ -33,4 +35,4 @@ function createProductDisplay(product) {
     div.append(quantityPrice);
 
     return div;
-}
+};
