@@ -6,7 +6,12 @@ $("#loginButton").on("click", _e => {
             username: $("#usernameInput").val(),
             password: $("#passwordInput").val()
         }),
-        success: data => sessionStorage.setItem("token", data),
-        error: console.error,
+        success: function(data) {
+            sessionStorage.setItem("token", data);
+            location.reload();
+        },
+        error: function(error) {
+            console.error(error);
+        }
     });
 });

@@ -18,7 +18,7 @@ import technikumbackendfrontendproject.Backend.service.TokenService;
 public class SecurityConfig {
 
     private final TokenService tokenService;
-// /////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Init
     // /////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +41,7 @@ public class SecurityConfig {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers("/login").permitAll()
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/public/**").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()
