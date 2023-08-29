@@ -1,3 +1,5 @@
+// DEPRECIATED TEMPLATE
+
 $("#upload-button").on("click", e => {
 
     // Klasse?
