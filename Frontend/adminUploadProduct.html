@@ -10,7 +10,7 @@
     <script src="components/navbar/loadNavbar.js" defer></script>
     <script src="components/footer/loadFooter.js" defer></script>
     <script src="components/loginModal/loginModal.js" defer></script>
-    <script src="./createProduct.js" defer></script>
+    <script src="./adminUploadProduct.js" defer></script>
     <script src="components/successHandler/successHandler.js" defer></script>
     <title>Admin-panel: Upload New Product</title>
 </head>
@@ -23,7 +23,7 @@
                 Neues Produkt erstellen
             </div>
             <div class="card-body">
-                <form>
+                <form onsubmit="uploadProductData(event)">
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-4 my-2">
                             <label class="form-label" for="productname">Produktname</label>
@@ -46,12 +46,12 @@
                             <input class="form-control" id="type" name="type" type="text" />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 my-2">
-                            <label class="form-label" for="imageURL">Produktbild URL</label>
-                            <input class="form-control" id="imageURL" name="imageURL" type="text" />
+                            <label class="form-label" for="imageUrl">Produktbild URL</label>
+                            <input class="form-control" id="imageUrl" name="imageUrl" type="text" />
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 my-2">
-                            <label class="form-label" for="taxID">Steuer ID</label>
-                            <input class="form-control" id="taxID" name="taxID" type="text" />
+                            <label class="form-label" for="taxId">Steuer ID</label>
+                            <input class="form-control" id="taxId" name="taxId" type="text" />
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
@@ -65,7 +65,7 @@
                 Produktbild uploaden:
             </div>
             <div class="card-body">
-                <form onsubmit="uploadImage()">
+                <form onsubmit="uploadImage(event)">
                     <div class="row">
                         <div class="col-12 col-md-6 my-2">
                             <label class="form-label" for="imageUpload">Produktbild auswählen</label>
