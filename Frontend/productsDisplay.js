@@ -32,7 +32,10 @@ function createProductDisplay(product) {
                     <h4 class="card-title text-center">${product.name}</h4>
                     <p class="card-text">${product.description}</p>
                     <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button type="button" class="btn btn-secondary">in Warenkorb</button>
+                    </div>
                 </div>
             </div>
         </div>`
