@@ -1,2 +1,7 @@
 dis is a test
 test
+
+
+in fetch requests:
+
+headers: { "Authorization": sessionStorage.getItem("token") }
