@@ -18,25 +18,6 @@ function uploadProductData(event) {
     }
 
     console.log(product);
-};
-
-// DEPRECIATED TEMPLATE
-$("#createProductButton").on("click", e =>{
-
-    $(".input-error").removeClass("input-error");
-    $(".error-message").remove();
-
-
-    const product = {
-        "name": $("#nameInput").val(),
-        "description": $("#descriptionInput").val(),
-        "imageUrl": $("#imageUrlInput").val(),
-        "price": $("#priceInput").val(),
-        "quantity": $("#quantityInput").val(),
-        "type": $("#typeInput").val(),
-        "taxId": $("#taxIdInput").val()
-    }
-
 
     $.ajax({
         url: "http://localhost:8080/api/products",
@@ -61,6 +42,27 @@ $("#createProductButton").on("click", e =>{
             }
         }
     });
+};
+
+// DEPRECIATED TEMPLATE
+$("#createProductButton").on("click", e =>{
+
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
+
+
+    const product = {
+        "name": $("#nameInput").val(),
+        "description": $("#descriptionInput").val(),
+        "imageUrl": $("#imageUrlInput").val(),
+        "price": $("#priceInput").val(),
+        "quantity": $("#quantityInput").val(),
+        "type": $("#typeInput").val(),
+        "taxId": $("#taxIdInput").val()
+    }
+
+
+    
 });
 
 
