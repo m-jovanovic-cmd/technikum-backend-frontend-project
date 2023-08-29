@@ -1,55 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./style2.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
-        <script src="components/navbar/loadNavbar.js" defer></script>
-        <script src="components/footer/loadFooter.js" defer></script>
-        <script src="components/loginModal/loginModal.js" defer></script>
-        <script src="./adminUpload.js" defer></script>
-        <title>Admin Uploads</title>
-    </head>
-
-    <body>
-        <div class="sticky-top" id="navbarContainer"></div>
-        <div class="content kundenregistrierung">
-            <h1>Admin Uploads</h1>
-            <br>
-            <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
-            <form>
-                <label for="produktname">Produktname</label>
-                <!--Für Screen-read Users da Inhalt vorgelesen wird-->
-                <br>
-                <input type="text" name="produktname" id="produktname">
-                <br>
-                <label for="produkttyp">Produkttyp</label>
-                <br>
-                <input type="text" name="produkttyp" id="produkttyp">
-                <br>
-                <label for="Produktbeschreibung">Produktbeschreibung</label>
-                <div>
-                    <textarea id="produktbeschreibung" name="produktbeschreibung" placeholder="Beschreibe das Produkt">
-                    </textarea>
-                </div>
-                <br>
-                <label>Photos: </label>
-                <br>
-                <input type="file" name="image"/> <!--accept="image/png, image/jpeg"-->
-                <br>
-                <button type="button" id="upload-button">Upload</button>
-            </form>            
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./style2.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
+    <script src="components/navbar/loadNavbar.js" defer></script>
+    <script src="components/footer/loadFooter.js" defer></script>
+    <script src="components/loginModal/loginModal.js" defer></script>
+    <script src="./createProduct.js" defer></script>
+    <script src="components/successHandler/successHandler.js" defer></script>
+    <title>createProduct</title>
+</head>
+<body>
+    <div class="sticky-top" id="navbarContainer"></div>
+    <div class="toast-container"></div>
+    <div class="container mt-3">
+        <div class="card my-4">
+            <div class="card-header">
+                Neues Produkt erstellen
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="productname">Produktname</label>
+                            <input class="form-control" id="productname" name="productname" type="text" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="description">Beschreibung</label>
+                            <input class="form-control" id="description" name="description" type="text" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="price">Stückpreis brutto</label>
+                            <input class="form-control" id="price" name="price" type="number" min="0.01" step="0.01" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="quantity">Anzahl</label>
+                            <input class="form-control" id="quantity" name="quantity" type="number" min="1" step="1" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="type">Produktkategorie</label>
+                            <input class="form-control" id="type" name="type" type="text" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="imageURL">Produktbild URL</label>
+                            <input class="form-control" id="imageURL" name="imageURL" type="text" />
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 my-2">
+                            <label class="form-label" for="taxID">Steuer ID</label>
+                            <input class="form-control" id="taxID" name="taxID" type="text" />
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div id="footerContainer"></div>
-        <div id="loginModalContainer"></div>
-    </body>
-
+        <div class="card my-4">
+            <div class="card-header">
+                Produktbild uploaden:
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-12 col-md-6 my-2">
+                            <label class="form-label" for="imageUpload">Produktbild auswählen</label>
+                            <input class="form-control" type="file" name="imageUpload" id="imageUpload"/>
+                        </div>
+                        <div class="col-12 col-md-6 my-2">
+                            <div class="form-label">URL</div>
+                            <div class="form-control" contenteditable="false" id="imageUrl">Hier kommt die URL zurück</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" id="createProductButton" type="button">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
