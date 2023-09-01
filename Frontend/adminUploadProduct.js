@@ -14,7 +14,6 @@ function uploadProductData(event) {
         "type": $("#type").val(),
         "imageUrl": $("#imageUrl").val(),
         "taxId": $("#taxId").val(),
-        "status": '1'
     }
 
     console.log(product);
@@ -23,10 +22,13 @@ function uploadProductData(event) {
         url: "http://localhost:8080/api/products",
         type: "POST",
         cors: true,
+        headers: { "Authorization": sessionStorage.getItem("token") },
         contentType: "application/json",
         data: JSON.stringify(product),
         success: success => {
+            console.log('success');
             $("input").val("");
+            console.log($("input"));
             handleSuccess("Produkterstellung");
         },
         error: error => {

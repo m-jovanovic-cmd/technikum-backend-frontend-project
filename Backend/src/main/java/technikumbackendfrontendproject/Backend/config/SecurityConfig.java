@@ -43,8 +43,7 @@ public class SecurityConfig {
                     // Allow unauthorized requests to certain endpoints
                     .authorizeHttpRequests().requestMatchers(
                         "/login", 
-                        "/api/users", 
-                        "/api/products", 
+                        "/api/users",
                         "/public/**"
                         ).permitAll()
                     // Authenticate all other requests
