@@ -34,62 +34,77 @@
         <div class="sticky-top" id="navbarContainer"></div>
         <div class="content kundenregistration">
             <h1>Kundenregistration</h1>
-            <br>
-            <!--E-Mail-Adresse, Gender (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
-            <form>
-                <label for="Anrede">Anrede</label>
-                <br>
-                <select name="Anrede" class="defaultbordertextarea" id="gender-registration">
-                    <option value="Bitte wählen" label=" " selected="selected"> </option>
-                    <option value="Herr">Herr</option>
-                    <option value="Frau">Frau</option>
-                    <option value="Anderes">Anderes</option>
-                </select>
-                <br>
-                <!--Für Screen-read Users da Inhalt vorgelesen wird
-                    for bei label verknüpft id von input mit label
-                -->
-                <label for="username-registration">Username</label>
-                <br>
-                <input type="text" name="Username" id="username-registration">
-                <br>
-                <label for="password-registration">Passwort</label>
-                <br>
-                <input type="password" name="Passwort" id="password-registration">
-                <br>
-                <label for="firstName-registration">Vorname</label>
-                <br>
-                <input type="text" name="Vorname" id="firstName-registration">
-                <br>
-                <label for="lastName-registration">Nachname</label>
-                <br>
-                <input type="text" name="Nachname" id="lastName-registration">
-                <br>
-                <label for="email-registration">E-Mail</label>
-                <br>
-                <input type="email" name="elektronischepost" id="email-registration">
-                <br>
-                <label for="postcode-registration">Postleitzahl</label>
-                <br>
-                <input type="text" name="plz" id="postcode-registration">
-                <br>
-                <label for="location-registration">Ort</label>
-                <br>
-                <input type="text" name="ort" id="location-registration">
-                <br>
-                <label for="street-registration">Straße</label>
-                <br>
-                <input type="text" name="strasse" id="street-registration">
-                <br>
-                <label for="streetNumber-registration">Hausnummer</label>
-                <br>
-                <input type="text" name="hausnummer" id="streetNumber-registration">
-                <br>
-                <label for="Was beschäftigt Sie?"></label>
-                <br>
-                <button class="defaultborderbutton" type="button" id="register-button">Absenden</button>
-            </form>
         </div>
+        <br/>
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-10 col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        Bitte geben Sie Ihre Kontodaten ein:
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12 my-2">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label" for="Anrede">Anrede</label>
+                                            <select name="Anrede" class="form-select" id="gender-registration">
+                                                <option value="Bitte wählen" label=" " selected="selected"> </option>
+                                                <option value="Herr">Herr</option>
+                                                <option value="Frau">Frau</option>
+                                                <option value="Frau">Apache Attack-Helicopter</option>
+                                                <option value="Anderes">Anderes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Vorname">Vorname</label>
+                                    <input class="form-control" type="text" name="Vorname" id="firstName-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Nachname">Nachname</label>
+                                    <input class="form-control" type="text" name="Nachname" id="lastName-registration">
+                                </div>
+                                <div class="col-12 my-2">
+                                    <label class="form-label" for="Email">E-Mail</label>
+                                    <input class="form-control" type="email" name="Email" id="email-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="PLZ">Postleitzahl</label>
+                                    <input class="form-control" type="text" name="PLZ" id="postcode-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Ort">Ort</label>
+                                    <input class="form-control" type="text" name="Ort" id="location-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Strasse">Straße</label>
+                                    <input class="form-control" type="text" name="Strasse" id="street-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Hausnummer">Hausnummer</label>
+                                    <input class="form-control" type="text" name="Hausnummer" id="streetNumber-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Username">Username</label>
+                                    <input class="form-control" type="text" name="Username" id="username-registration">
+                                </div>
+                                <div class="col-12 col-lg-6 my-2">
+                                    <label class="form-label" for="Passwort">Passwort</label>
+                                    <input class="form-control" type="password" name="Passwort" id="password-registration">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-primary mt-4" type="button" id="register-button">Absenden</button>
+                            </div>       
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+       
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
         <div id="cartModalContainer"></div>

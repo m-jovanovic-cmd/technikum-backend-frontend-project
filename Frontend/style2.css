@@ -13,7 +13,10 @@ body {
 
 body {
     font-family: sans-serif;
+}
 
+h1, h2, h3, h4, h5 {
+    padding: 15px;
 }
 
 .main {
@@ -30,8 +33,20 @@ body {
     padding: 0 2em 0 2em;
 }
 
-#Impressum-Main {
-    text-align: left;
+#impressum h1,
+#impressum h2,
+#impressum h3,
+#impressum h4,
+#impressum ul {
+    padding: 5px 0px 5px 0px;
+}
+
+#impressum li {
+    margin: 20px 0px 20px 0px;
+}
+
+#impressum p {
+    margin: 0px;
 }
 
 header {
@@ -238,11 +253,6 @@ footer .row {
     font-size: 1.25em;
     margin-top: 0.25em;
     text-align: center;
-}
-
-
-#KontaktListe {
-    padding-left: 0px !important;
 }
 
 

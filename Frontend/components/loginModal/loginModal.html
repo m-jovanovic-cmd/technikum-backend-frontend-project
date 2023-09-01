@@ -1,4 +1,3 @@
-<!--Modal Login Pop Up-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -6,27 +5,31 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form method="POST">
-                    <label for="text">Username</label>
-                    <br>
-                    <input type="text" name="usernameLogin" id="usernameLogin">
-                    <br>
-                    <label for="password">Passwort</label>
-                    <br>
-                    <input type="password" name="passwordLogin" id="passwordLogin">
-                    <br>
-                    <a href="./kundenregistrierung.html">Neu hier?</a>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Absenden</button>
-            </div>
+            <form id="loginForm" onsubmit="login(this, event)">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label" for="text">Username</label>
+                            <input class="form-control" type="text" name="usernameLogin" id="usernameLogin">        
+                        </div>
+                        <div class="col-12 my-2">
+                            <label class="form-label" for="password">Passwort</label>
+                            <input class="form-control" type="password" name="passwordLogin" id="passwordLogin">
+                        </div>
+                        <div class="col-12 mt-2">
+                            <a href="./kundenregistrierung.html">Neu hier?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" >
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Absenden</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-<!--wir haben login, footer, header für die übersichtlichkeit so gesplitet?
-    
--->

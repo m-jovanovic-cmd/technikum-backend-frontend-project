@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,73 +24,55 @@
 
         <title>Impressum</title>
     </head>
-
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <div class="content container-fluid">
-            <div class="content">
-                <h1>Impressum</h1>
-                <br>
-                <div class="row">
-                    <div class="col-lg-8 col-sm-12">
-                        <h2>Firma</h2>
-                        <div id="Impressum-Main">
-                            <b> <!--bold text-->
-                                <p>CLOUD-IA</p>
-                            </b>
-                            <p>Musterstraße 1-11 <br> Stiege 7a <br> Tür 5 <br>1010 Österreich</p>
-                            <p>Tel.Nr:
-                                <a href="tel:+499123456789">09123 456789</a> <br>
-                                <br>E-Mail: <a
-                                    href="mailto:cloud-ia-service@cloud-ia.at">cloud-ia-service@cloud-ia.at</a>
-                            </p>
-                            <br>
-                            <p><b>Rechnungsadresse</b></p>
-                            <p>Hemberggasse 1/99 <br>1010 Wien</p>
-                            <p>Firmenbuch: FN12345p <br>
-                                UID/VAT: ATU12345678 <br>
-                                Gerichtsstand: Handelsgericht Wien</p>
-                            <br>
-                            <h2>Kontakte</h2>
-                            <ul id="KontaktListe">
-                                <li>CEO: Claudia von Quaxensee, Bsc Msc PhD <br><a href="tel:+499123222229">09123
-                                        956873</a><br><a
-                                        href="mailto:Claudia.vonQuaxensee@cloud-ia.at">Claudia.Quaxensee@cloud-ia.at</a>
-                                </li>
-                                <br>
-                                <li>Jugendschutzbeauftragte: Jessica Fritsch <br><a href="tel:+499123456789">09123
-                                        456789</a><br><a
-                                        href="mailto:jessica.fritsch@cloud-ia.at">jessica.fritsch@cloud-ia.at</a>
-                                </li>
-                                <br>
-                                <li>Putzkraftverwalter: <span>Mladen Jovanovic</span><br><a
-                                        href="tel:+499987654321">09987654321</a><br><a
-                                        href="mailto:mladen.jovanovic@cloud-ia.at">mladen.jovanovic@cloud-ia.at</a>
-                                </li>
-                            </ul>
-                            <br>
-                            <p>Melden Sie sich auch für unseren Newsletter an, <br> um von den neuesten Sales zu
-                                erfahren:
-                            </p>
-                            <!--form > container für text fields,chechboxes,submit buttons
-                                input type > welche form von input? text/radio/checknox/submit (button)/(clickable) button
-                                type: passwort/email
-                                label: for screen users > read out loud label
-                                Die HTML <span> Tag wird für die Gruppierung und Anwenden von Stilen auf Inline-Elemente verwendet.
-                                ID:
-                            
-                            -->
-                            <form method="POST">
-                                <label for="email">E-Mail</label>
-                                <!--
-                                    name wird verwendet als javascript referenz und vom server, wenn das Formular abgeschickt wird
-                                -->
-                                <input type="email" name="elektronischepost" id="email">
-                                <button type="submit">Absenden</button>
-                            </form>
-                        </div>
-                    </div>
-                    <br><br>
+        <div class="content" id="impressum">
+            <h1>Impressum</h1>
+            <h2 class="mb-4">Offenlegung gemäß §§ 24, 25 Mediengesetz</h2>
+            <div>
+                <h3>CLOUD-IA</h3>
+                <div class="mb-4">
+                    <p>Musterstraße 1-11</p>
+                    <p>Stiege 7a</p>
+                    <p>Tür 5</p>
+                    <p>1010 Österreich</p>
+                    <p>Tel.Nr: <a href="tel:+499123456789">09123 456789</a></p>
+                    <p>E-Mail: <a href="mailto:cloud-ia-service@cloud-ia.at">cloud-ia-service@cloud-ia.at</a></p>
+                </div>
+            </div>
+            <div>
+                <h3>Rechnungsadresse</h3>
+                <div class="mb-4">
+                    <p>Hemberggasse 1/99</p>
+                    <p>1010 Wien</p>
+                    <p>Firmenbuch: FN12345p</p>
+                    <p>UID/VAT: ATU12345678</p>
+                    <p>Gerichtsstand: Handelsgericht Wien</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="mb-0">Kontakte</h3>
+                <div>
+                    <ul>
+                        <li>
+                            <p><u>CEO:</u></p>
+                            <p>Claudia von Quaxensee, Bsc Msc PhD</p>
+                            <p>Tel.Nr: <a href="tel:+499123222229">+499123222229</a></p>
+                            <p>E-Mail: <a href="mailto:Claudia.vonQuaxensee@cloud-ia.at">Claudia.Quaxensee@cloud-ia.at</a></p>  
+                        </li>
+                        <li>
+                            <p><u>Jugendschutzbeauftragte:</u></p>
+                            <p>Jessica Fritsch</p>
+                            <p>Tel.Nr: <a href="tel:+499123456789">+499123456789</a></p>
+                            <p>E-Mail: <a href="mailto:jessica.fritsch@cloud-ia.at">jessica.fritsch@cloud-ia.at</a></p>
+                        </li>
+                        <li>
+                            <p><u>Putzkraftverwalter:</u></p>
+                            <p>Mladen Jovanovic</p>
+                            <p>Tel.Nr: <a href="tel:+499987654321">+499987654321</a></p>
+                            <p>E-Mail: <a href="mailto:mladen.jovanovic@cloud-ia.at">mladen.jovanovic@cloud-ia.at</a></p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -99,5 +80,4 @@
         <div id="loginModalContainer"></div>
         <div id="cartModalContainer"></div>
     </body>
-
 </html>

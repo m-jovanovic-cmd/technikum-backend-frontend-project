@@ -4,7 +4,6 @@ $("#createProductButton").on("click", e =>{
     $(".error-message").remove();
 
 
-    // Klasse?
     const product = {
         "name": $("#nameInput").val(),
         "description": $("#descriptionInput").val(),
@@ -23,7 +22,6 @@ $("#createProductButton").on("click", e =>{
         contentType: "application/json",
         data: JSON.stringify(product),
         success: success => {
-            console.log;
             $("input").val("");
             handleSuccess("Produkterstellung");
         },
