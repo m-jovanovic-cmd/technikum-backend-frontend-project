@@ -13,7 +13,8 @@ function uploadProductData(event) {
         "quantity": $("#quantity").val(),
         "type": $("#type").val(),
         "imageUrl": $("#imageUrl").val(),
-        "taxId": $("#taxId").val()
+        "taxId": $("#taxId").val(),
+        "status": '1'
     }
 
     console.log(product);
@@ -49,7 +50,6 @@ $("#createProductButton").on("click", e =>{
     $(".input-error").removeClass("input-error");
     $(".error-message").remove();
 
-
     const product = {
         "name": $("#nameInput").val(),
         "description": $("#descriptionInput").val(),
@@ -59,12 +59,7 @@ $("#createProductButton").on("click", e =>{
         "type": $("#typeInput").val(),
         "taxId": $("#taxIdInput").val()
     }
-
-
-    
 });
-
-
 
 $("#upload-button").on("click", e => {
 
