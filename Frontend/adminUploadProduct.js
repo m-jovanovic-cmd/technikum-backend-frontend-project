@@ -1,4 +1,3 @@
-// DEPRECIATED TEMPLATE
 const uploadImage = (event) => {
     event.preventDefault();
     console.log(el);
