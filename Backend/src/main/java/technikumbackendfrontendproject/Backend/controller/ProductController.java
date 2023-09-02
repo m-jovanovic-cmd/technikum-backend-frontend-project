@@ -51,12 +51,15 @@ public class ProductController {
     public Product setStatus(@PathVariable Long id) {
         return productService.setStatus(id);
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable Long id) {
         try {
+            System.out.print("In Controller gekommen");
             Product product = productService.getProduct(id);
             return new ResponseEntity<>(product, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
+            System.out.print("In Fehler gekommen");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -68,6 +71,4 @@ public class ProductController {
                 productDTO.getQuantity(),
                 productDTO.getType());
     }
-
-
 }

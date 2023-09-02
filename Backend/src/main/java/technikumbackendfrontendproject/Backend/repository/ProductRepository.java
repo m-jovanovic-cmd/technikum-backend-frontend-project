@@ -11,6 +11,5 @@ import technikumbackendfrontendproject.Backend.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    
     List<Product> findByType(String type);
 }
