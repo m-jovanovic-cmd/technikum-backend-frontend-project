@@ -51,16 +51,6 @@ public class ProductController {
     public Product setStatus(@PathVariable Long id) {
         return productService.setStatus(id);
     }
-
-    private static Product fromDTO(ProductDTO productDTO) {
-        return new Product(productDTO.getName(),
-                productDTO.getDescription(),
-                productDTO.getImageUrl(),
-                productDTO.getPrice(),
-                productDTO.getQuantity(),
-                productDTO.getType());
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         try {
@@ -70,4 +60,14 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    private static Product fromDTO(ProductDTO productDTO) {
+        return new Product(productDTO.getName(),
+                productDTO.getDescription(),
+                productDTO.getImageUrl(),
+                productDTO.getPrice(),
+                productDTO.getQuantity(),
+                productDTO.getType());
+    }
+
+
 }
