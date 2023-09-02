@@ -1,8 +1,10 @@
 $.get({
     url: "http://localhost:8080/api/products",
     cors: true,
-    headers: { "Authorization": sessionStorage.getItem("token") },
-    success: function(products) { displayAllProducts(products) },
+    headers: {},
+    success: (products) => {
+        displayAllProducts(products)
+    },
     error: console.error
 });
 
@@ -17,20 +19,27 @@ function displayAllProducts(products) {
             productsContainer.append(row);
         }
         row.append(createProductDisplay(products[i]));
-    }
-}
+    };
+};
 
 function createProductDisplay(product) {
-    const div = $(`<div class="col-lg-4 col-md-6 col-sm-12 product"></div>`);
-    const title = $(`<h2>${product.name}</h2><br>`);
-    const img = $(`<img src="${product.imageUrl}" class="products_img" alt="Ein Bild von ${product.name}">`);
-    const description = $(`<p>${product.description}</p>`);
-    const quantityPrice = $(`<p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>`);
 
-    div.append(title);
-    div.append(img);
-    div.append(description);
-    div.append(quantityPrice);
+    const content = $(`
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card border border-3">
+                <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
+                <div class="card-body">
+                    <h4 class="card-title text-center">${product.name}</h4>
+                    <p class="card-text">${product.description}</p>
+                    <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button type="button" class="btn btn-secondary">in Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    );
 
-    return div;
-}
+    return content;
+};
