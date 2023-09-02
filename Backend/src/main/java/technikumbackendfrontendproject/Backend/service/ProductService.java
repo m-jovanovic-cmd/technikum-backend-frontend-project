@@ -60,4 +60,13 @@ public class ProductService {
         product2.setStatus(true);
         return save(product2);
     }
+
+    public Product getProduct(Long id) {
+        var product = productRepository.findById(id);
+        if (product.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        Product product2 = product.get();
+        return product2;
+    }
 }

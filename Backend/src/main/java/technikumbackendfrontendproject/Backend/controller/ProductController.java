@@ -3,6 +3,7 @@ package technikumbackendfrontendproject.Backend.controller;
 import java.net.URI;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.DTO.ProductDTO;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.ProductService;
 
 @RestController
@@ -49,7 +51,15 @@ public class ProductController {
     public Product setStatus(@PathVariable Long id) {
         return productService.setStatus(id);
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        try {
+            Product product = productService.getProduct(id);
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     private static Product fromDTO(ProductDTO productDTO) {
         return new Product(productDTO.getName(),
                 productDTO.getDescription(),
@@ -58,4 +68,6 @@ public class ProductController {
                 productDTO.getQuantity(),
                 productDTO.getType());
     }
+
+
 }

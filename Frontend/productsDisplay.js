@@ -1,9 +1,9 @@
 $.get({
     url: "http://localhost:8080/api/products",
     cors: true,
-    headers: { },
-    success: (products) => { 
-        displayAllProducts(products) 
+    headers: {},
+    success: (products) => {
+        displayAllProducts(products)
     },
     error: console.error
 });
@@ -33,7 +33,7 @@ function createProductDisplay(product) {
                     <p class="card-text">${product.description}</p>
                     <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="./detailseite_produkte.html?id=${product.id}" class="btn btn-light" role="button">Details</a>
                         <button type="button" class="btn btn-secondary">in Warenkorb</button>
                     </div>
                 </div>
