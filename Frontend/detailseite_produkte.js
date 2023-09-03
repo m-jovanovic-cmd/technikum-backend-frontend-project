@@ -27,7 +27,7 @@ function getCurrentId() {
 function displayProduct(product) {
     const content = $(`
     <div class="content d-flex justify-content-center" id="productContainer">
-        <div class="col-lg-5 col-md-8 col-sm-12">
+        <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="row">                   
                 <div class="card border border-3 ">
                         <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
