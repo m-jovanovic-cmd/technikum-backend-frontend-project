@@ -15,7 +15,11 @@ body {
     font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     padding: 15px;
 }
 
@@ -31,6 +35,7 @@ h1, h2, h3, h4, h5 {
     text-align: justify;
     color: #7e8daf;
     padding: 0 2em 0 2em;
+
 }
 
 #impressum h1,
@@ -370,4 +375,29 @@ footer img:hover {
 
 #subject {
     border: 1px solid black;
+}
+
+/* searchbar */
+
+
+#searchBar {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    height: 45px;
+    padding: 6px 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+}
+
+#searchWrapper {
+    position: relative;
+}
+
+#searchWrapper::after {
+    content: '🔍';
+    position: absolute;
+    top: 7px;
+    right: 15px;
 }
