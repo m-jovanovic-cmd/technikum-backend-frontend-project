@@ -1,9 +1,6 @@
 //https://www.youtube.com/watch?v=wxz5vJ1BWrc&ab_channel=JamesQQuick
 let products = [];
 
-const productsList = document.getElementById('products');
-const searchBar = document.getElementById('searchBar');
-
 // Add event listener to the search bar
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
