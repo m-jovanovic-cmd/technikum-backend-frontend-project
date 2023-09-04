@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
@@ -23,6 +21,7 @@ public class UserController {
         userService.registerUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping
     public List<User> findAllUsers() {
         return userService.findAll();
