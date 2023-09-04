@@ -1,23 +1,7 @@
 //https://www.youtube.com/watch?v=wxz5vJ1BWrc&ab_channel=JamesQQuick
 let products = [];
 
-// Add event listener to the search bar
-searchBar.addEventListener('keyup', (e) => {
-    const searchString = e.target.value.toLowerCase();
-    console.log(searchString);
-    //if searchStr is H -> h
-    //if searchStr is h -> h
-    //convert name to lowercase and then compare
-    //convert Type to lowercase and then compare
-
-    // Filter products array inside the event listener
-    const filteredProducts = products.filter(product => {
-        return product.name.toLowerCase().includes(searchString) || product.type.toLowerCase().includes(searchString);
-    });
-
-    //console.log(filteredProducts);
-    displayAllProducts(filteredProducts)
-});
+const searchBar = document.getElementById('searchBar');
 
 // Make an API request to fetch products
 $.get({
@@ -33,6 +17,23 @@ $.get({
     },
     error: console.error
 });
+
+// Add event listener to the search bar
+searchBar.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase();
+    //convert name to lowercase and then compare
+    //convert Type to lowercase and then compare
+
+    // Filter products array inside the event listener
+    const filteredProducts = products.filter(product => {
+        return product.name.toLowerCase().includes(searchString) || product.type.toLowerCase().includes(searchString);
+    });
+
+    //console.log(filteredProducts);
+    displayAllProducts(filteredProducts)
+});
+
+
 
 
 function displayAllProducts(products) {
@@ -52,7 +53,7 @@ function displayAllProducts(products) {
 function createProductDisplay(product) {
 
     const content = $(`
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
             <div class="card border border-3">
                 <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
                 <div class="card-body">

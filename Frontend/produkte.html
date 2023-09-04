@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,18 +18,19 @@
         <script src="productsDisplay.js" defer></script>
         <title>Produkte</title>
     </head>
-
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <h1>Produkte</h1>
         <div class="main">
             <div class="content">
-                <div class="searchBar col-lg-6 col-md-6 col-sm-12">
-                    <div id="searchWrapper">
-                        <input class="border border-3" type="text" name="searchbar" id="searchBar"
-                            placeholder="Search for a product" \>
-
-                    </div>
+                <h1>Produkte</h1>
+                <div class="searchBar row g-0 d-flex justify-content-end">
+                    <input 
+                        class="col-12 col-md-6 col-lg-4  my-3 border border-3 text-center rounded" 
+                        type="text" 
+                        name="searchbar" 
+                        id="searchBar"
+                        placeholder="Search for a product" 
+                    \>
                 </div>
             </div>
             <div class="content" id="productsContainer"></div>
@@ -38,5 +38,4 @@
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
     </body>
-
 </html>
