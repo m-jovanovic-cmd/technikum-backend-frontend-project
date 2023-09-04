@@ -1,3 +1,4 @@
+
 package technikumbackendfrontendproject.Backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import technikumbackendfrontendproject.Backend.service.AuthenticationService;
 
 @RestController
 public class AuthenticationController {
-        
+
     private final AuthenticationService authenticationService;
 
     @Autowired

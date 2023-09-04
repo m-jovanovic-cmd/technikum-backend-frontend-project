@@ -36,3 +36,4 @@ public class AuthenticationService {
         return tokenService.generateToken(user.get());
     }
 }
+

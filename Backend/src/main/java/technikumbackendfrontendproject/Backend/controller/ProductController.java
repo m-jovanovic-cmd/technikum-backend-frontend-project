@@ -35,6 +35,7 @@ public class ProductController {
         return productService.findAll();
     }
 
+
     @GetMapping("/{type}")
     public List<Product> findAllProductsByType(@PathVariable String type) {
         return productService.findByType(type);

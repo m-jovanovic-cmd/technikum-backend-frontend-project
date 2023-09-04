@@ -1,7 +1,7 @@
 var form = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
     <div class="mt-3">
-        <h2 class="px-0 mx-0">Create User:in
+        <h2 class="px-0 mx-0">User:innen Verwaltung
         </h2>
     </div>
     <div class="row">
@@ -73,7 +73,7 @@ var form = `<div class="container d-flex justify-content-center">
 
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-3" onclick="save()">Save</button>
+    <button type="button" class="btn btn-primary mt-3" id="saveButton">Save</button>
 </div>
 </div>`
 document.getElementById("form").innerHTML = form;
@@ -83,61 +83,105 @@ $.get({
     cors: true,
     headers: {},
     success: (users) => {
-        displayAllUsers(users)
+        displayAllUsers(users);
+        console.log(users)
     },
     error: console.error
 });
 
-function createUserDisplay(user) {
-
-    const content = $(`<table class="table" >
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">isAdmin</th>   
-              <th scope="col">Email</th>
-              <th scope="col">Vorname</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Nachname</th>
-              <th scope="col">Wohnort</th>
-              <th scope="col">Passwort</th>
-              <th scope="col">PLZ</th>
-              <th scope="col">Role</th>
-              <th scope="col">Straße</th>
-              <th scope="col">Top</th>
-              <th scope="col">Username</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-           `);
-    return content;
-
+function displayAllUsers(users) {
+    const tableBody = $("#table tbody");
+    //tableBody.empty(); // Clear the existing table rows
+    for (let i = 0; i < users.length; i++) {
+        const userDisplay = createUserDisplay(users[i]);
+        tableBody.append(userDisplay);
+    };
 };
 
-function displayAllUsers(users) {
-    for (let i = 0; i < users.length; i++) {
-        createUserDisplay(users[i])
-    };
+function createUserDisplay(user) {
+    // Create a new row element
+    const row = $("<tr>");
+    // Append table cells for each property you want to display
+    row.append(`<td scope="row">${user.id}</td>`);
+    row.append(`<td>${user.admin}</td>`);
+    row.append(`<td>${user.email}</td>`);
+    row.append(`<td>${user.firstName}</td>`);
+    row.append(`<td>${user.gender}</td>`);
+    row.append(`<td>${user.lastname}</td>`);
+    row.append(`<td>${user.location}</td>`);
+    row.append(`<td>${user.password}</td>`);
+    row.append(`<td>${user.postcode}</td>`);
+    row.append(`<td>${user.role}</td>`);
+    row.append(`<td>${user.street}</td>`);
+    row.append(`<td>${user.streetnumber}</td>`);
+    row.append(`<td>${user.username}</td>`);
+    row.append(`<td><button type="button" class="btn btn-warning mt-3" onclick="sendPutRequest(${user.id})">Edit</button></td>`);
+    row.append(`<td><button type="button" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
 
-
-    function createUserDisplay(user) {
-        const content = $(table = table + `<tr>
-    <td scope="row">${i + 1}</td>
-    <td>${user.id}</td>
-    <td>${details[i].nachname}</td>
-    <td>${details[i].email}</td>
-    <td><button type="button" class="btn btn-warning mt-3" onclick="edit(${i})">Edit</button>
-    </td>
-    <td><button type="button" class="btn btn-danger mt-3" onclick="deleteData(${i})">Delete</button></td>
-    </tr>
-</tbody>
-  `
-        )
-    };
-    table = table +
-
-        `</table>;
-    document.getElementById("table").innerHTML = table`
+    return row; // Return the created row element
 }
+function sendPutRequest(userId, updatedUserData) {
+    const url = `http://localhost:8080/api/users/${userId}`;
+
+    // Create a PUT request with the URL and request body
+    fetch(url, {
+        method: 'PUT', // Use the PUT HTTP method
+        headers: {
+            'Content-Type': 'application/json', // Specify the content type
+        },
+        body: JSON.stringify(updatedUserData), // Convert the data to JSON format
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse the response as JSON
+        })
+        .then(data => {
+            console.log('User updated:', data);
+            // Handle the successful response here
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            // Handle errors here
+        });
+}
+
+// Create an empty user object
+const user = {};
+
+// Add a click event listener to the "Save" button
+$("#saveButton").on("click", e => {
+    // Assign form input values to the user object properties
+    user.id = $("#userId").val();
+    user.admin = $("#isAdmin").val();
+    user.email = $("#mail").val();
+    user.firstName = $("#firstName").val();
+    user.gender = $("#gender").val();
+    user.lastname = $("#lastName").val();
+    user.location = $("#location").val();
+    user.password = $("#password").val();
+    user.postcode = $("#postcode").val();
+    user.role = $("#role").val();
+    user.street = $("#street").val();
+    user.streetnumber = $("#streetnumber").val();
+    user.username = $("#username").val();
+
+    // Send the user data to the server
+    saveUser(user);
+});
+
+// Function to send the user data to the server
+function saveUser(user) {
+    $.ajax({
+        url: "http://localhost:8080/api/users",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(user),
+        success: (createdUser) => {
+            // Display the created user or perform other actions here
+            console.log("User created:", createdUser);
+        }
+    });
+}
+

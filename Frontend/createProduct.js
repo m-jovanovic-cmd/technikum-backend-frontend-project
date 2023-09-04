@@ -1,4 +1,4 @@
-$("#createProductButton").on("click", e =>{
+$("#createProductButton").on("click", e => {
 
     $(".input-error").removeClass("input-error");
     $(".error-message").remove();
@@ -13,7 +13,6 @@ $("#createProductButton").on("click", e =>{
         "type": $("#typeInput").val(),
         "taxId": $("#taxIdInput").val()
     }
-
 
     $.ajax({
         url: "http://localhost:8080/api/products",
@@ -31,7 +30,7 @@ $("#createProductButton").on("click", e =>{
                 for (let err of error.responseJSON.errors) {
                     const input = $("#" + err.field + "Input");
                     input.addClass("input-error");
-    
+
                     const parent = input.parent();
                     parent.append(`<p class="error-message">${err.defaultMessage}</p>`);
                 }

@@ -3,8 +3,11 @@ package technikumbackendfrontendproject.Backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.User;
+import technikumbackendfrontendproject.Backend.repository.UserRepository;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
 import java.util.List;
@@ -26,7 +29,23 @@ public class UserController {
     public List<User> findAllUsers() {
         return userService.findAll();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
+        try {
+            User user = userService.getUser(id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }
+/*
+
+ */
+
 
 /*
  * Zusammengefasst > "Macht viele coole Sachen" - Zitat Mladen
