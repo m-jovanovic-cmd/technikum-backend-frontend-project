@@ -120,7 +120,7 @@ function createUserDisplay(user) {
     row.append(`<td>${user.street}</td>`);
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
-    row.append(`<td td > <button type="button" id="sendPutRequest" class="btn btn-warning mt-3" onclick="sendPutRequest(${user.id})">Edit</button></td>`);
+    row.append(`<td td > <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id})">Edit</button></td>`);
     row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
 
     return row; // Return the created row element
@@ -196,39 +196,47 @@ $("#saveButton").on("click", e => {
     // Send the user data to the server
     console.log(newUser)
     createUser(newUser);
+
 });
 
 ///////////////////////////
 // P U T  R E Q U E S T //
 /////////////////////////
 //für form button id=sendUpdatedUser
-//für update button id= sendPutRequest
-$("#sendUpdatedUser").on("click", function () {
+//für update button id= updatebuttonputrequest
+$("#updatebuttonputrequest").on("click", () => {
     const userId = $(this).attr(`${user.id}`);
-    getUserAndPopulateForm(userId);
+    console.log(userId)
 });
 
-// Function to populate the edit form with user data
-function populateEditForm(user) {
-    // Populate the form fields with the user's data
-    $("#userId").val();
-    $("#isAdmin").val();
-    $("#mail").val();
-    $("#firstName").val();
-    $("#gender").val();
-    $("#lastName").val();
-    $("#location").val();
-    $("#password").val();
-    $("#postcode").val();
-    $("#role").val();
-    $("#street").val();
-    $("#streetnumber").val();
-    $("#username").val();
-    $("#status").val();
+function updatebuttonputrequest(userId) {
+    userfromdatabase = getUser(userId)
+    //console.log(userfromdatabase)
+    //edit(userfromdatabase)
+}
+function getUser(userId) {
 
-};
+    $.ajax({
+        url: `http://localhost:8080/api/users/get${userId}`,
+        type: "GET",
+        cors: true,
+        headers: {},
+        success: (response) => {
 
-function edit(userId) {
+            console.log(response)
+            console.log("i got the user")
+            populatedform = edit(response)
+            return populatedform;
+        },
+        error: console.error
+    });
+}
+
+
+
+function edit(user) {
+    console.log(user)
+
 
     let editForm = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
@@ -239,112 +247,113 @@ function edit(userId) {
     <div class="row">
         <div class="mb-3 col-12 col-md-3">
             <label for="userId" class="form-label">User ID</label>
-            <input type="userId" value="${userId.id}" class="form-control" id="userId" name="userId" placeholder="User ID">
+            <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="userId" placeholder="User ID">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
-            <input type="text" value="${userId.isAdmin}" class="form-control" id="isAdmin" name="is Admin "
+            <input type="text" value="${user.isAdmin}" class="form-control" id="newisAdmin" name="is Admin "
                 placeholder="0 = nein, 1 = ja">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="mail" class="form-label">Email-Addresse</label>
-            <input type="email" value="${userId.mail}" class="form-control" id="mail" name="mail" placeholder="name@example.com">
+            <input type="email" value="${user.mail}" class="form-control" id="newmail" name="mail" placeholder="name@example.com">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="firstName" class="form-label">Vorname</label>
-            <input type="text" value="${userId.firstname}" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+            <input type="text" value="${user.firstname}" class="form-control" id="newfirstName" name="firstName" placeholder="Vorname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
-            <input type="text" value="${userId.gender}" class="form-control" id="gender" name="gender" placeholder="Gender">
+            <input type="text" value="${user.gender}" class="form-control" id="newgender" name="gender" placeholder="Gender">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="lastName" class="form-label">Nachname</label>
-            <input type="text" value="${userId.lastname}" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+            <input type="text" value="${user.lastname}" class="form-control" id="newlastName" name="lastName" placeholder="Nachname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="location" class="form-label">Wohnort</label>
-            <input type="text" value="${userId.location}" class="form-control" id="location" name="location" placeholder="Wohnort">
+            <input type="text" value="${user.location}" class="form-control" id="newlocation" name="location" placeholder="Wohnort">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
-            <input type="password" value="${userId.password}" class="form-control" id="password" name="password">
+            <input type="password" value="${user.password}" class="form-control" id="newpassword" name="password">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
-            <input type="text" value="${userId.postcode}" class="form-control" id="postcode" name="postcode"
+            <input type="text" value="${user.postcode}" class="form-control" id="newpostcode" name="postcode"
                 placeholder="Postleitzahl">
 
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
-            <input type="text" class="form-control" id="role" name="role" placeholder="Costumer, Admin">
+            <input type="text" value="${user.role}" class="form-control" id="newrole" name="role" placeholder="Costumer, Admin">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="status" class="form-label">Status</label>
-            <input type="text" value="${userId.status}" class="form-control" id="status" name="status"
+            <input type="text" value="${user.status}" class="form-control" id="newstatus" name="status"
                 placeholder="active, inactive">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="street" class="form-label">Straße</label>
-            <input type="text" value="${userId.street}" class="form-control" id="street" name="street" placeholder="Beispielstraße">
+            <input type="text" value="${user.street}" class="form-control" id="newstreet" name="street" placeholder="Beispielstraße">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="streetnumber" class="form-label">Top</label>
-            <input type="text" value="${userId.streetnumber}" class="form-control" id="streetnumber" name="streetnumber">
+            <input type="text" value="${user.streetnumber}" class="form-control" id="newstreetnumber" name="streetnumber">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" value="${userId.username}"
-             class="form-control" id="username" name="username" placeholder="Username">
+            <input type="text" value="${user.username}"
+             class="form-control" id="username" name="newusername" placeholder="Username">
 
         </div>
     </div>
-    <button type="button" class="btn btn-primary mt-3" id="sendUpdatedUser">"update(${userId})"</button>
+    <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3" onclick="sendUpdatedUser(${user.id})">Update</button>
     </div>
 </div>`;
     document.getElementById("form").innerHTML = editForm;
     console.log('edit work');
+    //console.log(editForm)
 }
 
-function getUser(userId) {
-    new_userid = edit(userId)
+$("#sendUpdatedUser").on("click", e => {
+    const addeduser = {
+        "id": $("#userId").val(),
+        "admin": $("#isAdmin").val(),
+        "email": $("#mail").val(),
+        "firstName": $("#firstName").val(),
+        "gender": $("#gender").val(),
+        "lastName": $("#lastName").val(),
+        "location": $("#location").val(),
+        "password": $("#password").val(),
+        "postcode": $("#postcode").val(),
+        "role": $("#role").val(),
+        "status": $("#status").val(),
+        "street": $("#street").val(),
+        "streetnumber": $("#streetnumber").val(),
+        "username": $("#username").val()
+    }
+    console.log(addeduser)
+    sendUpdatedUser(addeduser)
+});
+
+function sendUpdatedUser(updatedUser) {
     $.ajax({
-        url: `http://localhost:8080/api/users/get/${new_userid}`,
-        type: "GET",
-        cors: true,
-        post: get,
-        headers: {},
-        success: (success) => {
-            updateUser(user)
-            userDisplay(users);
-            console.log(users)
-        },
-        error: console.error
-    });
-}
-
-
-
-
-
-function updateUser(user) {
-    $.ajax({
-        url: `http://localhost:8080/api/users/${user.id}`,
+        url: `http://localhost:8080/api/users/${updatedUser.id}`,
         type: "PUT",
         contentType: "application/json",
-        data: JSON.stringify(user),
+        data: JSON.stringify(updatedUser),
         success: (succcess) => {
             handleSuccess("User was updated");
 
         },
         error: (error) => {
-            console.log(error);
+            console.log("Error updating user:", error);
         }
     });
 }

@@ -34,11 +34,11 @@ public class UserController {
 
     @GetMapping("/get{id}")
     public User findUserById(@PathVariable Long id) {
-        User user = userService.findById(id).get();
-        if (user == null) {
+        var user = userService.findById(id);
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("user name not found");
         }
-        return user;
+        return user.get();
     }
 
 

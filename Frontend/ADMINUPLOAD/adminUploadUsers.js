@@ -156,6 +156,81 @@ function update(index) {
   console.log(details)
 }
 
+///////////////////////////
+// G E T  R E Q U E S T //
+/////////////////////////
+
+$.get({
+  url: "http://localhost:8080/api/users",
+  cors: true,
+  headers: {},
+  success: (users) => {
+    displayAllUsers(users);
+    console.log(users)
+  },
+  error: console.error
+});
+
+
+function displayAllUsers(users) {
+  const tableBody = $("#table tbody");
+  //tableBody.empty(); // Clear the existing table rows
+  for (let i = 0; i < users.length; i++) {
+    const userDisplay = createUserDisplay(users[i]);
+    tableBody.append(userDisplay);
+  };
+};
+
+function createUserDisplay(user) {
+  // Create a new row element
+  const row = $("<tr>");
+  // Append table cells for each property you want to display
+  row.append(`<td scope="row">${user.id}</td>`);
+  row.append(`<td>${user.admin}</td>`);
+  row.append(`<td>${user.email}</td>`);
+  row.append(`<td>${user.firstName}</td>`);
+  row.append(`<td>${user.gender}</td>`);
+  row.append(`<td>${user.lastname}</td>`);
+  row.append(`<td>${user.location}</td>`);
+  row.append(`<td>${user.password}</td>`);
+  row.append(`<td>${user.postcode}</td>`);
+  row.append(`<td>${user.role}</td>`);
+  row.append(`<td>${user.street}</td>`);
+  row.append(`<td>${user.streetnumber}</td>`);
+  row.append(`<td>${user.username}</td>`);
+  row.append(`<td td > <button type="button" id="sendPutRequest" class="btn btn-warning mt-3" onclick="sendPutRequest(${user.id})">Edit</button></td>`);
+  row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
+
+  return row; // Return the created row element
+}
+
+
+/////////////////////////////////
+// D E L E T E  R E Q U E S T //
+///////////////////////////////
+
+$("#sendDeleteRequest").on("click", () => {
+  const userId = $(this).attr(`${user.id}`); // Replace with your actual attribute name
+  sendDeleteRequest(userId);
+});
+function sendDeleteRequest(userId) {
+  if (confirm("Are you sure you want to delete this record?")) {
+    $.ajax({
+      url: `http://localhost:8080/api/users/delete/${userId}`,
+      type: "DELETE",
+      cors: true,
+      contentType: "application/json",
+      success: (response) => {
+        // After successful deletion, reload the list of users
+        location.reload(true);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+}
+
 ////////////////////
 // POST REQEUEST //
 //////////////////
@@ -200,3 +275,4 @@ $("#saveButton").on("click", e => {
   console.log(newUser)
   createUser(newUser);
 });
+
