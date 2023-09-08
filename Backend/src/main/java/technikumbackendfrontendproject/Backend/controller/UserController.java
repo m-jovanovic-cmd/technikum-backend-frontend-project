@@ -34,11 +34,40 @@ public class UserController {
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
         try {
             User user = userService.getUser(id);
+            // If the user exists, delete the user
+            userService.deleteUser(id);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody User newUser, @PathVariable Long id) {
+        return userService.findById(id)
+                .map(user -> {
+                    // Update the user's information with the data from newUser
+                    user.setUsername(newUser.getUsername());
+                    // Update other fields as needed
+                    user.setStatus((newUser.getStatus()));
+                    user.setRole(newUser.getRole());
+                    user.setEmail(newUser.getEmail());
+                    user.setGender(newUser.getGender());
+                    user.setFirstName(newUser.getFirstName());
+                    user.setLastName(newUser.getLastname());
+                    user.setLocation(newUser.getLocation());
+                    user.setPassword(newUser.getPassword());
+                    user.setPostcode(newUser.getPostcode());
+                    user.setStreet(newUser.getStreet());
+                    user.setStreetnumber(newUser.getStreetnumber());
+                    // Save the updated user
+                    User updatedUser = userService.saveUser(user);
+
+                    // Return the updated user as a response
+                    return ResponseEntity.ok(updatedUser);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 
 }

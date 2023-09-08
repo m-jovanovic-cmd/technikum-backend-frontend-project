@@ -14,29 +14,41 @@ import java.util.Optional;
 @Service
 public class UserService implements saveUser {
 
-    private UserRepository userRepositiory;
+    private UserRepository userRepository;
     private String convertedID;
 
     @Autowired
-    public UserService(UserRepository userRepositiory) {
-        this.userRepositiory = userRepositiory;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
     @Override
     public User saveUser(User user) {
-        return userRepositiory.save(user);
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+       convertedID = String.valueOf(id);
+        // Check if the user exists
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            userRepository.delete(userOptional.get());
+        } else {
+            // User not found, you can handle this as needed (e.g., throw an exception or return a status)
+            throw new EntityNotFoundException("User with ID " + convertedID + " not found");
+        }
     }
     public void registerUser(User user) {
         user.setRole("Customer");
         user.setStatus("active");
-        userRepositiory.save(user);
+        userRepository.save(user);
     }
 
     public List<User> findAll() {
-        return userRepositiory.findAll();
+        return userRepository.findAll();
     }
 
     public User getUser(Long id) {
-        var user = userRepositiory.findById(id);
+        var user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new EntityNotFoundException();
         }
@@ -45,37 +57,9 @@ public class UserService implements saveUser {
     }
 
     public Optional<User> findById(Long id) {
-        return userRepositiory.findById(id);
+        return userRepository.findById(id);
 
     }
-
-   /*
-   *  @PostMapping("/user")
-    User newUser(@RequestBody User newUser){
-        return userRepositiory.save(newUser);
-    }
-
-    @PutMapping("/users/{id}")
-    User updateUser(@RequestBody User newUser, @PathVariable Long id){
-        convertedID = String.valueOf(id);
-        return userRepositiory.findById(id)
-                .map(user -> {
-                    user.setUsername(newUser.getUsername());
-                    return userRepositiory.save(user);
-
-                }).orElseThrow(() -> new UsernameNotFoundException(convertedID));
-    }
-
-    @DeleteMapping("/user/{id}")
-    String deleteUser(@PathVariable Long id){
-        convertedID = String.valueOf(id);
-        if(!userRepositiory.existsById((id))){
-            throw new UsernameNotFoundException(convertedID);
-        }
-        userRepositiory.deleteById(id);
-        return  "User with id "+id+" has been deleted successfully.";
-    }
-   * */
 
 }
 
