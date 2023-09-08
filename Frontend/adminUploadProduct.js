@@ -5,19 +5,42 @@ const uploadImage = (event) => {
 
 function uploadProductData(event) {
     event.preventDefault();
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
 
     const product = {
-        "name": $("#productname").val(),
+        "name": $("#name").val(),
         "description": $("#description").val(),
         "price": $("#price").val(),
         "quantity": $("#quantity").val(),
         "type": $("#type").val(),
         "imageUrl": $("#imageUrl").val(),
         "taxId": $("#taxId").val(),
+        "imageUpload": $("#imageUpload".val()),
     }
+
+    var errorCount = 0;
+    let errorMessage = '';
+    errorMessage = 'Bitte gültigen Wert eintragen.'
+    for (let key in product) {
+        if (product.hasOwnProperty(key) && product[key] === '') {
+            errorCount++;
+            let field = $('#' + key)
+            displayError(field, errorMessage)
+        }
+    }
+
+    if(errorCount > 0) return;
 
     console.log(product);
 
+    $.ajax({
+        url: "http://localhost:8080/api/products/imageUpload",
+        type: "POST",
+        cors: true,
+        headers: { "Authorization": sessionStorage.getItem("token") },
+        
+    })
     $.ajax({
         url: "http://localhost:8080/api/products",
         type: "POST",
@@ -35,16 +58,19 @@ function uploadProductData(event) {
             console.log(error);
             if (error.status === 400) {
                 for (let err of error.responseJSON.errors) {
-                    const input = $("#" + err.field + "Input");
-                    input.addClass("input-error");
-    
-                    const parent = input.parent();
-                    parent.append(`<p class="error-message">${err.defaultMessage}</p>`);
+                    let field = $("#" + err.field);
+                    displayError(field, err.defaultMessage)
                 }
             }
         }
     });
 };
+
+function displayError(input, message= '') {
+    input.addClass("input-error");
+    const parent = input.parent();
+    parent.append(`<p class="error-message">${message}</p>`);
+}
 
 // DEPRECIATED TEMPLATE
 $("#createProductButton").on("click", e =>{
