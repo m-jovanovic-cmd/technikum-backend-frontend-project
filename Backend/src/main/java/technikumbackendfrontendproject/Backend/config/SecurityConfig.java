@@ -32,7 +32,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-                    // Disable csrf
+
+        // Disable csrf
         httpSecurity.csrf().disable()
                     // Enable cors
                     .cors()
@@ -41,13 +42,15 @@ public class SecurityConfig {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/api/users/delete/{id}", "/api/products", "/public/**").permitAll()
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/users", "/api/users/delete/{id}", "/api/products", "/public/**").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()
                     // Add filter to validate tokens with every request
                     .addFilterBefore(new AuthenticationFilter(tokenService),
                                      UsernamePasswordAuthenticationFilter.class);
+
+
 
         return httpSecurity.build();
     }

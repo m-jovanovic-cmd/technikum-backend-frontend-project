@@ -41,7 +41,7 @@ var form = `<div class="container d-flex justify-content-center">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
-            <input type="password" class="form-control" id="Password" name="Password"
+            <input type="text" class="form-control" id="password" name="password"
                 placeholder="**********">
         </div>
         <div class="mb-3 col-12 col-md-3">
@@ -92,6 +92,7 @@ $.get({
     },
     error: console.error
 });
+
 
 function displayAllUsers(users) {
     const tableBody = $("#table tbody");
@@ -155,17 +156,19 @@ function sendDeleteRequest(userId) {
 ////////////////////
 // POST REQEUEST //
 //////////////////
-function createUser(user) {
+function createUser(newUser) {
     $.ajax({
         url: "http://localhost:8080/api/users",
         type: "POST",
+        cors: true,
         contentType: "application/json",
-        data: JSON.stringify(user),
-        success: (createdUser) => {
+        data: JSON.stringify(newUser),
+        success: (response) => {
             // Display the created user or perform other actions here
-            console.log("User created:", createdUser);
+            console.log("User created:", response);
+            location.reload(true);
         },
-        error: (xhr, status, error) => {
+        error: (error) => {
             // Handle errors here if needed
             console.error("Error:", error);
         }
@@ -174,28 +177,56 @@ function createUser(user) {
 // Add a click event listener to the "Save" button
 $("#saveButton").on("click", e => {
     // Assign form input values to the user object properties
-    const user = {
+    const newUser = {
         "id": $("#userId").val(),
         "admin": $("#isAdmin").val(),
         "email": $("#mail").val(),
         "firstName": $("#firstName").val(),
         "gender": $("#gender").val(),
-        "lastname": $("#lastName").val(),
+        "lastName": $("#lastName").val(),
         "location": $("#location").val(),
         "password": $("#password").val(),
         "postcode": $("#postcode").val(),
         "role": $("#role").val(),
+        "status": $("#status").val(),
         "street": $("#street").val(),
         "streetnumber": $("#streetnumber").val(),
         "username": $("#username").val()
     }
     // Send the user data to the server
-    createUser(user);
+    console.log(newUser)
+    createUser(newUser);
 });
 
 ///////////////////////////
 // P U T  R E Q U E S T //
 /////////////////////////
+//für form button id=sendUpdatedUser
+//für update button id= sendPutRequest
+$("#sendUpdatedUser").on("click", function () {
+    const userId = $(this).attr(`${user.id}`);
+    getUserAndPopulateForm(userId);
+});
+
+// Function to populate the edit form with user data
+function populateEditForm(user) {
+    // Populate the form fields with the user's data
+    $("#userId").val();
+    $("#isAdmin").val();
+    $("#mail").val();
+    $("#firstName").val();
+    $("#gender").val();
+    $("#lastName").val();
+    $("#location").val();
+    $("#password").val();
+    $("#postcode").val();
+    $("#role").val();
+    $("#street").val();
+    $("#streetnumber").val();
+    $("#username").val();
+    $("#status").val();
+
+};
 
 function edit(userId) {
 
@@ -242,7 +273,7 @@ function edit(userId) {
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
-            <input type="password" value="${userId.password}" class="form-control" id="Password" name="Password">
+            <input type="password" value="${userId.password}" class="form-control" id="password" name="password">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
@@ -280,32 +311,27 @@ function edit(userId) {
     document.getElementById("form").innerHTML = editForm;
     console.log('edit work');
 }
-$("#sendPutRequest").on("click", () => {
-    const userId = $(this).attr(`${user.id}`);
-    sendPutRequest(userId);
-});
 
-$("#sendUpdatedUser").on("click", e => {
-    // Create an empty user object
-    const user = {};
-    // Assign form input values to the user object properties
-    user.id = $("#userId").val();
-    user.admin = $("#isAdmin").val();
-    user.email = $("#mail").val();
-    user.firstName = $("#firstName").val();
-    user.gender = $("#gender").val();
-    user.lastname = $("#lastName").val();
-    user.location = $("#location").val();
-    user.password = $("#Password").val();
-    user.postcode = $("#postcode").val();
-    user.role = $("#role").val();
-    user.street = $("#street").val();
-    user.streetnumber = $("#streetnumber").val();
-    user.username = $("#username").val();
-    user.status = $("#status").val();
+function getUser(userId) {
+    new_userid = edit(userId)
+    $.ajax({
+        url: `http://localhost:8080/api/users/get/${new_userid}`,
+        type: "GET",
+        cors: true,
+        post: get,
+        headers: {},
+        success: (success) => {
+            updateUser(user)
+            userDisplay(users);
+            console.log(users)
+        },
+        error: console.error
+    });
+}
 
-    updateUser(user);
-});
+
+
+
 
 function updateUser(user) {
     $.ajax({
@@ -313,9 +339,9 @@ function updateUser(user) {
         type: "PUT",
         contentType: "application/json",
         data: JSON.stringify(user),
-        success: (updatedUser) => {
+        success: (succcess) => {
             handleSuccess("User was updated");
-            all();
+
         },
         error: (error) => {
             console.log(error);

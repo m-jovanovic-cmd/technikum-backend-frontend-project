@@ -23,6 +23,7 @@ public class UserService implements saveUser {
     }
     @Override
     public User saveUser(User user) {
+        System.out.println("saving user (service)");
         return userRepository.save(user);
     }
 

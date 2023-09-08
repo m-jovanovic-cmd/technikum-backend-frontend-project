@@ -20,15 +20,27 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<Long> createUser(@RequestBody User user) {
-        userService.registerUser(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        System.out.println("creating user (controller)");
+        User createUser = userService.saveUser(user);
+        return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
+
 
     @GetMapping
     public List<User> findAllUsers() {
         return userService.findAll();
     }
+
+    @GetMapping("/get{id}")
+    public User findUserById(@PathVariable Long id) {
+        User user = userService.findById(id).get();
+        if (user == null) {
+            throw new UsernameNotFoundException("user name not found");
+        }
+        return user;
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {

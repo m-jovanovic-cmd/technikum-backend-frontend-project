@@ -156,4 +156,47 @@ function update(index) {
   console.log(details)
 }
 
-
+////////////////////
+// POST REQEUEST //
+//////////////////
+function createUser(newUser) {
+  $.ajax({
+    url: "http://localhost:8080/api/users",
+    type: "POST",
+    cors: true,
+    contentType: "application/json",
+    data: JSON.stringify(newUser),
+    success: (response) => {
+      // Display the created user or perform other actions here
+      console.log("User created:", response);
+      location.reload(true);
+    },
+    error: (error) => {
+      // Handle errors here if needed
+      console.error("Error:", error);
+    }
+  });
+}
+// Add a click event listener to the "Save" button
+$("#saveButton").on("click", e => {
+  // Assign form input values to the user object properties
+  const newUser = {
+    "id": $("#userId").val(),
+    "admin": $("#isAdmin").val(),
+    "email": $("#mail").val(),
+    "firstName": $("#firstName").val(),
+    "gender": $("#gender").val(),
+    "lastName": $("#lastName").val(),
+    "location": $("#location").val(),
+    "password": $("#password").val(),
+    "postcode": $("#postcode").val(),
+    "role": $("#role").val(),
+    "status": $("#status").val(),
+    "street": $("#street").val(),
+    "streetnumber": $("#streetnumber").val(),
+    "username": $("#username").val()
+  }
+  // Send the user data to the server
+  console.log(newUser)
+  createUser(newUser);
+});
