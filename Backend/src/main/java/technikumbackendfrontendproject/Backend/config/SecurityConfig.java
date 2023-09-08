@@ -44,6 +44,7 @@ public class SecurityConfig {
                     .authorizeHttpRequests().requestMatchers(
                         "/login", 
                         "/api/users",
+                        "/api/products",
                         "/public/**"
                         ).permitAll()
                     // Authenticate all other requests

@@ -1,13 +1,11 @@
-const uploadImage = (event) => {
-    event.preventDefault();
-    console.log(el);
-};
-
 function uploadProductData(event) {
     event.preventDefault();
+
+    // remove Validation error-messages
     $(".input-error").removeClass("input-error");
     $(".error-message").remove();
 
+    // get all data needed for the requests
     const product = {
         "name": $("#name").val(),
         "description": $("#description").val(),
@@ -16,12 +14,22 @@ function uploadProductData(event) {
         "type": $("#type").val(),
         "imageUrl": $("#imageUrl").val(),
         "taxId": $("#taxId").val(),
-        "imageUpload": $("#imageUpload".val()),
     }
 
+    // get the file data
+    const fileInput = document.getElementById("imageUpload");
+    const fileData = new FormData();
+    fileData.append("file", fileInput.files[0]);
+
+    console.log(fileData);
+
+    const token = sessionStorage.getItem("token");
+
+    // init values for validation
     var errorCount = 0;
-    let errorMessage = '';
-    errorMessage = 'Bitte gültigen Wert eintragen.'
+    let errorMessage = 'Bitte gültigen Wert eintragen.';
+
+    // frontend validation
     for (let key in product) {
         if (product.hasOwnProperty(key) && product[key] === '') {
             errorCount++;
@@ -30,22 +38,35 @@ function uploadProductData(event) {
         }
     }
 
-    if(errorCount > 0) return;
+    // if(errorCount > 0) return;
 
     console.log(product);
 
+    // requests
     $.ajax({
         url: "http://localhost:8080/api/products/imageUpload",
         type: "POST",
         cors: true,
-        headers: { "Authorization": sessionStorage.getItem("token") },
-        
-    })
-    $.ajax({
+        processData: false,
+        contentType: false,
+        headers: { "Authorization": token },
+        data: fileData,
+        success: (response) => {
+            console.log(response);
+            //createProduct(product);
+        },
+        error: function(error) {
+            console.error("Error:", error)
+        },
+    });
+
+    return false;
+
+    /*$.ajax({
         url: "http://localhost:8080/api/products",
         type: "POST",
         cors: true,
-        headers: { "Authorization": sessionStorage.getItem("token") },
+        headers: { "Authorization": token },
         contentType: "application/json",
         data: JSON.stringify(product),
         success: success => {
@@ -63,7 +84,7 @@ function uploadProductData(event) {
                 }
             }
         }
-    });
+    });*/
 };
 
 function displayError(input, message= '') {
@@ -73,7 +94,7 @@ function displayError(input, message= '') {
 }
 
 // DEPRECIATED TEMPLATE
-$("#createProductButton").on("click", e =>{
+/*$("#createProductButton").on("click", e =>{
 
     $(".input-error").removeClass("input-error");
     $(".error-message").remove();
@@ -87,26 +108,4 @@ $("#createProductButton").on("click", e =>{
         "type": $("#typeInput").val(),
         "taxId": $("#taxIdInput").val()
     }
-});
-
-$("#upload-button").on("click", e => {
-
-    // Klasse?
-    const prodData = {
-        "name": $("#produktname").val(),
-        "produkttyp": $("#produkttyp").val(),
-        "beschreibung": $("#produktbeschreibung").val(),
-    }
-
-    const fileData = $("#upload-button").val();
-
-    $.ajax({
-        url: "http://localhost:8080/product/upload",
-        type: "POST",
-        cors: true,
-        //contentType: "application/json",
-        data: {data1: JSON.stringify(prodData), data2: fileData},
-        success: console.log,
-        error: console.error
-    });
-});
+});*/
