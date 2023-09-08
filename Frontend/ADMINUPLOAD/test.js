@@ -125,6 +125,7 @@ function createUserDisplay(user) {
     return row; // Return the created row element
 }
 
+
 /////////////////////////////////
 // D E L E T E  R E Q U E S T //
 ///////////////////////////////
@@ -141,9 +142,8 @@ function sendDeleteRequest(userId) {
             cors: true,
             contentType: "application/json",
             success: (response) => {
-                handleSuccess("Person was removed");
-                // Reload lists of users
-                all();
+                // After successful deletion, reload the list of users
+                location.reload(true);
             },
             error: (error) => {
                 console.log(error);
