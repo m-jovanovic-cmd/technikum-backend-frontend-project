@@ -29,7 +29,24 @@ public class SecurityConfig {
     // /////////////////////////////////////////////////////////////////////////
     // Methods
     // /////////////////////////////////////////////////////////////////////////
+    @Bean
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+                // Disable security for testing purposes
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/**") // Match all URLs
+                                .permitAll() // Allow all requests
+                )
+                // Add other security configurations if needed
+                .csrf().disable(); // Disable CSRF protection for testing (not recommended in production)
 
+        return http.build();
+    }
+}
+
+/*
+*
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -54,4 +71,5 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
-}
+*
+* */

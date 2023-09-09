@@ -233,11 +233,8 @@ function getUser(userId) {
 }
 
 
-
 function edit(user) {
     console.log(user)
-
-
     let editForm = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
     <div class="mt-3">
@@ -316,13 +313,14 @@ function edit(user) {
     <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3" onclick="sendUpdatedUser(${user.id})">Update</button>
     </div>
 </div>`;
+
     document.getElementById("form").innerHTML = editForm;
     console.log('edit work');
     //console.log(editForm)
 }
 
 $("#sendUpdatedUser").on("click", e => {
-    const addeduser = {
+    const updateduser = {
         "id": $("#userId").val(),
         "admin": $("#isAdmin").val(),
         "email": $("#mail").val(),
@@ -338,22 +336,24 @@ $("#sendUpdatedUser").on("click", e => {
         "streetnumber": $("#streetnumber").val(),
         "username": $("#username").val()
     }
-    console.log(addeduser)
-    sendUpdatedUser(addeduser)
+    return updateduser
+    //sendUpdatedUser(updateduserid)
+
 });
 
-function sendUpdatedUser(updatedUser) {
+function sendUpdatedUser(updateduser) {
+    console.log('updateduser:', updateduser);
+
     $.ajax({
-        url: `http://localhost:8080/api/users/${updatedUser.id}`,
+        url: `http://localhost:8080/api/users/update/${updateduser.id}`,
         type: "PUT",
-        contentType: "application/json",
-        data: JSON.stringify(updatedUser),
-        success: (succcess) => {
-            handleSuccess("User was updated");
+        data: JSON.stringify(updateduser),
+        success: (response) => {
+            handleSuccess("User was updated: ", response);
 
         },
         error: (error) => {
             console.log("Error updating user:", error);
         }
     });
-}
+};

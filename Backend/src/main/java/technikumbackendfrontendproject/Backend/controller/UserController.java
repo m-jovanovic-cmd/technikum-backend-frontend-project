@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import technikumbackendfrontendproject.Backend.model.DTO.UserDTO;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
@@ -80,9 +81,58 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
+        try {
+            // Retrieve the existing user by ID
+            User existingUser = userService.getUser(id);
 
+            // Update the user information with values from the DTO
+            existingUser.setUsername(updatedUserDto.getUsername());
+            existingUser.setStatus(updatedUserDto.getStatus());
+            existingUser.setRole(updatedUserDto.getRole());
+            existingUser.setEmail(updatedUserDto.getEmail());
+            existingUser.setGender(updatedUserDto.getGender());
+            existingUser.setFirstName(updatedUserDto.getFirstName());
+            existingUser.setLastName(updatedUserDto.getLastName());
+            existingUser.setLocation(updatedUserDto.getLocation());
+            existingUser.setPassword(updatedUserDto.getPassword());
+            existingUser.setPostcode(updatedUserDto.getPostcode());
+            existingUser.setStreet(updatedUserDto.getStreet());
+            existingUser.setStreetnumber(updatedUserDto.getStreetNumber());
 
+            // Save the updated user
+            User updatedUser = userService.saveUser(existingUser);
+
+            // Convert the updated user to UserDto and return it in the response
+            UserDTO responseDto = convertToUserDto(updatedUser);
+            return ResponseEntity.ok(responseDto);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Utility method to convert a User entity to UserDto
+    private UserDTO convertToUserDto(User user) {
+        UserDTO userDto = new UserDTO();
+        userDto.setUsername(user.getUsername());
+        userDto.setStatus(user.getStatus());
+        userDto.setRole(user.getRole());
+        userDto.setEmail(user.getEmail());
+        userDto.setGender(user.getGender());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastname());
+        userDto.setLocation(user.getLocation());
+        userDto.setPassword(user.getPassword());
+        userDto.setPostcode(user.getPostcode());
+        userDto.setStreet(user.getStreet());
+        userDto.setStreetNumber(user.getStreetnumber());
+        return userDto;
+    }
 }
+
+
+
 /*
 
  */

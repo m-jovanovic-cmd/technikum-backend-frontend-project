@@ -1,10 +1,8 @@
 package technikumbackendfrontendproject.Backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
 
@@ -25,6 +23,21 @@ public class UserService implements saveUser {
     public User saveUser(User user) {
         System.out.println("saving user (service)");
         return userRepository.save(user);
+    }
+
+    public String updateUser(User user) {
+        //exist in the user object - yes - update, no - create/add
+        boolean resourceFound = false;
+        for(User currentUser: findAll()) {
+            if(currentUser.getId() == user.getId()) {
+                currentUser.setId(user.getId());
+            }
+        }
+        if(!resourceFound){
+            findAll().add(user);
+            return "Item Added Successfully";
+        }
+    return "Item Updated Successfully";
     }
 
     public void deleteUser(Long id) {
