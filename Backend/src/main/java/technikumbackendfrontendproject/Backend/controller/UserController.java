@@ -83,6 +83,7 @@ public class UserController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
+
         try {
             // Retrieve the existing user by ID
             User existingUser = userService.getUser(id);
@@ -106,6 +107,7 @@ public class UserController {
 
             // Convert the updated user to UserDto and return it in the response
             UserDTO responseDto = convertToUserDto(updatedUser);
+            System.out.println("put mapping:"+existingUser);
             return ResponseEntity.ok(responseDto);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();

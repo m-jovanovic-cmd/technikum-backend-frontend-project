@@ -244,23 +244,23 @@ function edit(user) {
     <div class="row">
         <div class="mb-3 col-12 col-md-3">
             <label for="userId" class="form-label">User ID</label>
-            <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="userId" placeholder="User ID">
+            <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
-            <input type="text" value="${user.isAdmin}" class="form-control" id="newisAdmin" name="is Admin "
+            <input type="text" value="${user.admin}" class="form-control" id="newisAdmin" name="admin"
                 placeholder="0 = nein, 1 = ja">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="mail" class="form-label">Email-Addresse</label>
-            <input type="email" value="${user.mail}" class="form-control" id="newmail" name="mail" placeholder="name@example.com">
+            <input type="email" value="${user.email}" class="form-control" id="newmail" name="mail" placeholder="name@example.com">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="firstName" class="form-label">Vorname</label>
-            <input type="text" value="${user.firstname}" class="form-control" id="newfirstName" name="firstName" placeholder="Vorname">
+            <input type="text" value="${user.firstName}" class="form-control" id="newfirstName" name="firstName" placeholder="Vorname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -306,11 +306,11 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" value="${user.username}"
-             class="form-control" id="username" name="newusername" placeholder="Username">
+             class="form-control" id="newusername" name="newusername" placeholder="Username">
 
         </div>
     </div>
-    <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3" onclick="sendUpdatedUser(${user.id})">Update</button>
+    <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3">Update</button>
     </div>
 </div>`;
 
@@ -319,41 +319,45 @@ function edit(user) {
     //console.log(editForm)
 }
 
-$("#sendUpdatedUser").on("click", e => {
-    const updateduser = {
-        "id": $("#userId").val(),
-        "admin": $("#isAdmin").val(),
-        "email": $("#mail").val(),
-        "firstName": $("#firstName").val(),
-        "gender": $("#gender").val(),
-        "lastName": $("#lastName").val(),
-        "location": $("#location").val(),
-        "password": $("#password").val(),
-        "postcode": $("#postcode").val(),
-        "role": $("#role").val(),
-        "status": $("#status").val(),
-        "street": $("#street").val(),
-        "streetnumber": $("#streetnumber").val(),
-        "username": $("#username").val()
+// Event listener for the "Update" button click
+$(document).on("click", "#sendUpdatedUser", function (e) {
+    console.log("Button clicked!");
+    const user = {
+        "id": $("#newuserId").val(),
+        "admin": $("#newisAdmin").val(),
+        "email": $("#newmail").val(),
+        "firstName": $("#newfirstName").val(),
+        "gender": $("#newgender").val(),
+        "lastname": $("#newlastName").val(),
+        "location": $("#newlocation").val(),
+        "password": $("#newpassword").val(),
+        "postcode": $("#newpostcode").val(),
+        "role": $("#newrole").val(),
+        "status": $("#newstatus").val(),
+        "street": $("#newstreet").val(),
+        "streetnumber": $("#newstreetnumber").val(),
+        "username": $("#newusername").val()
     }
-    return updateduser
-    //sendUpdatedUser(updateduserid)
+    console.log("new user: ", user);
 
+    // Pass the user object as an argument to your desired function
+    sendUpdatedUser(user);
 });
 
-function sendUpdatedUser(updateduser) {
-    console.log('updateduser:', updateduser);
-
+// Function to update the user with the provided user object
+function sendUpdatedUser(user) {
+    console.log("sendUpdatedUser(user): ", user);
+    // Your AJAX request to update the user with the user object
     $.ajax({
-        url: `http://localhost:8080/api/users/update/${updateduser.id}`,
+        url: `http://localhost:8080/api/users/update/${user.id}`,
         type: "PUT",
-        data: JSON.stringify(updateduser),
+        contentType: "application/json",
+        data: JSON.stringify(user),
         success: (response) => {
-            handleSuccess("User was updated: ", response);
-
+            handleSuccess("User was updated");
         },
         error: (error) => {
             console.log("Error updating user:", error);
         }
     });
-};
+}
