@@ -1,43 +1,63 @@
+//////////////////////////
+// G E T  R E Q U E S T //
+//////////////////////////
+
+//make here an array and add the product,to be displayed later
+const arraywithcloudobjects = [];
+// => get the product into the card
+// => save the info and call it from everywhere (in an array?)
+
+//this approach only work on detailseite, how to do it on the produkte side?
+function getCurrentId() {
+    const url = window.location.href;
+    urlObject = new URL(url);
+    return urlObject.searchParams.get('id');
+};
+
+//activated after pressing the button on the detailspage
 $.get({
-    url: "http://localhost:8080/api/products",
+    id: getCurrentId(),
+    url: "http://localhost:8080/api/products/details/" + id,
     cors: true,
     headers: {},
-    success: (products) => {
-        displayAllProducts(products)
+    success: (product) => {
+        console.log(product);
+
+        //adding the object to the array
+        arraywithcloudobjects.push(product)
+
+        //createProductCartModalDisplay(products) => do this in an extra function 
+        //(activated when clicking the right button)
     },
     error: console.error
 });
-function displayAllProducts(products) {
-    const productsContainer = $("#productsContainer");
-    productsContainer.empty();
 
-    let row;
-    for (let i = 0; i < products.length; i++) {
-        if (i % 3 === 0) {
-            row = $(`<div class="row"></div>`);
-            productsContainer.append(row);
-        }
-        row.append(createProductDisplay(products[i]));
-    };
-};
+//click event on right button (already exists)
+//display there all products with the help in a loop get the objects out
+//how to display 2 identical products? => couting how many ids, then do price * amout of ids counted in loop
 
-function createProductDisplay(product) {
+
+function createProductCartModalDisplay(product) {
 
     const content = $(`
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card border border-3">
-                <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
-                <div class="card-body">
-                    <h4 class="card-title text-center">${product.name}</h4>
-                    <p class="card-text">${product.description}</p>
-                    <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
-                    <div class="d-flex justify-content-between">
-                        <a href="./detailseite_produkte.html?id=${product.id}" class="btn btn-light" role="button">Details</a>
-                        <button type="button" class="btn btn-secondary">in Warenkorb</button>
-                    </div>
-                </div>
-            </div>
-        </div>`
+    <tr>
+    <td class="w-25">
+        <img src="./images/products/CharmingClaude.jpg${product.imageUrl}" class="img-fluid img-thumbnail"
+            alt="Sheep">
+    </td>
+    <td>Charming Claude${product.name}</td>
+    <td>10000€ ${product.price}</td>
+    <td class="qty"><input type="text" class="form-control" id="input1" value="2">
+    </td>
+    <td>10000€${product.price}</td>
+    <td>
+
+        <a href="#" class="btn btn-danger btn-sm remove-item text-white"
+            data-item-id="1">Remove</a>
+        <i class="fa fa-times"></i>
+        </a>
+    </td>
+</tr>`
     );
 
     return content;

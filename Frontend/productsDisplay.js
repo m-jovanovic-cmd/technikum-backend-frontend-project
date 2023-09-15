@@ -35,7 +35,6 @@ searchBar.addEventListener('keyup', (e) => {
 
 
 
-
 function displayAllProducts(products) {
     const productsContainer = $("#productsContainer");
     productsContainer.empty();
