@@ -45,7 +45,8 @@ public class SecurityConfig {
                         "/login", 
                         "/api/users",
                         "/api/products",
-                        "/public/**"
+                        "/public/**",
+                        "/api/taxes"
                         ).permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()

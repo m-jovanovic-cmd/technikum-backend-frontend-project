@@ -1,3 +1,23 @@
+$.get({
+    url: "http://localhost:8080/api/taxes",
+    cors: true,
+    headers: { },
+    success: (taxes) => { 
+        displayAllTaxOptions(taxes) 
+    },
+    error: console.error
+});
+
+function displayAllTaxOptions(taxes) {
+    console.log(taxes);
+    const taxSelectElement = $("#taxId");
+    let taxOptions = ``;
+    taxes.map((tax) => {
+        taxOptions += `<option value=${tax.id}>${tax.name} - ${tax.factor * 100}%</option>`
+    })
+    taxSelectElement.append(taxOptions);
+}
+
 function uploadProductData(event) {
     event.preventDefault();
 
@@ -20,26 +40,25 @@ function uploadProductData(event) {
     const fileData = new FormData();
     fileData.append("file", fileInput.files[0]);
 
-    console.log(fileData);
-
     const token = sessionStorage.getItem("token");
 
     // init values for validation
     var errorCount = 0;
     let errorMessage = 'Bitte gültigen Wert eintragen.';
 
-    // frontend validation
+    // frontend validation, fields + image
     for (let key in product) {
         if (product.hasOwnProperty(key) && product[key] === '') {
             errorCount++;
             let field = $('#' + key)
             displayError(field, errorMessage)
         }
-    }
+    };
+    if (!fileInput || fileInput.value == '') {
+        displayError( $('#imageUpload'), errorMessage)
+    };
 
-    // if(errorCount > 0) return;
-
-    console.log(product);
+    if(errorCount > 0) return;
 
     // requests
     $.ajax({
@@ -51,10 +70,10 @@ function uploadProductData(event) {
         headers: { "Authorization": token },
         data: fileData,
         success: (response) => {
-            console.log(response);
+            console.log(typeof(response));
             product = { ...product, imageUrl: response };
             console.log(product)
-            //uploadProductWithUrl(product, token);
+            uploadProductWithUrl(product, token);
         },
         error: function(error) {
             console.error("Error:", error)

@@ -68,7 +68,9 @@ public class ProductService {
 
     public String uploadImage(MultipartFile file) {
         String destination = Paths.get("").toAbsolutePath().toString();
-        destination = destination.substring(0, destination.length() - "/Backend".length()) + "/data/images/products";
+        destination = destination.substring(0, destination.length() - "/technikum-backend-frontend-project/Backend".length()) + "/data/images/products";
+        File directory = new File(destination);
+        directory.mkdirs();
         var fileName = file.getOriginalFilename();
         Path uploadPath = Paths.get(destination, fileName);
         var finalDestination = destination+ "/" + fileName;
@@ -78,7 +80,6 @@ public class ProductService {
             throw new RuntimeException(e);
         }
 
-        // finalDestination = finalDestination.substring(finalDestination.lastIndexOf("../data"));
         return finalDestination;
     }
 }

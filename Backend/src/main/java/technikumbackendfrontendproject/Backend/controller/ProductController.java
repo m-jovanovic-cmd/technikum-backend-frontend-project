@@ -39,13 +39,14 @@ public class ProductController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> create(@RequestBody @Valid ProductDTO productDTO) {
         Product product = productService.save(fromDTO(productDTO), productDTO.getTaxId());
         return ResponseEntity.created(URI.create("http://localhost:8080/api/products")).body(product);
     }
 
     @PostMapping("/imageUpload")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public String uploadImage(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {
