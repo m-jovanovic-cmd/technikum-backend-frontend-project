@@ -42,3 +42,10 @@ function createProductDisplay(product) {
 
     return content;
 };
+
+//TO-DO
+// make button get id from url
+//make call to BE to get the product
+//display the product on the cartModal wiht help from js (now it is hardcoded)
+//make remove button work
+//
