@@ -13,7 +13,7 @@ function uploadProductData(event) {
         "quantity": $("#quantity").val(),
         "type": $("#type").val(),
         "taxId": $("#taxId").val(),
-    }
+    };
 
     // get the file data
     const fileInput = document.getElementById("imageUpload");
@@ -86,10 +86,10 @@ function uploadProductWithUrl(product, token) {
             }
         }
     });
-}
+};
 
 function displayError(input, message= '') {
     input.addClass("input-error");
     const parent = input.parent();
     parent.append(`<p class="error-message">${message}</p>`);
-}
+};
