@@ -34,7 +34,7 @@ function uploadProductData(event) {
         "type": $("#type").val(),
         "taxId": $("#taxId").val(),
     };
-
+    
     // get the file data
     const fileInput = document.getElementById("imageUpload");
     const fileData = new FormData();

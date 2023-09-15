@@ -43,12 +43,17 @@
                                 <input class="form-control" id="quantity" name="quantity" type="number" min="1" step="1" />
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 my-2">
-                                <label class="form-label" for="type">Produktkategorie</label>
-                                <input class="form-control" id="type" name="type" type="text" />
+                                <label class="form-label" for="type">Produkttyp</label>
+                                <select class="form-select" id="type" name="type" aria-label="Selection for product type.">
+                                    <option value="" selected>Produkttyp wählen</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Rare">Rare</option>
+                                    <option value="Legendary">Legendary</option>
+                                </select>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 my-2">
                                 <label class="form-label" for="taxId">Steuer ID</label>
-                                <select class="form-select" id="taxId" name="taxId" aria-label="Default select example">
+                                <select class="form-select" id="taxId" name="taxId" aria-label="Selection for tax type.">
                                     <option value="" selected>Steuerklasse wählen</option>
                                 </select>
                             </div>
