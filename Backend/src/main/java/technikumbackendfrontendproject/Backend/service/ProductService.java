@@ -62,8 +62,10 @@ public class ProductService {
     }
 
     public Product getProduct(Long id) {
+        System.out.print("In Service gekommen");
         var product = productRepository.findById(id);
         if (product.isEmpty()) {
+            System.out.print("Rückgabe war leer?");
             throw new EntityNotFoundException();
         }
         Product product2 = product.get();
