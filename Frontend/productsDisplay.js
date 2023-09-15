@@ -60,6 +60,7 @@ function createProductDisplay(product) {
                     <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
                     <div class="d-flex justify-content-between">
                         <a href="./detailseite_produkte.html?id=${product.id}" class="btn btn-light" role="button">Details</a>
+                       
                         <button type="button" class="btn btn-secondary">in Warenkorb</button>
                     </div>
                 </div>
@@ -69,3 +70,11 @@ function createProductDisplay(product) {
 
     return content;
 };
+// <button type="button" id="cartModalgetProduct" class="btn btn-secondary" onclick="GetObjectAndAddToArray(${user.id})">in Wareknkorb</button>
+function GetObjectAndAddToArray(id) {
+    //get object
+    //put it in array
+    //send to cartModal
+    //check productsDisplay && cartModalExecution && detailseite_produkte.js
+    //can i call a function from another .js? or is there a better way? (pretty sure lol)
+}

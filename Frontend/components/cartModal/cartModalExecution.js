@@ -35,7 +35,7 @@ $.get({
 //click event on right button (already exists)
 //display there all products with the help in a loop get the objects out
 //how to display 2 identical products? => couting how many ids, then do price * amout of ids counted in loop
-
+//pass with a link like in test.js (row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);)
 
 function createProductCartModalDisplay(product) {
 
