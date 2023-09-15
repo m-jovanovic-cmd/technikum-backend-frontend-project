@@ -6,13 +6,12 @@ function uploadProductData(event) {
     $(".error-message").remove();
 
     // get all data needed for the requests
-    const product = {
+    let product = {
         "name": $("#name").val(),
         "description": $("#description").val(),
         "price": $("#price").val(),
         "quantity": $("#quantity").val(),
         "type": $("#type").val(),
-        "imageUrl": $("#imageUrl").val(),
         "taxId": $("#taxId").val(),
     }
 
@@ -53,7 +52,9 @@ function uploadProductData(event) {
         data: fileData,
         success: (response) => {
             console.log(response);
-            //createProduct(product);
+            product = { ...product, imageUrl: response };
+            console.log(product)
+            //uploadProductWithUrl(product, token);
         },
         error: function(error) {
             console.error("Error:", error)
@@ -61,8 +62,10 @@ function uploadProductData(event) {
     });
 
     return false;
+};
 
-    /*$.ajax({
+function uploadProductWithUrl(product, token) {
+    $.ajax({
         url: "http://localhost:8080/api/products",
         type: "POST",
         cors: true,
@@ -70,9 +73,7 @@ function uploadProductData(event) {
         contentType: "application/json",
         data: JSON.stringify(product),
         success: success => {
-            console.log('success');
             $("input").val("");
-            console.log($("input"));
             handleSuccess("Produkterstellung");
         },
         error: error => {
@@ -84,28 +85,11 @@ function uploadProductData(event) {
                 }
             }
         }
-    });*/
-};
+    });
+}
 
 function displayError(input, message= '') {
     input.addClass("input-error");
     const parent = input.parent();
     parent.append(`<p class="error-message">${message}</p>`);
 }
-
-// DEPRECIATED TEMPLATE
-/*$("#createProductButton").on("click", e =>{
-
-    $(".input-error").removeClass("input-error");
-    $(".error-message").remove();
-
-    const product = {
-        "name": $("#nameInput").val(),
-        "description": $("#descriptionInput").val(),
-        "imageUrl": $("#imageUrlInput").val(),
-        "price": $("#priceInput").val(),
-        "quantity": $("#quantityInput").val(),
-        "type": $("#typeInput").val(),
-        "taxId": $("#taxIdInput").val()
-    }
-});*/
