@@ -15,7 +15,11 @@ body {
     font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     padding: 15px;
 }
 
@@ -31,6 +35,7 @@ h1, h2, h3, h4, h5 {
     text-align: justify;
     color: #7e8daf;
     padding: 0 2em 0 2em;
+
 }
 
 #impressum h1,
