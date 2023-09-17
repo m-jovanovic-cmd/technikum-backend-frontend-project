@@ -320,6 +320,7 @@ function edit(user) {
 }
 
 // Event listener for the "Update" button click
+//streetnumber nukk
 $(document).on("click", "#sendUpdatedUser", function (e) {
     console.log("Button clicked!");
     const user = {
@@ -328,7 +329,7 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
         "email": $("#newmail").val(),
         "firstName": $("#newfirstName").val(),
         "gender": $("#newgender").val(),
-        "lastname": $("#newlastName").val(),
+        "lastName": $("#newlastName").val(),
         "location": $("#newlocation").val(),
         "password": $("#newpassword").val(),
         "postcode": $("#newpostcode").val(),
@@ -343,7 +344,7 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
     // Pass the user object as an argument to your desired function
     sendUpdatedUser(user);
 });
-
+//TO-DO id aus formular entfernen
 // Function to update the user with the provided user object
 function sendUpdatedUser(user) {
     console.log("sendUpdatedUser(user): ", user);
@@ -354,7 +355,7 @@ function sendUpdatedUser(user) {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: (response) => {
-            handleSuccess("User was updated");
+            console.log("User was updated");
         },
         error: (error) => {
             console.log("Error updating user:", error);

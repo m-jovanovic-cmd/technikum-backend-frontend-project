@@ -12,10 +12,13 @@ import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Autowired
     private UserService userService;
@@ -34,12 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/get{id}")
-    public User findUserById(@PathVariable Long id) {
+    public ResponseEntity<User> findUserById(@PathVariable Long id) {
         var user = userService.findById(id);
         if (user.isEmpty()) {
-            throw new UsernameNotFoundException("user name not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return user.get();
+        return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 
 
@@ -54,6 +57,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    /*
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User newUser, @PathVariable Long id) {
         return userService.findById(id)
@@ -81,55 +85,22 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+     */
+
     @PutMapping("/update/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
-
         try {
-            // Retrieve the existing user by ID
-            User existingUser = userService.getUser(id);
-
-            // Update the user information with values from the DTO
-            existingUser.setUsername(updatedUserDto.getUsername());
-            existingUser.setStatus(updatedUserDto.getStatus());
-            existingUser.setRole(updatedUserDto.getRole());
-            existingUser.setEmail(updatedUserDto.getEmail());
-            existingUser.setGender(updatedUserDto.getGender());
-            existingUser.setFirstName(updatedUserDto.getFirstName());
-            existingUser.setLastName(updatedUserDto.getLastName());
-            existingUser.setLocation(updatedUserDto.getLocation());
-            existingUser.setPassword(updatedUserDto.getPassword());
-            existingUser.setPostcode(updatedUserDto.getPostcode());
-            existingUser.setStreet(updatedUserDto.getStreet());
-            existingUser.setStreetnumber(updatedUserDto.getStreetNumber());
-
-            // Save the updated user
-            User updatedUser = userService.saveUser(existingUser);
+            User updatedUser = userService.updateUser(id, updatedUserDto);
 
             // Convert the updated user to UserDto and return it in the response
-            UserDTO responseDto = convertToUserDto(updatedUser);
-            System.out.println("put mapping:"+existingUser);
-            return ResponseEntity.ok(responseDto);
+            UserDTO responseDto = userService.convertToUserDto(updatedUser);
+
+            logger.info("User with id: " + id + " updated!");
+
+            return new ResponseEntity<>(responseDto, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    // Utility method to convert a User entity to UserDto
-    private UserDTO convertToUserDto(User user) {
-        UserDTO userDto = new UserDTO();
-        userDto.setUsername(user.getUsername());
-        userDto.setStatus(user.getStatus());
-        userDto.setRole(user.getRole());
-        userDto.setEmail(user.getEmail());
-        userDto.setGender(user.getGender());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastname());
-        userDto.setLocation(user.getLocation());
-        userDto.setPassword(user.getPassword());
-        userDto.setPostcode(user.getPostcode());
-        userDto.setStreet(user.getStreet());
-        userDto.setStreetNumber(user.getStreetnumber());
-        return userDto;
     }
 }
 
