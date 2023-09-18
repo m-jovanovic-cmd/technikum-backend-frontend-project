@@ -6,13 +6,15 @@ public class UserDTO {
     private String role;
     private String email;
     private String gender;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String location;
     private String password;
     private String postcode;
     private String street;
     private String streetNumber;
+
+    private String isAdmin;
 
     // Getter & Setter
     public String getUsername() {
@@ -55,20 +57,19 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {return firstname;}
+
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getLocation() {
@@ -103,13 +104,20 @@ public class UserDTO {
         this.street = street;
     }
 
-    public String getStreetNumber() {
+    public String getStreetnumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(String streetNumber) {
+    public void setStreetnumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
 
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 }

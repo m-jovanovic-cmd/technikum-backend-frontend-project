@@ -38,9 +38,9 @@ public class UserService implements saveUser {
         }
         if(!resourceFound){
             findAll().add(user);
-            return "Item Added Successfully";
+            return "User Added Successfully";
         }
-    return "Item Updated Successfully";
+    return "User Updated Successfully";
     }
 
     public void deleteUser(Long id) {
@@ -97,10 +97,10 @@ public class UserService implements saveUser {
             updatedUser.setEmail(updatedUserDto.getEmail());
             logger.info("Updating GENDER: " + updatedUser.getGender() + " -> " + updatedUserDto.getGender());
             updatedUser.setGender(updatedUserDto.getGender());
-            logger.info("Updating FIRSTNAME: " + updatedUser.getFirstName() + " -> " + updatedUserDto.getFirstName());
-            updatedUser.setFirstName(updatedUserDto.getFirstName());
-            logger.info("Updating LASTNAME: " + updatedUser.getLastname() + " -> " + updatedUserDto.getLastName());
-            updatedUser.setLastName(updatedUserDto.getLastName());
+            logger.info("Updating FIRSTNAME: " + updatedUser.getFirstname() + " -> " + updatedUserDto.getFirstname());
+            updatedUser.setFirstname(updatedUserDto.getFirstname());
+            logger.info("Updating LASTNAME: " + updatedUser.getLastname() + " -> " + updatedUserDto.getLastname());
+            updatedUser.setLastname(updatedUserDto.getLastname());
             //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
             updatedUser.setLocation(updatedUserDto.getLocation());
             //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
@@ -109,8 +109,9 @@ public class UserService implements saveUser {
             updatedUser.setPostcode(updatedUserDto.getPostcode());
             //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
             updatedUser.setStreet(updatedUserDto.getStreet());
-            //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
-            updatedUser.setStreetnumber(updatedUserDto.getStreetNumber());
+            logger.info("Updating STEETNUMBER: " + updatedUser.getStreetnumber() + " -> " + updatedUserDto.getStreetnumber());
+            updatedUser.setStreetnumber(updatedUserDto.getStreetnumber());
+
             // Save the updated user
             userRepository.save(updatedUser);
             return updatedUser;
@@ -124,13 +125,13 @@ public class UserService implements saveUser {
         userDto.setRole(user.getRole());
         userDto.setEmail(user.getEmail());
         userDto.setGender(user.getGender());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastname());
+        userDto.setFirstname(user.getFirstname());
+        userDto.setLastname(user.getLastname());
         userDto.setLocation(user.getLocation());
         userDto.setPassword(user.getPassword());
         userDto.setPostcode(user.getPostcode());
         userDto.setStreet(user.getStreet());
-        userDto.setStreetNumber(user.getStreetnumber());
+        userDto.setStreetnumber(user.getStreetnumber());
         return userDto;
     }
 

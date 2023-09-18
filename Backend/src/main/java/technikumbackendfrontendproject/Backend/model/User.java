@@ -28,10 +28,10 @@ public class User {
     private boolean admin;
 
     @Column(name = "firstname", nullable = false)
-    private String firstName;
+    private String firstname;
 
     @Column(name = "lastname", nullable = false)
-    private String lastName;
+    private String lastname;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -64,8 +64,8 @@ public class User {
         this.gender = gender;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstName;
+        this.lastname = lastName;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -75,13 +75,13 @@ public class User {
         this.role = role;
     }
 
-    public User(String gender, String username, String password, String firstName, String lastName, String email,
+    public User(String gender, String username, String password, String firstname, String lastname, String email,
             String postcode, String location, String street, String streetnumber, String status, String role) {
         this.gender = gender;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -129,20 +129,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {

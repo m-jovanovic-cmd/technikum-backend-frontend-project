@@ -6,14 +6,11 @@ var form = `<div class="container d-flex justify-content-center">
     </div>
     <div class="row">
         <div class="mb-3 col-12 col-md-3">
-            <label for="userId" class="form-label">User ID</label>
-            <input type="userId" class="form-control" id="userId" name="userId" placeholder="User ID">
-        </div>
-
-        <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
-            <input type="text" class="form-control" id="isAdmin" name="is Admin "
-                placeholder="0 = nein, 1 = ja">
+                <select class="form-control" id="isAdmin" name="isAdmin">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -22,17 +19,18 @@ var form = `<div class="container d-flex justify-content-center">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
-            <label for="firstName" class="form-label">Vorname</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+            <label for="firstname" class="form-label">Vorname</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Vorname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
-            <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender">
-        </div>
-        <div class="mb-3 col-12 col-md-3">
-            <label for="lastName" class="form-label">Nachname</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+                <select class="form-select" id="gender" name="gender">
+                    <option value="W">Weiblich</option>
+                    <option value="M">Männlich</option>
+                    <option value="Anderes">Anderes</option>
+                    <option value="KA">Keine Angabe</option>
+                </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -48,16 +46,21 @@ var form = `<div class="container d-flex justify-content-center">
             <label for="postcode" class="form-label">PLZ</label>
             <input type="text" class="form-control" id="postcode" name="postcode"
                 placeholder="Postleitzahl">
-
         </div>
         <div class="mb-3 col-12 col-md-3">
-            <label for="role" class="form-label">Rolle</label>
-            <input type="text" class="form-control" id="role" name="role" placeholder="Costumer, Admin">
+            <label for="role" class="form-label">Role</label>
+                <select class="form-control" id="role" name="role">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                </select>
         </div>
+
         <div class="mb-3 col-12 col-md-3">
             <label for="status" class="form-label">Status</label>
-            <input type="text" class="form-control" id="status" name="status"
-                placeholder="active, inactive">
+                <select class="form-control" id="status" name="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="street" class="form-label">Straße</label>
@@ -65,7 +68,7 @@ var form = `<div class="container d-flex justify-content-center">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="streetnumber" class="form-label">Top</label>
-            <input type="text" class="form-control" id="streetnumber" name="streetnumber">
+            <input type="text" class="form-control" id="streetnumber" name="streetnumber" placeholder="Top">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="username" class="form-label">Username</label>
@@ -110,7 +113,7 @@ function createUserDisplay(user) {
     row.append(`<td scope="row">${user.id}</td>`);
     row.append(`<td>${user.admin}</td>`);
     row.append(`<td>${user.email}</td>`);
-    row.append(`<td>${user.firstName}</td>`);
+    row.append(`<td>${user.firstname}</td>`);
     row.append(`<td>${user.gender}</td>`);
     row.append(`<td>${user.lastname}</td>`);
     row.append(`<td>${user.location}</td>`);
@@ -181,9 +184,9 @@ $("#saveButton").on("click", e => {
         "id": $("#userId").val(),
         "admin": $("#isAdmin").val(),
         "email": $("#mail").val(),
-        "firstName": $("#firstName").val(),
+        "firstname": $("#firstname").val(),
         "gender": $("#gender").val(),
-        "lastName": $("#lastName").val(),
+        "lastname": $("#lastname").val(),
         "location": $("#location").val(),
         "password": $("#password").val(),
         "postcode": $("#postcode").val(),
@@ -233,6 +236,11 @@ function getUser(userId) {
 }
 
 
+//<select class="form-control" id="isAdmin" name="isAdmin">
+//<option value="true" ${user.admin === true ? 'selected' : ''}>True</option>
+//<option value="false" ${user.admin === false ? 'selected' : ''}>False</option>
+//</select>
+
 function edit(user) {
     console.log(user)
     let editForm = `<div class="container d-flex justify-content-center">
@@ -242,15 +250,16 @@ function edit(user) {
         </h2>
     </div>
     <div class="row">
-        <div class="mb-3 col-12 col-md-3">
+    <div class="mb-3 col-12 col-md-3">
             <label for="userId" class="form-label">User ID</label>
-            <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID">
-        </div>
+           <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID" readonly>
+      </div>
+        
 
-        <div class="mb-3 col-12 col-md-3">
-            <label for="isAdmin" class="form-label">isAdmin</label>
-            <input type="text" value="${user.admin}" class="form-control" id="newisAdmin" name="admin"
-                placeholder="0 = nein, 1 = ja">
+      <div class="mb-3 col-12 col-md-3">
+        <label for="isAdmin" class="form-label">isAdmin</label>
+        <input type="isAdmin" value="${user.admin}" class="form-control" id="isAdmin" name="isAdmin" placeholder="isAdmin" readonly>
+
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -259,17 +268,23 @@ function edit(user) {
         </div>
 
         <div class="mb-3 col-12 col-md-3">
-            <label for="firstName" class="form-label">Vorname</label>
-            <input type="text" value="${user.firstName}" class="form-control" id="newfirstName" name="firstName" placeholder="Vorname">
+            <label for="firstname" class="form-label">Vorname</label>
+            <input type="text" value="${user.firstname}" class="form-control" id="newfirstname" name="newfirstname" placeholder="Vorname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
-            <input type="text" value="${user.gender}" class="form-control" id="newgender" name="gender" placeholder="Gender">
+            <select class="form-select" id="gender" name="gender">
+                    <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Weiblich</option>
+                    <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Männlich</option>
+                    <option value="Anderes" ${user.gender === 'Anderes' ? 'selected' : ''}>Anderes</option>
+                    <option value="Keine Angabe" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Keine Angabe</option>
+                </select>
         </div>
+
         <div class="mb-3 col-12 col-md-3">
-            <label for="lastName" class="form-label">Nachname</label>
-            <input type="text" value="${user.lastname}" class="form-control" id="newlastName" name="lastName" placeholder="Nachname">
+            <label for="lastname" class="form-label">Nachname</label>
+            <input type="text" value="${user.lastname}" class="form-control" id="newlastname" name="lastname" placeholder="Nachname">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -288,20 +303,26 @@ function edit(user) {
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
-            <input type="text" value="${user.role}" class="form-control" id="newrole" name="role" placeholder="Costumer, Admin">
+                <select class="form-control" id="role" name="role">
+                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                        <option value="customer" ${user.role === 'customer' ? 'selected' : ''}>Customer</option>
+                </select>
         </div>
+
         <div class="mb-3 col-12 col-md-3">
             <label for="status" class="form-label">Status</label>
-            <input type="text" value="${user.status}" class="form-control" id="newstatus" name="status"
-                placeholder="active, inactive">
-        </div>
+                <select class="form-control" id="status" name="status">
+                    <option value="active" ${user.status === 'active' ? 'selected' : ''}>Active</option>
+                    <option value="inactive" ${user.status === 'inactive' ? 'selected' : ''}>Inactive</option>
+                </select>
+            </div>        
         <div class="mb-3 col-12 col-md-3">
             <label for="street" class="form-label">Straße</label>
             <input type="text" value="${user.street}" class="form-control" id="newstreet" name="street" placeholder="Beispielstraße">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="streetnumber" class="form-label">Top</label>
-            <input type="text" value="${user.streetnumber}" class="form-control" id="newstreetnumber" name="streetnumber">
+            <input type="text" value="${user.streetnumber}" class="form-control" id="newstreetnumber" name="newstreetnumber" placeholder="Top">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="username" class="form-label">Username</label>
@@ -311,30 +332,31 @@ function edit(user) {
         </div>
     </div>
     <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3">Update</button>
+    
     </div>
 </div>`;
-
+    $('.alert').alert()
     document.getElementById("form").innerHTML = editForm;
-    console.log('edit work');
     //console.log(editForm)
 }
 
 // Event listener for the "Update" button click
-//streetnumber nukk
+//streetnumber null -> is a get problem
+//make id unchangeable -> fixed this with readonly option on id
 $(document).on("click", "#sendUpdatedUser", function (e) {
     console.log("Button clicked!");
     const user = {
         "id": $("#newuserId").val(),
-        "admin": $("#newisAdmin").val(),
+        "admin": $("#isAdmin").val(),
         "email": $("#newmail").val(),
-        "firstName": $("#newfirstName").val(),
-        "gender": $("#newgender").val(),
-        "lastName": $("#newlastName").val(),
+        "firstname": $("#newfirstname").val(),
+        "gender": $("#gender").val(),
+        "lastname": $("#newlastname").val(),
         "location": $("#newlocation").val(),
         "password": $("#newpassword").val(),
         "postcode": $("#newpostcode").val(),
-        "role": $("#newrole").val(),
-        "status": $("#newstatus").val(),
+        "role": $("#role").val(),
+        "status": $("#status").val(),
         "street": $("#newstreet").val(),
         "streetnumber": $("#newstreetnumber").val(),
         "username": $("#newusername").val()
@@ -346,8 +368,11 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
 });
 //TO-DO id aus formular entfernen
 // Function to update the user with the provided user object
+
+//i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
 function sendUpdatedUser(user) {
     console.log("sendUpdatedUser(user): ", user);
+    const successAlert = document.createElement("div");
     // Your AJAX request to update the user with the user object
     $.ajax({
         url: `http://localhost:8080/api/users/update/${user.id}`,
@@ -355,7 +380,10 @@ function sendUpdatedUser(user) {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: (response) => {
-            console.log("User was updated");
+            if (confirm("User was successfully updated. Click OK to continue."))
+
+                console.log("User was updated");
+            location.reload(true);
         },
         error: (error) => {
             console.log("Error updating user:", error);
