@@ -12,17 +12,21 @@ var form = `<div class="container d-flex justify-content-center">
                     <option value="false">False</option>
                 </select>
         </div>
+        <div class="mb-3 col-12 col-md-3">
+        <label for="lastname" class="form-label">Nachname</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nachname">
+    </div>
+    <div class="mb-3 col-12 col-md-3">
+    <label for="firstname" class="form-label">Vorname</label>
+    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Vorname">
+</div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="mail" class="form-label">Email-Addresse</label>
             <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com">
         </div>
 
-        <div class="mb-3 col-12 col-md-3">
-            <label for="firstname" class="form-label">Vorname</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Vorname">
-        </div>
-
+       
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
@@ -241,6 +245,14 @@ function getUser(userId) {
 //<option value="false" ${user.admin === false ? 'selected' : ''}>False</option>
 //</select>
 
+//<div class="mb-3 col-12 col-md-3">
+//<label for="role" class="form-label">Rolle</label>
+//    <select class="form-control" id="role" name="role">
+//            <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+//            <option value="customer" ${user.role === 'customer' ? 'selected' : ''}>Customer</option>
+//    </select>
+//</div>
+
 function edit(user) {
     console.log(user)
     let editForm = `<div class="container d-flex justify-content-center">
@@ -303,10 +315,7 @@ function edit(user) {
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
-                <select class="form-control" id="role" name="role">
-                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
-                        <option value="customer" ${user.role === 'customer' ? 'selected' : ''}>Customer</option>
-                </select>
+             <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle" readonly>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
