@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+        <script src="./adduserpanel.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
+        <script src="components/navbar/loadNavbar.js" defer></script>
+        <script src="components/footer/loadFooter.js" defer></script>
+        <script src="components/loginModal/loginModal.js" defer></script>
+        <link rel="stylesheet" href="./style2.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <title>User Admin Panel</title>
+    </head>
+    <div class="sticky-top" id="navbarContainer"></div>
+    <div class="main">
+
+        <body>
+            <div id="form"></div>
+            <br>
+            <div class="table-responsive">
+                <div id="table" class="container rounded">
+                    <table class="table table-bordered table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-md-1">ID</th>
+                                <th scope="col" class="col-md-2">isAdmin</th>
+                                <th scope="col" class="col-md-3">Email</th>
+                                <th scope="col" class="col-md-3">Vorname</th>
+                                <th scope="col" class="col-md-2">Gender</th>
+                                <th scope="col" class="col-md-2">Nachname</th>
+                                <th scope="col" class="col-md-2">Wohnort</th>
+                                <th scope="col" class="col-md-2">Passwort</th>
+                                <th scope="col" class="col-md-2">PLZ</th>
+                                <th scope="col" class="col-md-2">Role</th>
+                                <th scope="col" class="col-md-2">Straße</th>
+                                <th scope="col" class="col-md-2">Top</th>
+                                <th scope="col" class="col-md-3">Username</th>
+                                <th scope="col" class="col-md-2">Edit</th>
+                                <th scope="col" class="col-md-2">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- User rows will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="footerContainer"></div>
+                <div id="loginModalContainer"></div>
+            </div>
+        </body>
+
+</html>
