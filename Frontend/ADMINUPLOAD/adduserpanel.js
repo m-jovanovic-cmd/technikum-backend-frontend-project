@@ -52,16 +52,15 @@ var form = `<div class="container d-flex justify-content-center">
                 placeholder="Postleitzahl">
         </div>
         <div class="mb-3 col-12 col-md-3">
-            <label for="role" class="form-label">Role</label>
-                <select class="form-control" id="role" name="role">
+            <label for="role" class="form-label">Rolle</label>
+                <select class="form-control" id="role" name="role" disabled>
                     <option value="customer">Customer</option>
                     <option value="admin">Admin</option>
                 </select>
         </div>
-
         <div class="mb-3 col-12 col-md-3">
             <label for="status" class="form-label">Status</label>
-                <select class="form-control" id="status" name="status">
+                <select class="form-control" id="status" name="status" >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
@@ -85,6 +84,24 @@ var form = `<div class="container d-flex justify-content-center">
 </div>`
 document.getElementById("form").innerHTML = form;
 
+// Get a reference to the isAdmin and role select elements
+const isAdminSelect = document.getElementById('isAdmin');
+const roleSelect = document.getElementById('role');
+//automatically sets role to admin or customer depending what you choose, field from Rolle is diabled, so only isAdmin can be changed
+// Add an event listener to the isAdmin select element
+isAdminSelect.addEventListener('change', function () {
+    // Check if isAdmin is true
+    if (isAdminSelect.value === 'true') {
+        // If true, set the role to 'admin'
+        roleSelect.value = 'admin';
+    } else {
+        // If false, set the role to 'customer'
+        roleSelect.value = 'customer';
+    }
+});
+
+// Trigger the change event to set the initial value
+isAdminSelect.dispatchEvent(new Event('change'));
 ///////////////////////////
 // G E T  R E Q U E S T //
 /////////////////////////
@@ -132,6 +149,8 @@ function createUserDisplay(user) {
 
     return row; // Return the created row element
 }
+
+
 
 
 /////////////////////////////////
