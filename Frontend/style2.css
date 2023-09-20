@@ -15,7 +15,11 @@ body {
     font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     padding: 15px;
 }
 
@@ -370,4 +374,28 @@ footer img:hover {
 
 #subject {
     border: 1px solid black;
+}
+
+
+/*Toggle Password*/
+/* Initially hide the password input */
+.password-container input[type="password"] {
+    display: none;
+}
+
+/* Style the "Show" button */
+.password-toggle {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Show the password input when hovered or clicked on the "Show" button */
+.password-container:hover input[type="password"],
+.password-toggle.clicked+input[type="password"] {
+    display: block;
+}
+
+/* Change the text of the "Show" button when clicked */
+.password-toggle.clicked {
+    color: red;
 }

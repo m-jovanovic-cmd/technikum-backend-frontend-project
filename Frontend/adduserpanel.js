@@ -25,8 +25,7 @@ var form = `<div class="container d-flex justify-content-center">
             <label for="mail" class="form-label">Email-Addresse</label>
             <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com">
         </div>
-
-       
+      
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
@@ -44,13 +43,16 @@ var form = `<div class="container d-flex justify-content-center">
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
             <input type="text" class="form-control" id="password" name="password"
-                placeholder="**********">
+                placeholder="Passwort">
+                <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
         </div>
         <div class="mb-3 col-12 col-md-3">
-            <label for="postcode" class="form-label">PLZ</label>
-            <input type="text" class="form-control" id="postcode" name="postcode"
-                placeholder="Postleitzahl">
-        </div>
+    <label for="postcode" class="form-label">PLZ</label>
+    <input type="text" class="form-control" id="postcode" name="postcode" pattern="[0-9]{4}"
+        placeholder="Postleitzahl" required>
+    <p id="postcodeError" style="color: red;"></p>
+</div>
+
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
                 <select class="form-control" id="role" name="role" disabled>
@@ -100,6 +102,22 @@ isAdminSelect.addEventListener('change', function () {
     }
 });
 
+//show/hide password
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password");
+    const passwordToggle = document.querySelector(".password-toggle");
+
+    // Toggle the input's type between "password" and "text"
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+
+    // Change the text of the toggle button
+    passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
+
+    // Add or remove a class to style the button differently when clicked
+    passwordToggle.classList.toggle("clicked");
+}
+
+
 // Trigger the change event to set the initial value
 isAdminSelect.dispatchEvent(new Event('change'));
 ///////////////////////////
@@ -138,7 +156,7 @@ function createUserDisplay(user) {
     row.append(`<td>${user.gender}</td>`);
     row.append(`<td>${user.lastname}</td>`);
     row.append(`<td>${user.location}</td>`);
-    row.append(`<td>${user.password}</td>`);
+    //row.append(`<td>${user.password}</td>`);
     row.append(`<td>${user.postcode}</td>`);
     row.append(`<td>${user.role}</td>`);
     row.append(`<td>${user.street}</td>`);
@@ -325,7 +343,8 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
             <input type="password" value="${user.password}" class="form-control" id="newpassword" name="password">
-        </div>
+            <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
+            </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
             <input type="text" value="${user.postcode}" class="form-control" id="newpostcode" name="postcode"
@@ -366,6 +385,21 @@ function edit(user) {
     $('.alert').alert()
     document.getElementById("form").innerHTML = editForm;
     //console.log(editForm)
+}
+
+//hide show password
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("newpassword");
+    const passwordToggle = document.querySelector(".password-toggle");
+
+    // Toggle the input's type between "password" and "text"
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+
+    // Change the text of the toggle button
+    passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
+
+    // Add or remove a class to style the button differently when clicked
+    passwordToggle.classList.toggle("clicked");
 }
 
 // Event listener for the "Update" button click
