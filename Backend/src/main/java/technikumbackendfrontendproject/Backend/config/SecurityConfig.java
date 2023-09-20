@@ -30,6 +30,7 @@ public class SecurityConfig {
     // Methods
     // /////////////////////////////////////////////////////////////////////////
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 

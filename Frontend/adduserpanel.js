@@ -44,7 +44,7 @@ var form = `<div class="container d-flex justify-content-center">
             <label for="password" class="form-label">Passwort</label>
             <input type="text" class="form-control" id="password" name="password"
                 placeholder="Passwort">
-                <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
+                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Show</span>
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
@@ -103,7 +103,7 @@ isAdminSelect.addEventListener('change', function () {
 });
 
 //show/hide password
-function togglePasswordVisibility() {
+function createUsertogglePasswordVisibility() {
     const passwordInput = document.getElementById("password");
     const passwordToggle = document.querySelector(".password-toggle");
 
@@ -359,7 +359,7 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
             <input type="text" value="${user.postcode}" class="form-control" id="newpostcode" name="postcode"
-                placeholder="Postleitzahl" oninput="validateInput(this)">
+                placeholder="Postleitzahl" oninput="validateInputUpdateUser(this)">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
@@ -413,7 +413,7 @@ function togglePasswordVisibility() {
 }
 
 //validate postcode
-function validateInput(inputField) {
+function validateInputUpdateUser(inputField) {
     // Remove any non-numeric characters
     inputField.value = inputField.value.replace(/[^0-9]/g, '');
 
