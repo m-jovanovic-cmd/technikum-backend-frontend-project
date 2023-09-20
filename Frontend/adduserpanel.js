@@ -47,11 +47,11 @@ var form = `<div class="container d-flex justify-content-center">
                 <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
         </div>
         <div class="mb-3 col-12 col-md-3">
-    <label for="postcode" class="form-label">PLZ</label>
-    <input type="text" class="form-control" id="postcode" name="postcode" pattern="[0-9]{4}"
-        placeholder="Postleitzahl" required>
-    <p id="postcodeError" style="color: red;"></p>
-</div>
+            <label for="postcode" class="form-label">PLZ</label>
+            <input type="text" class="form-control" id="postcode" name="postcode"
+                placeholder="Postleitzahl" oninput="validateInput(this)">
+        </div>
+
 
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
@@ -115,6 +115,17 @@ function togglePasswordVisibility() {
 
     // Add or remove a class to style the button differently when clicked
     passwordToggle.classList.toggle("clicked");
+}
+
+//validate postcode
+function validateInput(inputField) {
+    // Remove any non-numeric characters
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+
+    // Limit the input to exactly four digits
+    if (inputField.value.length > 4) {
+        inputField.value = inputField.value.slice(0, 4);
+    }
 }
 
 
@@ -348,8 +359,7 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
             <input type="text" value="${user.postcode}" class="form-control" id="newpostcode" name="postcode"
-                placeholder="Postleitzahl">
-
+                placeholder="Postleitzahl" oninput="validateInput(this)">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
@@ -400,6 +410,17 @@ function togglePasswordVisibility() {
 
     // Add or remove a class to style the button differently when clicked
     passwordToggle.classList.toggle("clicked");
+}
+
+//validate postcode
+function validateInput(inputField) {
+    // Remove any non-numeric characters
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+
+    // Limit the input to exactly four digits
+    if (inputField.value.length > 4) {
+        inputField.value = inputField.value.slice(0, 4);
+    }
 }
 
 // Event listener for the "Update" button click
