@@ -29,47 +29,28 @@ public class SecurityConfig {
     // /////////////////////////////////////////////////////////////////////////
     // Methods
     // /////////////////////////////////////////////////////////////////////////
-    @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-                // Disable security for testing purposes
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/**") // Match all URLs
-                                .permitAll() // Allow all requests
-                )
-                // Add other security configurations if needed
-                .csrf().disable(); // Disable CSRF protection for testing (not recommended in production)
 
-        return http.build();
-    }
-}
-
-/*
-*
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
         // Disable csrf
         httpSecurity.csrf().disable()
-                    // Enable cors
-                    .cors()
-                    .and()
-                    // Set session management to stateless
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
-                    // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/users", "/api/users/delete/{id}", "/api/products", "/public/**").permitAll()
-                    // Authenticate all other requests
-                    .anyRequest().authenticated()
-                    .and()
-                    // Add filter to validate tokens with every request
-                    .addFilterBefore(new AuthenticationFilter(tokenService),
-                                     UsernamePasswordAuthenticationFilter.class);
-
+                // Enable cors
+                .cors()
+                .and()
+                // Set session management to stateless
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                // Allow unauthorized requests to certain endpoints
+                .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/users", "/api/users/delete/{id}", "/api/products", "/public/**").permitAll()
+                // Authenticate all other requests
+                .anyRequest().authenticated()
+                .and()
+                // Add filter to validate tokens with every request
+                .addFilterBefore(new AuthenticationFilter(tokenService),
+                        UsernamePasswordAuthenticationFilter.class);
 
 
         return httpSecurity.build();
     }
-*
-* */
+}
