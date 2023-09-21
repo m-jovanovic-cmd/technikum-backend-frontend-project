@@ -1,3 +1,4 @@
+<script src="components/cartModal/cartModalExecution.js" defer></script>
 <div class="modal fade" id="openCartModalButton" tabindex="-1" aria-labelledby="#openCartModalButtonLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -12,28 +13,45 @@
                 <table class="table table-image">
                     <thead>
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Bild</th>
+                            <th scope="col">Produkt</th>
+                            <th scope="col">Preis</th>
+                            <th scope="col">Menge</th>
+                            <th scope="col">Aktion</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- User rows will be inserted here dynamically -->
-
+                        <tr class="cart-row">
+                            <td class="w-25">
+                                <img src="./images/products/CharmingClaude.jpg" class="img-fluid img-thumbnail"
+                                    alt="Sheep">
+                            </td>
+                            <td>Charming Claude</td>
+                            <td class="cart-price cart-column">99€</td>
+                            <td class="qty"><input type="text" class="form-control input-quantity" value="2"></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm remove-item text-white"
+                                    type="button">Entfernen</button>
+                                <i class="fa fa-times"></i>
+                            </td>
+                        </tr>
+                        <tr class="cart-row">
+                            <td class="w-25">
+                                <img src="./images/products/DropletDamian.jpg" class="img-fluid img-thumbnail"
+                                    alt="Sheep">
+                            </td>
+                            <td>Droplet Damian</td>
+                            <td class="cart-price cart-column">130€</td>
+                            <td class="qty"><input type="text" class="form-control input-quantity" value="1"></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm remove-item text-white"
+                                    type="button">Entfernen</button>
+                                <i class="fa fa-times"></i>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end">
-                    <!--add flexible variable here-->
-                    <h5>Total: <span class="price text-success">$</span></h5>
+                    <h5>Total: <span class="price text-success" id="cart-total">0.00€</span></h5>
                 </div>
             </div>
-            <div class="modal-footer border-top-0 d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button href="#" type="button" class="btn btn-success">Checkout</button>
-            </div>
-        </div>
-    </div>
-</div>

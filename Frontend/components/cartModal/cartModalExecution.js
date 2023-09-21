@@ -1,6 +1,66 @@
+
+//tutorial: https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
+
+var removeCartItemButtons = document.getElementsByClassName("btn-danger");
+console.log(removeCartItemButtons);
+
+for (var i = 0; i < removeCartItemButtons.length; i++) {
+    var button = removeCartItemButtons[i];
+    button.addEventListener("click", function (event) {
+        console.log("clicked");
+        var buttonClicked = event.target;
+        // Navigate to the parent element (in this case, the <td> element)
+        var parentElement = buttonClicked.parentElement;
+        // Navigate to the parent row (in this case, the <tr> element)
+        var rowElement = parentElement.parentElement;
+        // Remove the entire row
+        rowElement.remove();
+    });
+}
+function updateCartTotal() {
+    var cartItemRows = document.querySelectorAll('.cart-row');
+    var total = 0;
+
+    cartItemRows.forEach(function (cartItemRow) {
+        var priceElement = cartItemRow.querySelector('.cart-price');
+        var quantityElement = cartItemRow.querySelector('.input-quantity');
+
+        var price = parseFloat(priceElement.innerText.replace('€', '').trim());
+        var quantity = parseFloat(quantityElement.value);
+
+        var totalItemPrice = price * quantity;
+        total += totalItemPrice;
+
+        // Update the total item price in the cart
+        priceElement.innerText = '€' + totalItemPrice.toFixed(2);
+    });
+
+    // Get the cart total element by ID
+    var cartTotalElement = document.getElementById('cart-total');
+
+    // Update the content of the cart total element
+    cartTotalElement.innerText = '€' + total.toFixed(2); // Format as euros and cents
+}
+
+// Call the function initially and whenever the cart changes
+updateCartTotal();
+
+
+
+
+
+
+
+/*
 //////////////////////////
 // G E T  R E Q U E S T //
 //////////////////////////
+//TO-DO
+// make button get id from url
+//make call to BE to get the product
+//display the product on the cartModal wiht help from js (now it is hardcoded)
+//make remove button work
+//
 
 //make here an array and add the product,to be displayed later
 const arraywithcloudobjects = [];
@@ -62,10 +122,4 @@ function createProductCartModalDisplay(product) {
 
     return content;
 };
-
-//TO-DO
-// make button get id from url
-//make call to BE to get the product
-//display the product on the cartModal wiht help from js (now it is hardcoded)
-//make remove button work
-//
+*/ 

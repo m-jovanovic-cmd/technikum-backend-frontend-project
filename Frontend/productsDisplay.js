@@ -78,3 +78,5 @@ function GetObjectAndAddToArray(id) {
     //check productsDisplay && cartModalExecution && detailseite_produkte.js
     //can i call a function from another .js? or is there a better way? (pretty sure lol)
 }
+
+//https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
