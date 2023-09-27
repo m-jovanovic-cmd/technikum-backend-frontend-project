@@ -93,6 +93,7 @@ function uploadProductWithUrl(product, token) {
         data: JSON.stringify(product),
         success: success => {
             $("input").val("");
+            $('select').prop('selectedIndex',0);
             handleSuccess("Produkterstellung");
         },
         error: error => {
