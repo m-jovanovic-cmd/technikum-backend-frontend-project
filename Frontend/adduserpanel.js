@@ -111,7 +111,6 @@ function createUsertogglePasswordVisibility() {
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 
     // Change the text of the toggle button
-    //passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
     passwordToggle.textContent = passwordToggle.textContent === "Hide" ? "Show" : "Hide";
 
     // Add or remove a class to style the button differently when clicked
@@ -180,9 +179,6 @@ function createUserDisplay(user) {
     return row; // Return the created row element
 }
 
-
-
-
 /////////////////////////////////
 // D E L E T E  R E Q U E S T //
 ///////////////////////////////
@@ -211,7 +207,7 @@ function sendDeleteRequest(userId) {
 
 ////////////////////
 // POST REQEUEST //
-//////////////////
+///////////////////
 function createUser(newUser) {
     $.ajax({
         url: "http://localhost:8080/api/users",

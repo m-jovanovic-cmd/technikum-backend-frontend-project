@@ -29,8 +29,7 @@ public class UserController {
         User createUser = userService.saveUser(user);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
-
-
+    
     @GetMapping
     public List<User> findAllUsers() {
         return userService.findAll();
@@ -44,7 +43,6 @@ public class UserController {
         }
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
