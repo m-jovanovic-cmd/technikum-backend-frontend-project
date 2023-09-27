@@ -1,54 +1,54 @@
 
 //tutorial: https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
-
-var removeCartItemButtons = document.getElementsByClassName("btn-danger");
-console.log(removeCartItemButtons);
-
-for (var i = 0; i < removeCartItemButtons.length; i++) {
-    var button = removeCartItemButtons[i];
-    button.addEventListener("click", function (event) {
-        console.log("clicked");
-        var buttonClicked = event.target;
-        // Navigate to the parent element (in this case, the <td> element)
-        var parentElement = buttonClicked.parentElement;
-        // Navigate to the parent row (in this case, the <tr> element)
-        var rowElement = parentElement.parentElement;
-        // Remove the entire row
-        rowElement.remove();
-        updateCartTotal()
-    });
+if (document.readyState == "loading") {
+    document.addEventListener("DOMContentLoaded", ready)
+} else {
+    ready()
 }
 
+function ready() {
+    var removeCartItemButtons = document.getElementsByClassName("btn-danger");
+    //console.log(removeCartItemButtons);
 
+    for (var i = 0; i < removeCartItemButtons.length; i++) {
+        var button = removeCartItemButtons[i];
+        button.addEventListener("click", removeCartItem)
+
+    }
+    var quantityInputs = document.getElementsByClassName('form-control input-quantity')
+    for (var i = 0; i < quantityInputs.length; i++) {
+        var input = quantityInputs[i]
+        input.addEventListener('change', quantityChanged)
+    }
+}
+
+function quantityChanged(event) {
+    var input = event.target
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    }
+    updateCartTotal()
+}
+
+function removeCartItem(event) {
+    //console.log("clicked");
+    var buttonClicked = event.target;
+    // Navigate to the parent element (in this case, the <td> element)
+    var parentElement = buttonClicked.parentElement;
+    // Navigate to the parent row (in this case, the <tr> element)
+    var rowElement = parentElement.parentElement;
+    // Remove the entire row
+    rowElement.remove();
+    updateCartTotal()
+}
+
+// cart-quantity-input = "form-control input-quantity"
 //cart-items = modal-body
 //cart-row = cart-row
-function updateCartTotalChatGPT() {
-    var cartItemRows = document.querySelectorAll('.cart-row');
-    var total = 0;
-
-    cartItemRows.forEach(function (cartItemRow) {
-        var priceElement = cartItemRow.querySelector('.cart-price');
-        var quantityElement = cartItemRow.querySelector('.input-quantity');
-
-        var price = parseFloat(priceElement.innerText.replace('€', '').trim());
-        var quantity = parseFloat(quantityElement.value);
-
-        var totalItemPrice = price * quantity;
-        total += totalItemPrice;
-
-        // Update the total item price in the cart toFixed =
-        priceElement.innerText = '€' + totalItemPrice.toFixed(2);
-    });
-
-    // Get the cart total element by ID
-    var cartTotalElement = document.getElementById('cart-total');
-
-    // Update the content of the cart total element
-    cartTotalElement.innerText = '€' + total.toFixed(2); // Format as euros and cents
-}
 
 function updateCartTotal() {
-    var cartItemContainer = document.getElementsByClassName('modal-body')[0]
+    var cartItemContainer = document.getElementsByClassName('cart-modal-body')[0]
+    console.log(cartItemContainer)
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
     var total = 0
     for (var i = 0; i < cartRows.length; i++) {
@@ -60,6 +60,8 @@ function updateCartTotal() {
         console.log(price * quantity)
         total = total + (price * quantity)
     }
+
+    total = Math.round(total * 100) / 100
     //document.getElementsByClassName('cart-total')[0].innerText = '€' + total
     var cartTotalElement = document.getElementById('cart-total');
     cartTotalElement.innerText = '€' + total.toFixed(2);
