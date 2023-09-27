@@ -15,9 +15,14 @@ for (var i = 0; i < removeCartItemButtons.length; i++) {
         var rowElement = parentElement.parentElement;
         // Remove the entire row
         rowElement.remove();
+        updateCartTotal()
     });
 }
-function updateCartTotal() {
+
+
+//cart-items = modal-body
+//cart-row = cart-row
+function updateCartTotalChatGPT() {
     var cartItemRows = document.querySelectorAll('.cart-row');
     var total = 0;
 
@@ -31,7 +36,7 @@ function updateCartTotal() {
         var totalItemPrice = price * quantity;
         total += totalItemPrice;
 
-        // Update the total item price in the cart
+        // Update the total item price in the cart toFixed =
         priceElement.innerText = '€' + totalItemPrice.toFixed(2);
     });
 
@@ -42,11 +47,25 @@ function updateCartTotal() {
     cartTotalElement.innerText = '€' + total.toFixed(2); // Format as euros and cents
 }
 
+function updateCartTotal() {
+    var cartItemContainer = document.getElementsByClassName('modal-body')[0]
+    var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    var total = 0
+    for (var i = 0; i < cartRows.length; i++) {
+        var cartRow = cartRows[i]
+        var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        var quantityElement = cartRow.getElementsByClassName('input-quantity')[0]
+        var price = parseFloat(priceElement.innerText.replace('€', ''))
+        var quantity = quantityElement.value
+        console.log(price * quantity)
+        total = total + (price * quantity)
+    }
+    //document.getElementsByClassName('cart-total')[0].innerText = '€' + total
+    var cartTotalElement = document.getElementById('cart-total');
+    cartTotalElement.innerText = '€' + total.toFixed(2);
+}
 // Call the function initially and whenever the cart changes
 updateCartTotal();
-
-
-
 
 
 
