@@ -25,7 +25,7 @@ public class SecurityConfig {
     public SecurityConfig(TokenService tokenService) {
         this.tokenService = tokenService;
     }
-
+ 
     // /////////////////////////////////////////////////////////////////////////
     // Methods
     // /////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,13 @@ public class SecurityConfig {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/api/products/**", "/public/**").permitAll()
+                    .authorizeHttpRequests().requestMatchers(
+                        "/login", 
+                        "/api/users",
+                        "/api/products",
+                        "/public/**",
+                        "/api/taxes"
+                        ).permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()

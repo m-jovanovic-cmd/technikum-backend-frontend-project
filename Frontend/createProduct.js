@@ -1,3 +1,5 @@
+// DEPRECIATED TEMPLATE
+
 $("#createProductButton").on("click", e =>{
 
     $(".input-error").removeClass("input-error");
