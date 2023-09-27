@@ -15,27 +15,41 @@
         <script src="components/navbar/loadNavbar.js" defer></script>
         <script src="components/footer/loadFooter.js" defer></script>
         <script src="components/loginModal/loginModal.js" defer></script>
-        <script src="productsDisplay.js" defer></script>
-        <title>Produkte</title>
+        <script src="./adminUpload.js" defer></script>
+        <title>Admin Uploads</title>
     </head>
+
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <div class="main">
-            <div class="content">
-                <h1>Produkte</h1>
-                <div class="searchBar row g-0 d-flex justify-content-end">
-                    <input 
-                        class="col-12 col-md-6 col-lg-4  my-3 border border-3 text-center rounded" 
-                        type="text" 
-                        name="searchbar" 
-                        id="searchBar"
-                        placeholder="Search for a product" 
-                    \>
+        <div class="content kundenregistrierung">
+            <h1>Admin Uploads</h1>
+            <br>
+            <!--E-Mail-Adresse, Anrede (select), Vorname, Nachname, Postleitzahl, Ort, Straße, Hausnummer-->
+            <form>
+                <label for="produktname">Produktname</label>
+                <!--Für Screen-read Users da Inhalt vorgelesen wird-->
+                <br>
+                <input type="text" name="produktname" id="produktname">
+                <br>
+                <label for="produkttyp">Produkttyp</label>
+                <br>
+                <input type="text" name="produkttyp" id="produkttyp">
+                <br>
+                <label for="Produktbeschreibung">Produktbeschreibung</label>
+                <div>
+                    <textarea id="produktbeschreibung" name="produktbeschreibung" placeholder="Beschreibe das Produkt">
+                    </textarea>
                 </div>
-            </div>
-            <div class="content" id="productsContainer"></div>
+                <br>
+                <label>Photos: </label>
+                <br>
+                <input type="file" name="image"/> <!--accept="image/png, image/jpeg"-->
+                <br>
+                <button type="button" id="upload-button">Upload</button>
+            </form>            
         </div>
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
     </body>
+
 </html>
