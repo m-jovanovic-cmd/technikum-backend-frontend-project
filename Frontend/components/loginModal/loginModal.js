@@ -1,4 +1,4 @@
-$("#loginModalContainer").load("/Frontend/components/loginModal/loginModal.html");
+$("#loginModalContainer").load("./components/loginModal/loginModal.html");
 
 $(document).on("submit", "#loginForm", function(event) {
     event.preventDefault();

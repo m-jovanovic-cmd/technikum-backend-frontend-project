@@ -376,3 +376,7 @@ footer img:hover {
 #subject {
     border: 1px solid black;
 }
+
+#imageUrlResponse {
+    background-color: #e7e7e7;
+}
