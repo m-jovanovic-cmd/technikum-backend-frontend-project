@@ -15,7 +15,11 @@ body {
     font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     padding: 15px;
 }
 
@@ -31,13 +35,26 @@ h1, h2, h3, h4, h5 {
     text-align: justify;
     color: #7e8daf;
     padding: 0 2em 0 2em;
+
 }
 
-#Impressum-Main {
-    text-align: left;
+#impressum h1,
+#impressum h2,
+#impressum h3,
+#impressum h4,
+#impressum ul {
+    padding: 5px 0px 5px 0px;
 }
 
-header {
+#impressum li {
+    margin: 20px 0px 20px 0px;
+}
+
+#impressum p {
+    margin: 0px;
+}
+
+header.hero {
     width: 100%;
     height: 80vh;
     background: url(/Frontend/images/backgroundwolke.jpg) no-repeat 50% 50%;
@@ -241,11 +258,6 @@ footer .row {
     font-size: 1.25em;
     margin-top: 0.25em;
     text-align: center;
-}
-
-
-#KontaktListe {
-    padding-left: 0px !important;
 }
 
 

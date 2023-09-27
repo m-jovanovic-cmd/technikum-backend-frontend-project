@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.multipart.MultipartFile;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.DTO.ProductDTO;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.ProductService;
 
 @RestController
@@ -67,6 +68,17 @@ public class ProductController {
         return productService.setStatus(id);
     }
 
+    @GetMapping("/details/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable Long id) {
+        try {
+            System.out.print("In Controller gekommen");
+            Product product = productService.getProduct(id);
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            System.out.print("In Fehler gekommen");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     private static Product fromDTO(ProductDTO productDTO) {
         return new Product(productDTO.getName(),
                 productDTO.getDescription(),
