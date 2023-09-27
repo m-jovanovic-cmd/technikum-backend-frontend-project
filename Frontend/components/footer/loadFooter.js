@@ -1,1 +1,1 @@
-$("#footerContainer").load("./components/footer/footer.html");
+$("#footerContainer").load("/Frontend/components/footer/footer.html");
