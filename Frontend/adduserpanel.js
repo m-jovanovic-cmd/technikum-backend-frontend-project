@@ -111,7 +111,8 @@ function createUsertogglePasswordVisibility() {
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 
     // Change the text of the toggle button
-    passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
+    //passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
+    passwordToggle.textContent = passwordToggle.textContent === "Hide" ? "Show" : "Hide";
 
     // Add or remove a class to style the button differently when clicked
     passwordToggle.classList.toggle("clicked");
