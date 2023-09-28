@@ -27,3 +27,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file Backend/pom.xml
+
+    - run: mkdir download & cp Backend/target/*jar download
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: download
