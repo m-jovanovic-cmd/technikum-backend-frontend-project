@@ -46,7 +46,7 @@ var form = `<div class="container d-flex justify-content-center">
             <label for="password" class="form-label">Passwort</label>
             <input type="text" class="form-control" id="password" name="password"
                 placeholder="Passwort">
-                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Show</span>
+                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Hide</span>
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
@@ -97,10 +97,10 @@ isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
     if (isAdminSelect.value === 'true') {
         // If true, set the role to 'admin'
-        roleSelect.value = 'admin';
+        roleSelect.value = 'Admin';
     } else {
         // If false, set the role to 'customer'
-        roleSelect.value = 'customer';
+        roleSelect.value = 'Customer';
     }
 });
 
@@ -113,7 +113,7 @@ function createUsertogglePasswordVisibility() {
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 
     // Change the text of the toggle button
-    passwordToggle.textContent = passwordToggle.textContent === "Hide" ? "Show" : "Hide";
+    passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
 
     // Add or remove a class to style the button differently when clicked
     passwordToggle.classList.toggle("clicked");

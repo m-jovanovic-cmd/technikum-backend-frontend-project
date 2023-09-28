@@ -28,11 +28,11 @@ public class UserController {
 
     //remove saveUserInterface and add call repository
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     //public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO)
     public ResponseEntity<User> createUser(User user) {
         System.out.println("creating user (controller)");
-        User createUser = userService.saveUser(user);
+        User createUser = userService.save(user);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
     
@@ -64,6 +64,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
         try {
             User updatedUser = userService.updateUser(id, updatedUserDto);

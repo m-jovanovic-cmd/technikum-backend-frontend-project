@@ -1,20 +1,47 @@
 package technikumbackendfrontendproject.Backend.model.DTO;
 
-public class UserDTO {
-    private String username;
-    private String status;
-    private String role;
-    private String email;
-    private String gender;
-    private String firstname;
-    private String lastname;
-    private String location;
-    private String password;
-    private String postcode;
-    private String street;
-    private String streetNumber;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jdk.jfr.BooleanFlag;
+import org.hibernate.validator.constraints.Length;
 
-    private String isAdmin;
+public class UserDTO {
+
+    @Length(min = 4, max = 14)
+    private String username;
+    @NotNull
+    private String status;
+    @NotNull
+    private String role;
+    @NotNull
+    private String email;
+    @NotNull
+    private String gender;
+
+    @Length(min = 3, max = 14)
+    private String firstname;
+
+    @Length(min = 3, max = 14)
+    private String lastname;
+
+    @Length(min = 4, max = 20)
+    private String location;
+
+    @Length(min = 5, max = 14)
+    private String password;
+
+    @Length(min = 4)
+    private String postcode;
+
+    @Length(min = 7)
+    @Positive
+    private String street;
+    @NotNull
+    @Positive
+    private String streetNumber;
+    @NotNull
+    @BooleanFlag
+    private Boolean isAdmin;
 
     // Getter & Setter
     public String getUsername() {
@@ -113,11 +140,11 @@ public class UserDTO {
     }
 
 
-    public String getIsAdmin() {
+    public @NotNull Boolean getIsAdmin() {
         return isAdmin;
     }
 
     public void setIsAdmin(String isAdmin) {
-        this.isAdmin = isAdmin;
+        this.isAdmin = Boolean.valueOf(isAdmin);
     }
 }

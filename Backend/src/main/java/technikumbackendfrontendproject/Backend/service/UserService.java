@@ -11,19 +11,27 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+//@Service
+//public class UserService implements saveUser {
 @Service
-public class UserService implements saveUser {
-
+public class UserService {
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-    @Override
+   }
+    /*
+     @Override
     public User saveUser(User user) {
         System.out.println("saving user (service)");
+        return userRepository.save(user);
+    }
+    */
+
+    public User save(User user) {
+        user.setStatus(String.valueOf(true));
         return userRepository.save(user);
     }
 
@@ -91,7 +99,7 @@ public class UserService implements saveUser {
             logger.info("Updating STATUS: " + updatedUser.getStatus() + " -> " + updatedUserDto.getStatus());
             updatedUser.setStatus(updatedUserDto.getStatus());
             logger.info("Updating ROLE: " + updatedUser.getRole() + " -> " + updatedUserDto.getRole());
-            updatedUser.setRole(updatedUserDto.getRole());
+            updatedUser.setRole(String.valueOf(updatedUserDto.getRole()));
             logger.info("Updating EMAIL: " + updatedUser.getEmail() + " -> " + updatedUserDto.getEmail());
             updatedUser.setEmail(updatedUserDto.getEmail());
             logger.info("Updating GENDER: " + updatedUser.getGender() + " -> " + updatedUserDto.getGender());
