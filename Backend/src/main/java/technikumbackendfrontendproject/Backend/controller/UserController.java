@@ -1,8 +1,10 @@
 package technikumbackendfrontendproject.Backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.DTO.UserDTO;
@@ -26,7 +28,9 @@ public class UserController {
 
     //remove saveUserInterface and add call repository
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    @PreAuthorize("hasRole('ADMIN')")
+    //public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO)
+    public ResponseEntity<User> createUser(User user) {
         System.out.println("creating user (controller)");
         User createUser = userService.saveUser(user);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
@@ -47,6 +51,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
         try {
             User user = userService.getUser(id);
