@@ -23,6 +23,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    //remove saveUserInterface and add call repository
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         System.out.println("creating user (controller)");
@@ -44,7 +46,7 @@ public class UserController {
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
         try {
             User user = userService.getUser(id);

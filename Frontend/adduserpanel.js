@@ -1,3 +1,5 @@
+//VALIDATION NEEDED
+//ins html geben
 var form = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
     <div class="mt-3">
@@ -131,6 +133,7 @@ function validateInput(inputField) {
 
 // Trigger the change event to set the initial value
 isAdminSelect.dispatchEvent(new Event('change'));
+
 ///////////////////////////
 // G E T  R E Q U E S T //
 /////////////////////////
@@ -180,8 +183,8 @@ function createUserDisplay(user) {
 }
 
 /////////////////////////////////
-// D E L E T E  R E Q U E S T //
-///////////////////////////////
+//  D E L E T E  R E Q U E S T //
+/////////////////////////////////
 
 $("#sendDeleteRequest").on("click", () => {
     const userId = $(this).attr(`${user.id}`); // Replace with your actual attribute name
@@ -190,7 +193,7 @@ $("#sendDeleteRequest").on("click", () => {
 function sendDeleteRequest(userId) {
     if (confirm("Are you sure you want to delete this record?")) {
         $.ajax({
-            url: `http://localhost:8080/api/users/delete/${userId}`,
+            url: `http://localhost:8080/api/users/${userId}`,
             type: "DELETE",
             cors: true,
             contentType: "application/json",
@@ -254,6 +257,7 @@ $("#saveButton").on("click", e => {
 ///////////////////////////
 // P U T  R E Q U E S T //
 /////////////////////////
+
 //für form button id=sendUpdatedUser
 //für update button id= updatebuttonputrequest
 $("#updatebuttonputrequest").on("click", () => {

@@ -16,7 +16,6 @@ public class UserService implements saveUser {
 
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private UserRepository userRepository;
-    private String convertedID;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -44,14 +43,14 @@ public class UserService implements saveUser {
     }
 
     public void deleteUser(Long id) {
-       convertedID = String.valueOf(id);
         // Check if the user exists
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             userRepository.delete(userOptional.get());
         } else {
+
             // User not found, you can handle this as needed (e.g., throw an exception or return a status)
-            throw new EntityNotFoundException("User with ID " + convertedID + " not found");
+            throw new EntityNotFoundException("User with ID " + id + " not found");
         }
     }
     public void registerUser(User user) {
