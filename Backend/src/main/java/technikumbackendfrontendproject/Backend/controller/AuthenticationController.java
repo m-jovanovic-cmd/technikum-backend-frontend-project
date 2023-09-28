@@ -22,4 +22,6 @@ public class AuthenticationController {
     public String login(@RequestBody LoginDTO loginDTO) {
         return "Bearer " + authenticationService.login(loginDTO.getUsername(), loginDTO.getPassword());
     }
+
+    // Ich pushe hier nur einen neuen Kommentar für git actions
 }
