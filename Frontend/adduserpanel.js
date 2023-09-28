@@ -97,10 +97,10 @@ isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
     if (isAdminSelect.value === 'true') {
         // If true, set the role to 'admin'
-        roleSelect.value = 'Admin';
+        roleSelect.value = 'admin';
     } else {
         // If false, set the role to 'customer'
-        roleSelect.value = 'Customer';
+        roleSelect.value = 'customer';
     }
 });
 

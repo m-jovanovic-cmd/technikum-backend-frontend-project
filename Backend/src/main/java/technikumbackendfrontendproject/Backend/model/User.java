@@ -13,7 +13,7 @@ public class User {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "gender")
+    @Column(name = "gender", nullable = false)
     private String gender;
 
     @Column(name = "username", nullable = false)
@@ -36,36 +36,36 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "postcode")
+    @Column(name = "postcode", nullable = false)
     private String postcode;
 
-    @Column(name = "location")
+    @Column(name = "location", nullable = false)
     private String location;
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "streetnumber")
+    @Column(name = "streetnumber", nullable = false)
     private String streetnumber;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private String role;
 
 
     // CONSTRUCTORS
 
-    public User(Long id, String gender, String username, String password, String firstName, String lastName,
+    public User(Long id, String gender, String username, String password, String firstname, String lastname,
             String email, String postcode, String location, String street, String streetnumber, String status,
             String role) {
         this.id = id;
         this.gender = gender;
         this.username = username;
         this.password = password;
-        this.firstname = firstName;
-        this.lastname = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
