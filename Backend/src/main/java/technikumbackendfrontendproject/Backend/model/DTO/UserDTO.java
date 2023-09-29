@@ -1,5 +1,6 @@
 package technikumbackendfrontendproject.Backend.model.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jdk.jfr.BooleanFlag;
@@ -8,8 +9,8 @@ import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 
 public class UserDTO {
-
-    @Length(min = 4, max = 14)
+    @NotBlank
+    @Length(min = 3)
     private String username;
     @NotNull
     private String status;
@@ -17,32 +18,31 @@ public class UserDTO {
     private String role;
     @NotNull
     private String email;
+
     @NotNull
     private String gender;
 
-    @Length(min = 3, max = 14)
+    @Length(min = 3)
     private String firstname;
 
-    @Length(min = 3, max = 14)
+    @Length(min = 3)
     private String lastname;
 
-    @Length(min = 4, max = 20)
+    @Length(min = 3, max = 20)
     private String location;
 
-    @Length(min = 5, max = 14)
+    @Length(min = 3)
     private String password;
 
     @Length(min = 4)
     private String postcode;
 
-    @Length(min = 7)
-    @Positive
+    @Length(min = 4)
     private String street;
     @NotNull
     @Positive
     private String streetNumber;
     @NotNull
-    @BooleanFlag
     private Boolean isAdmin;
 
     // Getter & Setter

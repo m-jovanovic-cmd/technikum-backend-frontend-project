@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.DTO.UserDTO;
 import technikumbackendfrontendproject.Backend.model.User;
@@ -30,7 +31,7 @@ public class UserController {
     @PostMapping
     //@PreAuthorize("hasRole('ADMIN')")
     //public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO)
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO) {
         System.out.println("creating user (controller)");
         User createUser = userService.save(userDTO);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
@@ -65,7 +66,7 @@ public class UserController {
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody  @Valid UserDTO updatedUserDto) {
         try {
             UserDTO updatedUser = userService.updateUser(id, updatedUserDto);
 

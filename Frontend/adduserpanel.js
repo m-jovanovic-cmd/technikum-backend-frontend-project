@@ -12,7 +12,7 @@ var form = `<div class="container d-flex justify-content-center">
     <div class="row">
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
-                <select class="form-control" id="isAdmin" name="isAdmin">
+                <select class="form-control" id="admin" name="admin">
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
@@ -62,7 +62,7 @@ var form = `<div class="container d-flex justify-content-center">
             <label for="role" class="form-label">Rolle</label>
                 <select class="form-control" id="role" name="role" disabled>
                     <option value="customer">Customer</option>
-                    <option value="admin">Admin</option>
+                    <option value="adminrole">Admin</option>
                 </select>
         </div>
         <div class="mb-3 col-12 col-md-3">
@@ -92,7 +92,7 @@ var form = `<div class="container d-flex justify-content-center">
 document.getElementById("form").innerHTML = form;
 
 // Get a reference to the isAdmin and role select elements
-const isAdminSelect = document.getElementById('isAdmin');
+const isAdminSelect = document.getElementById('admin');
 const roleSelect = document.getElementById('role');
 //automatically sets role to admin or customer depending what you choose, field from Rolle is diabled, so only isAdmin can be changed
 // Add an event listener to the isAdmin select element
@@ -100,7 +100,7 @@ isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
     if (isAdminSelect.value === 'true') {
         // If true, set the role to 'admin'
-        roleSelect.value = 'admin';
+        roleSelect.value = 'adminrole';
     } else {
         // If false, set the role to 'customer'
         roleSelect.value = 'customer';
@@ -161,8 +161,11 @@ function displayAllUsers(users) {
         tableBody.append(userDisplay);
     };
 };
-
-function createUserDisplay(user) {
+const authToken = sessionStorage.getItem("token");
+console.log(authToken)
+function createUserDisplay(user, authToken) {
+    authToken = sessionStorage.getItem("token");
+    console.log(authToken)
     // Create a new row element
     const row = $("<tr>");
     // Append table cells for each property you want to display
@@ -180,7 +183,8 @@ function createUserDisplay(user) {
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
     row.append(`<td td > <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id})">Edit</button></td>`);
-    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
+    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id}, '${authToken}')">Delete</button></td>`);
+
 
     return row; // Return the created row element
 }
@@ -195,8 +199,9 @@ function createUserDisplay(user) {
 //    console.log(sessionStorage.getItem("token"))
 //    sendDeleteRequest(userId, token);
 //});
-const authToken = sessionStorage.getItem("token");
-function sendDeleteRequest(userId, token) {
+
+function sendDeleteRequest(userId, authToken) {
+    console.log(authToken)
     //var token = sessionStorage.getItem("token");
     if (confirm("Are you sure you want to delete this record?")) {
         $.ajax({
@@ -245,7 +250,7 @@ $("#saveButton").on("click", e => {
     // Assign form input values to the user object properties
     const newUser = {
         "id": $("#userId").val(),
-        "admin": $("#isAdmin").val(),
+        "admin": $("#admin").val(),
         "email": $("#mail").val(),
         "firstname": $("#firstname").val(),
         "gender": $("#gender").val(),
@@ -330,7 +335,7 @@ function edit(user) {
 
       <div class="mb-3 col-12 col-md-3">
         <label for="isAdmin" class="form-label">isAdmin</label>
-        <input type="isAdmin" value="${user.admin}" class="form-control" id="isAdmin" name="isAdmin" placeholder="isAdmin" readonly>
+        <input type="isAdmin" value="${user.admin}" class="form-control" id="admin" name="admin" placeholder="isAdmin" readonly>
 
         </div>
 
@@ -442,7 +447,7 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
     console.log("Button clicked!");
     const user = {
         "id": $("#newuserId").val(),
-        "admin": $("#isAdmin").val(),
+        "admin": $("#admin").val(),
         "email": $("#newmail").val(),
         "firstname": $("#newfirstname").val(),
         "gender": $("#gender").val(),

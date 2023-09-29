@@ -21,11 +21,12 @@ public class User {
 
     //TO DO should be hashed
     //SHA1 oder SHA256 und salting
+
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "admin", nullable = false)
-    private Boolean admin;
+    private Boolean admin = false   ;
 
     @Column(name = "firstname", nullable = false)
     private String firstname;
