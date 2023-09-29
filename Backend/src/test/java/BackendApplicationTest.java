@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public class BackendApplicationTest {
+/*package technikumbackendfrontendproject.Backend;
+public class BackendApplicationTest {
 }
+*/

@@ -1,49 +1,48 @@
 package service;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import technikumbackendfrontendproject.Backend.BackendApplication;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.repository.ProductRepository;
+import technikumbackendfrontendproject.Backend.repository.TaxRepository;
+import technikumbackendfrontendproject.Backend.service.ProductService;
 
-@SpringBootTest(classes = BackendApplication.class)
-@ActiveProfiles("test")
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(SpringExtension.class)
 public class ProductServiceTest {
-
-}
-
-/*
-import com.webshop.webshop.WebshopApplication;
-        import com.webshop.webshop.enums.ProductCategory;
-        import com.webshop.webshop.model.Product;
-        import com.webshop.webshop.repository.ProductRepository;
-        import com.webshop.webshop.service.ProductService;
-        import org.junit.jupiter.api.Assertions;
-        import org.junit.jupiter.api.BeforeEach;
-        import org.junit.jupiter.api.Test;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.boot.test.context.SpringBootTest;
-        import org.springframework.test.context.ActiveProfiles;
-
-        import static org.junit.Assert.assertEquals;
-
-
-@SpringBootTest(classes = WebshopApplication.class)
-@ActiveProfiles("test")
-class ProductServiceTest {
-
-    @Autowired
+    
     private ProductService productService;
-
-    @Autowired
+    
+    @Mock
     private ProductRepository productRepository;
 
-    @BeforeEach
-    void setup() {
+    @Mock
+    private TaxRepository taxRepository;
 
+    @BeforeEach
+    public void setup() {
+        productService = new ProductService(productRepository, taxRepository);
     }
 
     @Test
-    void saveTest() {
-        assertEquals(1, 1);
+    public void whenListIsEmpty_ThenFalse() {
+        List<Product> dummy_products_list = new ArrayList<>();
+        dummy_products_list.add(new Product());
+        dummy_products_list.add(new Product());
+        dummy_products_list.add(new Product());
+
+        when(productRepository.findAll()).thenReturn(dummy_products_list);
+
+        List <Product> result_list = productService.findAll();
+        assertEquals(dummy_products_list, result_list);
+        verify(productRepository, times(1)).findAll();
     }
 }
-*/
