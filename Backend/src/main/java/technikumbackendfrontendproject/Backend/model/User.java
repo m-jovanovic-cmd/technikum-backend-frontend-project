@@ -25,7 +25,7 @@ public class User {
     private String password;
 
     @Column(name = "admin", nullable = false)
-    private boolean admin;
+    private Boolean admin;
 
     @Column(name = "firstname", nullable = false)
     private String firstname;
@@ -204,4 +204,6 @@ public class User {
     public boolean isAdmin() {
         return admin;
     }
+
+
 }

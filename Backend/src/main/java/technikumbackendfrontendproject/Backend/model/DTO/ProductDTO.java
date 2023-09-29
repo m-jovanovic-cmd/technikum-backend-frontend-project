@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import technikumbackendfrontendproject.Backend.model.Product;
 
 public class ProductDTO {
 
@@ -104,5 +105,14 @@ public class ProductDTO {
 
     public void setTaxId(Long taxId) {
         this.taxId = taxId;
+    }
+
+    public Product convertToProduct() {
+        return new Product(this.name,
+                this.description,
+                this.imageUrl,
+                this.price,
+                this.quantity,
+                this.type);
     }
 }

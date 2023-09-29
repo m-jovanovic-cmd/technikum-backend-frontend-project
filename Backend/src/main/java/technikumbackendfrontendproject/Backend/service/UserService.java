@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-//@Service
-//public class UserService implements saveUser {
 @Service
-public class UserService {
+public class UserService  {
+
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private UserRepository userRepository;
 
@@ -23,17 +22,18 @@ public class UserService {
         this.userRepository = userRepository;
    }
     /*
-     @Override
-    public User saveUser(User user) {
-        System.out.println("saving user (service)");
-        return userRepository.save(user);
-    }
-    */
 
     public User save(User user) {
         user.setStatus(String.valueOf(true));
         return userRepository.save(user);
     }
+    */
+
+    public User save(UserDTO userDTO) {
+        System.out.println("saving user (service)");
+        return userRepository.save(userDTO.convertToUser());
+    }
+
 
     public String updateUser(User user) {
         //exist in the user object - yes - update, no - create/add
@@ -85,7 +85,7 @@ public class UserService {
 
     }
 
-    public User updateUser(Long existingUserId, UserDTO updatedUserDto) {
+    public UserDTO updateUser(Long existingUserId, UserDTO updatedUserDto) {
         var existingUser = userRepository.findById(existingUserId);
 
         if (existingUser.isEmpty()) {
@@ -121,7 +121,7 @@ public class UserService {
 
             // Save the updated user
             userRepository.save(updatedUser);
-            return updatedUser;
+            return convertToUserDto(updatedUser);
         }
     }
     // Utility method to convert a User entity to UserDto

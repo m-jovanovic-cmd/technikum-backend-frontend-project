@@ -1,5 +1,8 @@
 //VALIDATION NEEDED
 //ins html geben
+//const token = sessionStorage.getItem("token");
+//console.log(token)
+
 var form = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
     <div class="mt-3">
@@ -186,23 +189,30 @@ function createUserDisplay(user) {
 //  D E L E T E  R E Q U E S T //
 /////////////////////////////////
 
-$("#sendDeleteRequest").on("click", () => {
-    const userId = $(this).attr(`${user.id}`); // Replace with your actual attribute name
-    sendDeleteRequest(userId);
-});
-function sendDeleteRequest(userId) {
+
+//$("#sendDeleteRequest").on("click", () => {
+//    const userId = $(this).attr(`${user.id}`); // Replace with your actual attribute name
+//    console.log(sessionStorage.getItem("token"))
+//    sendDeleteRequest(userId, token);
+//});
+const authToken = sessionStorage.getItem("token");
+function sendDeleteRequest(userId, token) {
+    //var token = sessionStorage.getItem("token");
     if (confirm("Are you sure you want to delete this record?")) {
         $.ajax({
             url: `http://localhost:8080/api/users/${userId}`,
             type: "DELETE",
             cors: true,
+            headers: { "Authorization": authToken },
             contentType: "application/json",
             success: (response) => {
                 // After successful deletion, reload the list of users
                 location.reload(true);
             },
-            error: (error) => {
-                console.log(error);
+            error: function (xhr, status, error) {
+                console.log("Status: " + status);
+                console.log("Error: " + error);
+                console.log(xhr.responseText);
             }
         });
     }
@@ -224,6 +234,7 @@ function createUser(newUser) {
             location.reload(true);
         },
         error: (error) => {
+            console.log(newUser)
             // Handle errors here if needed
             console.error("Error:", error);
         }
@@ -454,13 +465,14 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
 // Function to update the user with the provided user object
 
 //i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
-function sendUpdatedUser(user) {
+function sendUpdatedUser(user, token) {
     console.log("sendUpdatedUser(user): ", user);
     const successAlert = document.createElement("div");
     // Your AJAX request to update the user with the user object
     $.ajax({
         url: `http://localhost:8080/api/users/update/${user.id}`,
         type: "PUT",
+        headers: { "Authorization": authToken },
         contentType: "application/json",
         data: JSON.stringify(user),
         success: (response) => {

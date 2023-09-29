@@ -30,12 +30,12 @@ public class UserController {
     @PostMapping
     //@PreAuthorize("hasRole('ADMIN')")
     //public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO)
-    public ResponseEntity<User> createUser(User user) {
+    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
         System.out.println("creating user (controller)");
-        User createUser = userService.save(user);
+        User createUser = userService.save(userDTO);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
-    
+
     @GetMapping
     public List<User> findAllUsers() {
         return userService.findAll();
@@ -64,17 +64,17 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
         try {
-            User updatedUser = userService.updateUser(id, updatedUserDto);
+            UserDTO updatedUser = userService.updateUser(id, updatedUserDto);
 
             // Convert the updated user to UserDto and return it in the response
-            UserDTO responseDto = userService.convertToUserDto(updatedUser);
+            //UserDTO responseDto = userService.convertToUserDto(updatedUser);
 
             logger.info("User with id: " + id + " updated!");
 
-            return new ResponseEntity<>(responseDto, HttpStatus.OK);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }

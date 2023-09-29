@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jdk.jfr.BooleanFlag;
 import org.hibernate.validator.constraints.Length;
+import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.model.User;
 
 public class UserDTO {
 
@@ -146,5 +148,20 @@ public class UserDTO {
 
     public void setIsAdmin(String isAdmin) {
         this.isAdmin = Boolean.valueOf(isAdmin);
+    }
+
+    public User convertToUser() {
+       return new User(this.gender,
+        this.username,
+        this.password,
+        this.firstname,
+        this.lastname ,
+        this.email ,
+        this.postcode,
+        this.location,
+        this.street,
+        this.streetNumber,
+        this.status,
+        this.role);
     }
 }
