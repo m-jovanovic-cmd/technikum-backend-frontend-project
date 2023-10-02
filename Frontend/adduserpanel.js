@@ -18,14 +18,15 @@ var form = `<div class="container d-flex justify-content-center">
                     <option value="false">False</option>
                 </select>
         </div>
-        <div class="mb-3 col-12 col-md-3">
+    <div class="mb-3 col-12 col-md-3">
         <label for="lastname" class="form-label">Nachname</label>
-        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nachname">
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nachname" required>
+        
     </div>
     <div class="mb-3 col-12 col-md-3">
-    <label for="firstname" class="form-label">Vorname</label>
-    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Vorname">
-</div>
+        <label for="firstname" class="form-label">Vorname</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Vorname" required>
+    </div>
 
         <div class="mb-3 col-12 col-md-3">
             <label for="mail" class="form-label">Email-Addresse</label>
@@ -107,6 +108,7 @@ isAdminSelect.addEventListener('change', function () {
         roleSelect.value = 'Customer';
     }
 });
+
 
 //show/hide password
 function createUsertogglePasswordVisibility() {
@@ -228,6 +230,19 @@ function sendDeleteRequest(userId, authToken) {
 // POST REQEUEST //
 ///////////////////
 function createUser(newUser, authToken) {
+    let errorMessage = 'Bitte gültigen Wert eintragen.';
+    var errorCount = 0;
+    // remove Validation error-messages
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
+    /* Checking form function */
+    for (let key in newUser) {
+        if (newUser.hasOwnProperty(key) && newUser[key] === '') {
+            errorCount++;
+            let field = $('#' + key)
+            displayError(field, errorMessage)
+        }
+    };
     console.log(authToken)
     $.ajax({
         url: "http://localhost:8080/api/users",
@@ -321,12 +336,11 @@ function edit(user) {
         </h2>
     </div>
     <div class="row">
-    <div class="mb-3 col-12 col-md-3">
-            <label for="userId" class="form-label">User ID</label>
-           <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID" disabled>
-      </div>
+        <div class="mb-3 col-12 col-md-3">
+                <label for="userId" class="form-label">User ID</label>
+            <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID" disabled>
+        </div>
         
-
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
                 <select class="form-select" id="admin" name="admin">
@@ -347,11 +361,11 @@ function edit(user) {
 
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
-            <select class="form-select" id="gender" name="gender">
-                    <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Weiblich</option>
-                    <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Männlich</option>
-                    <option value="Anderes" ${user.gender === 'Anderes' ? 'selected' : ''}>Anderes</option>
-                    <option value="Keine Angabe" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Keine Angabe</option>
+                <select class="form-select" id="gender" name="gender">
+                        <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Weiblich</option>
+                        <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Männlich</option>
+                        <option value="Anderes" ${user.gender === 'Anderes' ? 'selected' : ''}>Anderes</option>
+                        <option value="KA" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Keine Angabe</option>
                 </select>
         </div>
 
@@ -377,13 +391,6 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
              <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle">
-        </div>
-        <div class="mb-3 col-12 col-md-3">
-            <label for="role" class="form-label">Rolle</label>
-                <select class="form-control" id="role" name="role" disabled>
-                    <option value="Customer">Customer</option>
-                    <option value="Admin">Admin</option>
-                </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -415,7 +422,21 @@ function edit(user) {
     $('.alert').alert()
     document.getElementById("form").innerHTML = editForm;
     //console.log(editForm)
+    const isAdminSelect = document.getElementById('admin');
+    const roleSelect = document.getElementById('role');
+    isAdminSelect.addEventListener('change', function () {
+        // Check if isAdmin is true
+        if (isAdminSelect.value === 'true') {
+            // If true, set the role to 'admin'
+            roleSelect.value = 'Admin';
+        } else {
+            // If false, set the role to 'customer'
+            roleSelect.value = 'Customer';
+        }
+    });
+
 }
+
 
 //hide show password
 function togglePasswordVisibility() {
@@ -472,8 +493,17 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
 
 //i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
 function sendUpdatedUser(user, token) {
+    let errorMessage = 'Bitte gültigen Wert eintragen.';
+    var errorCount = 0;
+    /* Checking form function */
+    for (let key in user) {
+        if (user.hasOwnProperty(key) && user[key] === '') {
+            errorCount++;
+            let field = $('#' + key)
+            displayError(field, errorMessage)
+        }
+    };
     console.log("sendUpdatedUser(user): ", user);
-    const successAlert = document.createElement("div");
     // Your AJAX request to update the user with the user object
     $.ajax({
         url: `http://localhost:8080/api/users/update/${user.id}`,
@@ -489,6 +519,18 @@ function sendUpdatedUser(user, token) {
         },
         error: (error) => {
             console.log("Error updating user:", error);
+            if (error.status === 400) {
+                for (let err of error.responseJSON.errors) {
+                    let field = $("#" + err.field);
+                    displayError(field, err.defaultMessage)
+                }
+            }
         }
     });
 }
+
+function displayError(input, message = '') {
+    input.addClass("input-error");
+    const parent = input.parent();
+    parent.append(`<p class="error-message">${message}</p>`);
+};
