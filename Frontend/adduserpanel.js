@@ -61,8 +61,8 @@ var form = `<div class="container d-flex justify-content-center">
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
                 <select class="form-control" id="role" name="role" disabled>
-                    <option value="customer">Customer</option>
-                    <option value="adminrole">Admin</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Admin">Admin</option>
                 </select>
         </div>
         <div class="mb-3 col-12 col-md-3">
@@ -100,10 +100,10 @@ isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
     if (isAdminSelect.value === 'true') {
         // If true, set the role to 'admin'
-        roleSelect.value = 'adminrole';
+        roleSelect.value = 'Admin';
     } else {
         // If false, set the role to 'customer'
-        roleSelect.value = 'customer';
+        roleSelect.value = 'Customer';
     }
 });
 

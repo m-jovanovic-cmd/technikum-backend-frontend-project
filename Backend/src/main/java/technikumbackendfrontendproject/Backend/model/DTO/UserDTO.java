@@ -10,36 +10,36 @@ import technikumbackendfrontendproject.Backend.model.User;
 
 public class UserDTO {
     @NotBlank
-    @Length(min = 3)
+    //@Length(min = 3)
     private String username;
-    @NotNull
+    @NotBlank
     private String status;
-    @NotNull
+    @NotBlank
     private String role;
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String gender;
 
-    @Length(min = 3)
+    @NotBlank
     private String firstname;
 
-    @Length(min = 3)
+    @NotBlank
     private String lastname;
 
-    @Length(min = 3, max = 20)
+    @NotBlank
     private String location;
 
-    @Length(min = 3)
+    @NotBlank
     private String password;
 
-    @Length(min = 4)
+    @NotBlank
     private String postcode;
 
-    @Length(min = 4)
+    @NotBlank
     private String street;
-    @NotNull
+    @NotBlank
     @Positive
     private String streetNumber;
     @NotNull
