@@ -1,11 +1,20 @@
 const token = sessionStorage.getItem("token");
 
-/* 
-Validierung des tokens ob Admin
-
-if(!token) {
-    location.replace('/Frontend/index.html');
-} */
+$.ajax({
+    url: "http://localhost:8080/isadmin",
+    type: "GET",
+    cors: true,
+    headers: { "Authorization": token },
+    contentType: "application/json",
+    data: {},
+    success: success => {
+        console.log(success);
+    },
+    error: error => {
+        console.log(error);
+        location.replace('/Frontend/index.html');
+    }
+});
 
 $.get({
     url: "http://localhost:8080/api/taxes",

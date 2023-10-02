@@ -33,5 +33,5 @@ function renderSessionButton() {
 function logout(event) {
     event.preventDefault();
     sessionStorage.removeItem('token');
-    location.reload();
+    location.replace('/Frontend/index.html');
 }
