@@ -1,7 +1,7 @@
-//disabled bei id          E
-//admin rolle bearbeiten
-//zurück zum user anlegen  E
-//frontend valuation
+//disabled bei id           E
+//admin rolle bearbeiten    E
+//zurück zum user anlegen   E
+//frontend valuation        
 //token mitschicken bei liste, damit nur admin es sieht E
 const token = sessionStorage.getItem("token");
 
@@ -31,8 +31,8 @@ var form = `<div class="container d-flex justify-content-center">
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
                 <select class="form-control" id="admin" name="admin">
-                    <option value="True">True</option>
-                    <option value="False">False</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
                 </select>
         </div>
     <div class="mb-3 col-12 col-md-3">
@@ -46,8 +46,8 @@ var form = `<div class="container d-flex justify-content-center">
     </div>
 
         <div class="mb-3 col-12 col-md-3">
-            <label for="mail" class="form-label">Email-Addresse</label>
-            <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com">
+            <label for="email" class="form-label">Email-Addresse</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
         </div>
       
         <div class="mb-3 col-12 col-md-3">
@@ -117,7 +117,7 @@ const roleSelect = document.getElementById('role');
 // Add an event listener to the isAdmin select element
 isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
-    if (isAdminSelect.value === 'True') {
+    if (isAdminSelect.value === 'true') {
         // If true, set the role to 'admin'
         roleSelect.value = 'Admin';
     } else {
@@ -156,6 +156,12 @@ function validateInput(inputField) {
 
 // Trigger the change event to set the initial value
 isAdminSelect.dispatchEvent(new Event('change'));
+
+function displayError(input, message = '') {
+    input.addClass("input-error");
+    const parent = input.parent();
+    parent.append(`<p class="error-message">${message}</p>`);
+};
 
 ///////////////////////////
 // G E T  R E Q U E S T //
@@ -291,7 +297,7 @@ $("#saveButton").on("click", e => {
     const newUser = {
         "id": $("#userId").val(),
         "admin": $("#admin").val(),
-        "email": $("#mail").val(),
+        "email": $("#email").val(),
         "firstname": $("#firstname").val(),
         "gender": $("#gender").val(),
         "lastname": $("#lastname").val(),
@@ -361,14 +367,14 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
                 <select class="form-select" id="admin" name="admin">
-                    <option value="True" ${user.admin ? 'selected' : ''}>True</option>
-                    <option value="False" ${!user.admin ? 'selected' : ''}>False</option>
+                    <option value="true" ${user.admin ? 'selected' : ''}>True</option>
+                    <option value="false" ${!user.admin ? 'selected' : ''}>False</option>
                 </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
-            <label for="mail" class="form-label">Email-Addresse</label>
-            <input type="email" value="${user.email}" class="form-control" id="newmail" name="mail" placeholder="name@example.com">
+            <label for="email" class="form-label">Email-Addresse</label>
+            <input type="email" value="${user.email}" class="form-control" id="newmail" name="email" placeholder="name@example.com">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -443,7 +449,7 @@ function edit(user) {
     const roleSelect = document.getElementById('role');
     isAdminSelect.addEventListener('change', function () {
         // Check if isAdmin is true
-        if (isAdminSelect.value === 'True') {
+        if (isAdminSelect.value === 'true') {
             // If true, set the role to 'admin'
             roleSelect.value = 'Admin';
         } else {
@@ -453,7 +459,6 @@ function edit(user) {
     });
 
 }
-
 
 //hide show password
 function togglePasswordVisibility() {
@@ -510,8 +515,11 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
 
 //i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
 function sendUpdatedUser(user) {
+    console.log(user)
     let errorMessage = 'Bitte gültigen Wert eintragen.';
     var errorCount = 0;
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
     /* Checking form function */
     for (let key in user) {
         if (user.hasOwnProperty(key) && user[key] === '') {
@@ -540,8 +548,3 @@ function sendUpdatedUser(user) {
     });
 }
 
-function displayError(input, message = '') {
-    input.addClass("input-error");
-    const parent = input.parent();
-    parent.append(`<p class="error-message">${message}</p>`);
-};
