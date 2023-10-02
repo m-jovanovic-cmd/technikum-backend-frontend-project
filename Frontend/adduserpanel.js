@@ -1,7 +1,8 @@
-//VALIDATION NEEDED
-//ins html geben
-//const token = sessionStorage.getItem("token");
-//console.log(token)
+//disabled bei id          E
+//admin rolle bearbeiten
+//zurück zum user anlegen  E
+//frontend valuation
+//token mitschicken bei liste, damit nur admin es sieht
 
 var form = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
@@ -182,7 +183,7 @@ function createUserDisplay(user, authToken) {
     row.append(`<td>${user.street}</td>`);
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
-    row.append(`<td td > <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id}, '${authToken}')">Edit</button></td>`);
+    row.append(`<td> <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id}, '${authToken}')">Edit</button></td>`);
     row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id}, '${authToken}')">Delete</button></td>`);
 
 
@@ -311,20 +312,6 @@ function getUser(userId) {
     });
 }
 
-
-//<select class="form-control" id="isAdmin" name="isAdmin">
-//<option value="true" ${user.admin === true ? 'selected' : ''}>True</option>
-//<option value="false" ${user.admin === false ? 'selected' : ''}>False</option>
-//</select>
-
-//<div class="mb-3 col-12 col-md-3">
-//<label for="role" class="form-label">Rolle</label>
-//    <select class="form-control" id="role" name="role">
-//            <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
-//            <option value="customer" ${user.role === 'customer' ? 'selected' : ''}>Customer</option>
-//    </select>
-//</div>
-
 function edit(user) {
     console.log(user)
     let editForm = `<div class="container d-flex justify-content-center">
@@ -336,14 +323,16 @@ function edit(user) {
     <div class="row">
     <div class="mb-3 col-12 col-md-3">
             <label for="userId" class="form-label">User ID</label>
-           <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID" readonly>
+           <input type="userId" value="${user.id}" class="form-control" id="newuserId" name="id" placeholder="User ID" disabled>
       </div>
         
 
-      <div class="mb-3 col-12 col-md-3">
-        <label for="isAdmin" class="form-label">isAdmin</label>
-        <input type="isAdmin" value="${user.admin}" class="form-control" id="admin" name="admin" placeholder="isAdmin" readonly>
-
+        <div class="mb-3 col-12 col-md-3">
+            <label for="isAdmin" class="form-label">isAdmin</label>
+                <select class="form-select" id="admin" name="admin">
+                    <option value="true" ${user.admin === 'true' ? 'selected' : ''}>True</option>
+                    <option value="false" ${user.admin === 'false' ? 'selected' : ''}>False</option>
+                </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -387,7 +376,14 @@ function edit(user) {
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
-             <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle" readonly>
+             <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle">
+        </div>
+        <div class="mb-3 col-12 col-md-3">
+            <label for="role" class="form-label">Rolle</label>
+                <select class="form-control" id="role" name="role" disabled>
+                    <option value="Customer">Customer</option>
+                    <option value="Admin">Admin</option>
+                </select>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -413,7 +409,7 @@ function edit(user) {
         </div>
     </div>
     <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3">Update</button>
-    
+    <a href="./adduserpanel.html" class="btn btn-light mt-3" role="button">New User</a>
     </div>
 </div>`;
     $('.alert').alert()
