@@ -31,8 +31,8 @@ var form = `<div class="container d-flex justify-content-center">
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
                 <select class="form-control" id="admin" name="admin">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
                 </select>
         </div>
     <div class="mb-3 col-12 col-md-3">
@@ -117,7 +117,7 @@ const roleSelect = document.getElementById('role');
 // Add an event listener to the isAdmin select element
 isAdminSelect.addEventListener('change', function () {
     // Check if isAdmin is true
-    if (isAdminSelect.value === 'true') {
+    if (isAdminSelect.value === 'True') {
         // If true, set the role to 'admin'
         roleSelect.value = 'Admin';
     } else {
@@ -335,7 +335,7 @@ function getUser(userId) {
         headers: {},
         success: (response) => {
 
-            console.log(response)
+            console.log(response.admin)
             //console.log("i got the user")
             populatedform = edit(response)
             return populatedform;
@@ -361,8 +361,8 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
                 <select class="form-select" id="admin" name="admin">
-                    <option value="true" ${user.admin === 'true' ? 'selected' : ''}>True</option>
-                    <option value="false" ${user.admin === 'false' ? 'selected' : ''}>False</option>
+                    <option value="True" ${user.admin ? 'selected' : ''}>True</option>
+                    <option value="False" ${!user.admin ? 'selected' : ''}>False</option>
                 </select>
         </div>
 
@@ -443,7 +443,7 @@ function edit(user) {
     const roleSelect = document.getElementById('role');
     isAdminSelect.addEventListener('change', function () {
         // Check if isAdmin is true
-        if (isAdminSelect.value === 'true') {
+        if (isAdminSelect.value === 'True') {
             // If true, set the role to 'admin'
             roleSelect.value = 'Admin';
         } else {
@@ -509,7 +509,7 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
 });
 
 //i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
-function sendUpdatedUser(user, token) {
+function sendUpdatedUser(user) {
     let errorMessage = 'Bitte gültigen Wert eintragen.';
     var errorCount = 0;
     /* Checking form function */

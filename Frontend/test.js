@@ -168,3 +168,12 @@ function createUser(newUser, authToken) {
         }
     });
 }
+
+
+<div class="mb-3 col-12 col-md-3">
+    <label for="isAdmin" class="form-label">isAdmin</label>
+    <select class="form-control" id="admin" name="admin">
+        <option value="true">True</option>
+        <option value="false">False</option>
+    </select>
+</div>
