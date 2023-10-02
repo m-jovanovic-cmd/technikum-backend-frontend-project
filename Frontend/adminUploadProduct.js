@@ -58,8 +58,6 @@ function uploadProductData(event) {
     const fileData = new FormData();
     fileData.append("file", fileInput.files[0]);
 
-    // const token = sessionStorage.getItem("token");
-
     // init values for validation
     var errorCount = 0;
     let errorMessage = 'Bitte gültigen Wert eintragen.';
