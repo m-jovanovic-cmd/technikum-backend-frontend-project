@@ -1,8 +1,9 @@
 //disabled bei id           E
 //admin rolle bearbeiten    E
 //zurück zum user anlegen   E
-//frontend valuation        
-//token mitschicken bei liste, damit nur admin es sieht E
+//frontend valuation        E
+//token mitschicken, 
+//damit nur admin es sieht  E
 const token = sessionStorage.getItem("token");
 
 $.ajax({
@@ -320,17 +321,8 @@ $("#saveButton").on("click", e => {
 // P U T  R E Q U E S T //
 /////////////////////////
 
-//für form button id=sendUpdatedUser
-//für update button id= updatebuttonputrequest
-$("#updatebuttonputrequest").on("click", () => {
-    const userId = $(this).attr(`${user.id}`);
-    console.log(userId)
-});
-
 function updatebuttonputrequest(userId) {
     userfromdatabase = getUser(userId)
-    //console.log(userfromdatabase)
-    //edit(userfromdatabase)
 }
 function getUser(userId) {
 
@@ -371,10 +363,9 @@ function edit(user) {
                     <option value="false" ${!user.admin ? 'selected' : ''}>False</option>
                 </select>
         </div>
-
         <div class="mb-3 col-12 col-md-3">
             <label for="email" class="form-label">Email-Addresse</label>
-            <input type="email" value="${user.email}" class="form-control" id="newmail" name="email" placeholder="name@example.com">
+            <input type="email" value="${user.email}" class="form-control" id="newemail" name="email" placeholder="name@example.com">
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -391,7 +382,6 @@ function edit(user) {
                         <option value="KA" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Keine Angabe</option>
                 </select>
         </div>
-
         <div class="mb-3 col-12 col-md-3">
             <label for="lastname" class="form-label">Nachname</label>
             <input type="text" value="${user.lastname}" class="form-control" id="newlastname" name="lastname" placeholder="Nachname">
@@ -435,13 +425,13 @@ function edit(user) {
             <label for="username" class="form-label">Username</label>
             <input type="text" value="${user.username}"
              class="form-control" id="newusername" name="newusername" placeholder="Username">
-
         </div>
     </div>
     <button type="button" id="sendUpdatedUser" class="btn btn-primary mt-3">Update</button>
     <a href="./adduserpanel.html" class="btn btn-light mt-3" role="button">New User</a>
     </div>
 </div>`;
+
     $('.alert').alert()
     document.getElementById("form").innerHTML = editForm;
     //console.log(editForm)
@@ -486,15 +476,12 @@ function validateInputUpdateUser(inputField) {
     }
 }
 
-// Event listener for the "Update" button click
-//streetnumber null -> is a get problem
-//make id unchangeable -> fixed this with readonly option on id
 $(document).on("click", "#sendUpdatedUser", function (e) {
     console.log("Button clicked!");
     const user = {
         "id": $("#newuserId").val(),
         "admin": $("#admin").val(),
-        "email": $("#newmail").val(),
+        "email": $("#newemail").val(),
         "firstname": $("#newfirstname").val(),
         "gender": $("#gender").val(),
         "lastname": $("#newlastname").val(),
@@ -508,12 +495,9 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
         "username": $("#newusername").val()
     }
     console.log("new user: ", user);
-
-    // Pass the user object as an argument to your desired function
     sendUpdatedUser(user);
 });
 
-//i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
 function sendUpdatedUser(user) {
     console.log(user)
     let errorMessage = 'Bitte gültigen Wert eintragen.';
@@ -524,12 +508,11 @@ function sendUpdatedUser(user) {
     for (let key in user) {
         if (user.hasOwnProperty(key) && user[key] === '') {
             errorCount++;
-            let field = $('#' + key)
+            let field = $('#' + 'new' + key)
             displayError(field, errorMessage)
         }
     };
     console.log("sendUpdatedUser(user): ", user);
-    // Your AJAX request to update the user with the user object
     $.ajax({
         url: `http://localhost:8080/api/users/update/${user.id}`,
         type: "PUT",
