@@ -182,7 +182,7 @@ function createUserDisplay(user, authToken) {
     row.append(`<td>${user.street}</td>`);
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
-    row.append(`<td td > <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id})">Edit</button></td>`);
+    row.append(`<td td > <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id}, '${authToken}')">Edit</button></td>`);
     row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id}, '${authToken}')">Delete</button></td>`);
 
 
@@ -226,12 +226,14 @@ function sendDeleteRequest(userId, authToken) {
 ////////////////////
 // POST REQEUEST //
 ///////////////////
-function createUser(newUser) {
+function createUser(newUser, authToken) {
+    console.log(authToken)
     $.ajax({
         url: "http://localhost:8080/api/users",
         type: "POST",
         cors: true,
         contentType: "application/json",
+        headers: { "Authorization": authToken },
         data: JSON.stringify(newUser),
         success: (response) => {
             // Display the created user or perform other actions here
@@ -247,6 +249,7 @@ function createUser(newUser) {
 }
 // Add a click event listener to the "Save" button
 $("#saveButton").on("click", e => {
+
     // Assign form input values to the user object properties
     const newUser = {
         "id": $("#userId").val(),
@@ -266,7 +269,7 @@ $("#saveButton").on("click", e => {
     }
     // Send the user data to the server
     console.log(newUser)
-    createUser(newUser);
+    createUser(newUser, authToken);
 
 });
 
