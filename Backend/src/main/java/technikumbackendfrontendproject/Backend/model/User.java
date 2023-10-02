@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity(name = "user")
 public class User {
@@ -12,46 +13,55 @@ public class User {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    
+
+    @NotBlank
     @Column(name = "gender", nullable = false)
     private String gender;
 
+    @NotBlank
     @Column(name = "username", nullable = false)
     private String username;
 
     //TO DO should be hashed
     //SHA1 oder SHA256 und salting
-
+    @NotBlank
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "admin", nullable = false)
-    private Boolean admin = false   ;
+    private Boolean admin = false;
 
+    @NotBlank
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
+    @NotBlank
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    @NotBlank
     @Column(name = "email", nullable = false)
     private String email;
 
+    @NotBlank
     @Column(name = "postcode", nullable = false)
     private String postcode;
 
+    @NotBlank
     @Column(name = "location", nullable = false)
     private String location;
 
+    @NotBlank
     @Column(name = "street", nullable = false)
     private String street;
 
+    @NotBlank
     @Column(name = "streetnumber", nullable = false)
     private String streetnumber;
 
     @Column(name = "status", nullable = false)
     private String status;
-
+    
     @Column(name = "role", nullable = false)
     private String role;
 
