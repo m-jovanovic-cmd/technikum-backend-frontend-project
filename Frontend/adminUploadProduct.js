@@ -1,3 +1,12 @@
+const token = sessionStorage.getItem("token");
+
+/* 
+Validierung des tokens ob Admin
+
+if(!token) {
+    location.replace('/Frontend/index.html');
+} */
+
 $.get({
     url: "http://localhost:8080/api/taxes",
     cors: true,
@@ -40,7 +49,7 @@ function uploadProductData(event) {
     const fileData = new FormData();
     fileData.append("file", fileInput.files[0]);
 
-    const token = sessionStorage.getItem("token");
+    // const token = sessionStorage.getItem("token");
 
     // init values for validation
     var errorCount = 0;

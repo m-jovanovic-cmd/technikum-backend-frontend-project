@@ -3,6 +3,8 @@ renderSessionButton();
 function renderSessionButton() {
     const token = sessionStorage.getItem('token');
 
+    // Validierung schreiben ob token "echt" ist durch API Request
+
     const buttonContainer = $("#sessionActionButton");
     buttonContainer.empty();
 

@@ -13,13 +13,17 @@ $("#register-button").on("click", e => {
         "streetnumber": $("#streetNumber-registration").val()
     }
 
+    // Validierung der Daten im Frontend
+
     $.ajax({
         url: "http://localhost:8080/api/users",
         type: "POST",
         cors: true,
         contentType: "application/json",
         data: JSON.stringify(regData),
-        success: console.log,
+        success: () => {
+            location.replace('/Frontend/index.html')
+        },
         error: console.error
     });
 });
