@@ -239,6 +239,8 @@ function createUser(newUser, authToken) {
             // Display the created user or perform other actions here
             console.log("User created:", response);
             location.reload(true);
+            window.alert("User created successfully!");
+
         },
         error: (error) => {
             console.log(newUser)
@@ -247,6 +249,8 @@ function createUser(newUser, authToken) {
         }
     });
 }
+
+
 // Add a click event listener to the "Save" button
 $("#saveButton").on("click", e => {
 
@@ -299,7 +303,7 @@ function getUser(userId) {
         success: (response) => {
 
             console.log(response)
-            console.log("i got the user")
+            //console.log("i got the user")
             populatedform = edit(response)
             return populatedform;
         },
@@ -469,8 +473,6 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
     // Pass the user object as an argument to your desired function
     sendUpdatedUser(user);
 });
-//TO-DO id aus formular entfernen
-// Function to update the user with the provided user object
 
 //i save the top, top is diplayed in tabelle, i updated user, top is in object, is send to server, display is updated, top becomes null
 function sendUpdatedUser(user, token) {

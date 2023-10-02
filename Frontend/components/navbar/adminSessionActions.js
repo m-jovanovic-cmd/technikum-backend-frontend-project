@@ -6,7 +6,7 @@ function renderAdminActions() {
     $.ajax({
         url: "http://localhost:8080/isadmin",
         type: "GET",
-        dataType: "json", // Specify the expected response data type
+        dataType: "json",
         headers: { "Authorization": token },
         contentType: "application/json",
         data: {},
@@ -16,15 +16,14 @@ function renderAdminActions() {
                 actionContainer.empty();
 
                 const action = $(
-                    `<div class="dropdown">
-                        <a class="nav-link dropdown-toggle" type="button" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ADMIN
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                            <a class="dropdown-item" href="./adduserpanel.html">Add User</a>
-                            <a class="dropdown-item" href="./adminUploadProduct.html">Add Products</a>
-                        </div>
-                    </div>`
+                    `<ul class="navbar-nav ps-1 d-flex col">
+                        <li class="nav-item active">
+                            <a href="./adduserpanel.html" class="nav-link">ADD USER</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="./adminUploadProduct.html" class="nav-link">ADD PRODUCT</a>
+                        </li>               
+                  </ul>`
                 );
 
                 actionContainer.append(action);
@@ -35,9 +34,3 @@ function renderAdminActions() {
         }
     });
 }
-
-//const action = $(
-//    `< a href = "./adduserpanel.html" class= "nav-link" >
-//    ADMIN
-//</>`);
-//actionContainer.append(action)
