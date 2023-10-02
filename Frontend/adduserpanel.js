@@ -2,7 +2,24 @@
 //admin rolle bearbeiten
 //zurück zum user anlegen  E
 //frontend valuation
-//token mitschicken bei liste, damit nur admin es sieht
+//token mitschicken bei liste, damit nur admin es sieht E
+const token = sessionStorage.getItem("token");
+
+$.ajax({
+    url: "http://localhost:8080/isadmin",
+    type: "GET",
+    cors: true,
+    headers: { "Authorization": token },
+    contentType: "application/json",
+    data: {},
+    success: success => {
+        console.log(success);
+    },
+    error: error => {
+        console.log(error);
+        location.replace('/Frontend/index.html');
+    }
+});
 
 var form = `<div class="container d-flex justify-content-center">
     <div class="border p-5 rounded">
@@ -390,7 +407,7 @@ function edit(user) {
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="role" class="form-label">Rolle</label>
-             <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle">
+             <input type="role" value="${user.role}" class="form-control" id="role" name="role" placeholder="Rolle" disabled>
         </div>
 
         <div class="mb-3 col-12 col-md-3">
@@ -519,12 +536,6 @@ function sendUpdatedUser(user, token) {
         },
         error: (error) => {
             console.log("Error updating user:", error);
-            if (error.status === 400) {
-                for (let err of error.responseJSON.errors) {
-                    let field = $("#" + err.field);
-                    displayError(field, err.defaultMessage)
-                }
-            }
         }
     });
 }

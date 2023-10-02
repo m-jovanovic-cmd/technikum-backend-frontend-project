@@ -131,3 +131,40 @@ function displayError(input, message = '') {
     const parent = input.parent();
     parent.append(`<p class="error-message">${message}</p>`);
 };
+
+function createUser(newUser, authToken) {
+    let errorMessage = 'Bitte gültigen Wert eintragen.';
+    var errorCount = 0;
+    // remove Validation error-messages
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
+    /* Checking form function */
+    for (let key in newUser) {
+        if (newUser.hasOwnProperty(key) && newUser[key] === '') {
+            errorCount++;
+            let field = $('#' + key)
+            displayError(field, errorMessage)
+        }
+    };
+    console.log(authToken)
+    $.ajax({
+        url: "http://localhost:8080/api/users",
+        type: "POST",
+        cors: true,
+        contentType: "application/json",
+        headers: { "Authorization": authToken },
+        data: JSON.stringify(newUser),
+        success: (response) => {
+            // Display the created user or perform other actions here
+            console.log("User created:", response);
+            location.reload(true);
+            window.alert("User created successfully!");
+
+        },
+        error: (error) => {
+            console.log(newUser)
+            // Handle errors here if needed
+            console.error("Error:", error);
+        }
+    });
+}
