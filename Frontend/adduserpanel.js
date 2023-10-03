@@ -1,9 +1,4 @@
-//disabled bei id           E
-//admin rolle bearbeiten    E
-//zurück zum user anlegen   E
-//frontend valuation        E
-//token mitschicken, 
-//damit nur admin es sieht  E
+
 const token = sessionStorage.getItem("token");
 
 $.ajax({
