@@ -1,11 +1,10 @@
 
-const token = sessionStorage.getItem("token");
-
+const authToken = sessionStorage.getItem("token");
 $.ajax({
     url: "http://localhost:8080/isadmin",
     type: "GET",
     cors: true,
-    headers: { "Authorization": token },
+    headers: { "Authorization": authToken },
     contentType: "application/json",
     data: {},
     success: success => {
@@ -183,11 +182,8 @@ function displayAllUsers(users) {
         tableBody.append(userDisplay);
     };
 };
-const authToken = sessionStorage.getItem("token");
-console.log(authToken)
-function createUserDisplay(user, authToken) {
-    authToken = sessionStorage.getItem("token");
-    console.log(authToken)
+
+function createUserDisplay(user) {
     // Create a new row element
     const row = $("<tr>");
     // Append table cells for each property you want to display
@@ -204,8 +200,8 @@ function createUserDisplay(user, authToken) {
     row.append(`<td>${user.street}</td>`);
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
-    row.append(`<td> <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id}, '${authToken}')">Edit</button></td>`);
-    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id}, '${authToken}')">Delete</button></td>`);
+    row.append(`<td> <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id})">Edit</button></td>`);
+    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
 
 
     return row; // Return the created row element
@@ -222,8 +218,8 @@ function createUserDisplay(user, authToken) {
 //    sendDeleteRequest(userId, token);
 //});
 
-function sendDeleteRequest(userId, authToken) {
-    console.log(authToken)
+function sendDeleteRequest(userId) {
+    //console.log(authToken)
     //var token = sessionStorage.getItem("token");
     if (confirm("Are you sure you want to delete this record?")) {
         $.ajax({
@@ -248,7 +244,7 @@ function sendDeleteRequest(userId, authToken) {
 ////////////////////
 // POST REQEUEST //
 ///////////////////
-function createUser(newUser, authToken) {
+function createUser(newUser) {
     let errorMessage = 'Bitte gültigen Wert eintragen.';
     var errorCount = 0;
     // remove Validation error-messages

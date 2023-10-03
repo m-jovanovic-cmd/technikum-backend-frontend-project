@@ -19,7 +19,7 @@ $.ajax({
     url: "http://localhost:8080/isadmin",
     type: "GET",
     cors: true,
-    headers: { "Authorization": token },
+    headers: { "Authorization": authToken },
     contentType: "application/json",
     data: {},
     success: success => {
@@ -100,13 +100,13 @@ function uploadProductData(event) {
         cors: true,
         processData: false,
         contentType: false,
-        headers: { "Authorization": token },
+        headers: { "Authorization": authToken },
         data: fileData,
         success: (response) => {
             console.log(typeof (response));
             product = { ...product, imageUrl: response };
             console.log(product)
-            uploadProductWithUrl(product, token);
+            uploadProductWithUrl(product, authToken);
         },
         error: function (error) {
             console.error("Error:", error)
