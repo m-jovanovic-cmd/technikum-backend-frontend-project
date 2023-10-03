@@ -42,16 +42,16 @@ var form = `<div class="container d-flex justify-content-center">
 
         <div class="mb-3 col-12 col-md-3">
             <label for="email" class="form-label">Email-Addresse</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" oninput="validateInputEmail(this)">
         </div>
       
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
-                    <option value="W">Weiblich</option>
-                    <option value="M">Männlich</option>
+                    <option value="W">Frau</option>
+                    <option value="M">Herr</option>
                     <option value="Anderes">Anderes</option>
-                    <option value="KA">Keine Angabe</option>
+                    <option value="KA">Apache Attack-Helicopter</option>
                 </select>
         </div>
 
@@ -150,9 +150,23 @@ function validateInput(inputField) {
 }
 
 function validateInputEmail(inputField) {
-    inputField.value
-}
+    // Get the input value
+    const email = inputField.value;
+    console.log(email)
+    // Regular expression to match a valid email address
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+    // Test the input value against the regular expression
+    if (emailPattern.test(email)) {
+        // Valid email address
+        return true;
+    } else {
+        // Invalid email address
+        //inputField.value = ""
+        //return inputField;
+        return false;
+    }
+}
 
 // Trigger the change event to set the initial value
 isAdminSelect.dispatchEvent(new Event('change'));
@@ -263,6 +277,7 @@ function createUser(newUser) {
             displayError(field, errorMessage)
         }
     };
+
     if (errorCount > 0) return;
     console.log(authToken)
     $.ajax({
@@ -373,10 +388,10 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
-                        <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Weiblich</option>
-                        <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Männlich</option>
+                        <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Frau</option>
+                        <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Herr</option>
                         <option value="Anderes" ${user.gender === 'Anderes' ? 'selected' : ''}>Anderes</option>
-                        <option value="KA" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Keine Angabe</option>
+                        <option value="KA" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Apache Attack-Helicopter</option>
                 </select>
         </div>
         <div class="mb-3 col-12 col-md-3">

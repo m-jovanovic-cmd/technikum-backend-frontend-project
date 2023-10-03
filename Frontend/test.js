@@ -6,13 +6,14 @@ frontend valuation                                  E
 token mitschicken, damit nur admin es sieht         E
 
 E-Mail Validierung rudimentär zumindest, 
-ob zeichenkette dann @ dann iwas dann dot dann iwas Password auf hide per default       
+ob zeichenkette dann @ dann iwas dann dot dann iwas 
+Password auf hide per default       
 form element nicht als literal sondern im html da kein dynamischer inhalt
 authToken redundant da const token schon besteht und global verfügbar                   E
 auch übergaben in button funktionen von authToken nicht nötig                           E
 return if error count über 0 keine requests senden                                      E
 
-isAdmin Boolean muss bei admin anlegen true sein
+isAdmin Boolean muss bei admin anlegen true sein                                        E
 */
 
 
