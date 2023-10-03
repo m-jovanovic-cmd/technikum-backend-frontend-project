@@ -5,14 +5,42 @@ zurück zum user anlegen   E
 frontend valuation        E
 token mitschicken, damit nur admin es sieht  E
 
-E-Mail Validierung rudimentär zumindest, ob zeichenkette dann @ dann iwas dann dot dann iwas
+E-Mail Validierung rudimentär zumindest, 
+ob zeichenkette dann @ dann iwas dann dot dann iwas
 Password auf hide per default
 isAdmin Boolean muss bei admin anlegen true sein
 form element nicht als literal sondern im html da kein dynamischer inhalt
-authToken redundant da const token schon besteht und global verfügbar
+authToken redundant da const token schon besteht und global verfügbar   E
 auch übergaben in button funktionen von authToken nicht nötig
 return if error count über 0 keine requests senden
 */
+<div class="mb-3 col-12 col-md-3">
+    <label for="password" class="form-label">Passwort</label>
+    <input type="password" value="${user.password}" class="form-control" id="newpassword" name="password">
+        <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
+</div>
+
+<div class="mb-3 col-12 col-md-3">
+            <label for="password" class="form-label">Passwort</label>
+            <input type="password" class="form-control" id="password" name="password"
+                placeholder="Passwort">
+                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Show</span>
+        </div>
+
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("newpassword");
+    const passwordToggle = document.querySelector(".password-toggle");
+
+    // Toggle the input's type between "password" and "text"
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+
+    // Change the text of the toggle button
+    passwordToggle.textContent = passwordToggle.textContent === "Show" ? "Hide" : "Show";
+
+    // Add or remove a class to style the button differently when clicked
+    passwordToggle.classList.toggle("clicked");
+}
 const token = sessionStorage.getItem("token");
 
 $.ajax({

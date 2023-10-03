@@ -61,9 +61,9 @@ var form = `<div class="container d-flex justify-content-center">
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="password" class="form-label">Passwort</label>
-            <input type="text" class="form-control" id="password" name="password"
+            <input type="password" class="form-control" id="password" name="password"
                 placeholder="Passwort">
-                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Hide</span>
+                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Show</span>
         </div>
         <div class="mb-3 col-12 col-md-3">
             <label for="postcode" class="form-label">PLZ</label>
@@ -136,6 +136,7 @@ function createUsertogglePasswordVisibility() {
     // Add or remove a class to style the button differently when clicked
     passwordToggle.classList.toggle("clicked");
 }
+
 
 //validate postcode
 function validateInput(inputField) {
