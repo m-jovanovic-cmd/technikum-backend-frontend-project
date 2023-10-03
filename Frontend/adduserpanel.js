@@ -48,10 +48,10 @@ var form = `<div class="container d-flex justify-content-center">
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
-                    <option value="W">Frau</option>
-                    <option value="M">Herr</option>
+                    <option value="Frau">Frau</option>
+                    <option value="Herr">Herr</option>
                     <option value="Anderes">Anderes</option>
-                    <option value="KA">Apache Attack-Helicopter</option>
+                    <option value="Frau">Apache Attack-Helicopter</option>
                 </select>
         </div>
 
@@ -385,10 +385,9 @@ function edit(user) {
         <div class="mb-3 col-12 col-md-3">
             <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender" name="gender">
-                        <option value="W" ${user.gender === 'W' ? 'selected' : ''}>Frau</option>
-                        <option value="M" ${user.gender === 'M' ? 'selected' : ''}>Herr</option>
+                        <option value="Frau" ${user.gender === 'W' ? 'selected' : ''}>Frau</option>
+                        <option value="Herr" ${user.gender === 'M' ? 'selected' : ''}>Herr</option>
                         <option value="Anderes" ${user.gender === 'Anderes' ? 'selected' : ''}>Anderes</option>
-                        <option value="KA" ${user.gender === 'Keine Angabe' ? 'selected' : ''}>Apache Attack-Helicopter</option>
                 </select>
         </div>
         <div class="mb-3 col-12 col-md-3">
