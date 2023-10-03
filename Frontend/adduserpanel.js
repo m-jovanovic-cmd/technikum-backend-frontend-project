@@ -160,13 +160,15 @@ function validateInputEmail(inputField) {
     // Test the input value against the regular expression
     if (emailPattern.test(email)) {
         // Valid email address
+        console.log("true")
         return true;
     } else {
         // Invalid email address
         //inputField.value = ""
         //return inputField;
         //return false;
-        let field = $('#' + email)
+        let field = $('#email')
+        console.log("das field: ",field)
         displayError(field, errorMessage)
         return false;
     }
@@ -178,6 +180,7 @@ isAdminSelect.dispatchEvent(new Event('change'));
 function displayError(input, message = '') {
     input.addClass("input-error");
     const parent = input.parent();
+    console.log("der parent: ", parent )
     parent.append(`<p class="error-message">${message}</p>`);
 };
 
