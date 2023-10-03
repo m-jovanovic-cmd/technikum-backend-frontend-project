@@ -25,9 +25,9 @@ var form = `<div class="container d-flex justify-content-center">
     <div class="row">
         <div class="mb-3 col-12 col-md-3">
             <label for="isAdmin" class="form-label">isAdmin</label>
-                <select class="form-control" id="admin" name="admin">
-                    <option value="true">True</option>
+                <select class="form-control" id="admin" name="admin">                   
                     <option value="false">False</option>
+                    <option value="true">True</option>
                 </select>
         </div>
     <div class="mb-3 col-12 col-md-3">
@@ -259,6 +259,7 @@ function createUser(newUser) {
             displayError(field, errorMessage)
         }
     };
+    if (errorCount > 0) return;
     console.log(authToken)
     $.ajax({
         url: "http://localhost:8080/api/users",
@@ -504,6 +505,7 @@ function sendUpdatedUser(user) {
             displayError(field, errorMessage)
         }
     };
+    if (errorCount > 0) return;
     console.log("sendUpdatedUser(user): ", user);
     $.ajax({
         url: `http://localhost:8080/api/users/update/${user.id}`,

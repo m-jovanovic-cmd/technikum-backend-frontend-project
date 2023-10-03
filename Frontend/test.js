@@ -1,31 +1,18 @@
 /*
-disabled bei id           E
-admin rolle bearbeiten    E
-zurück zum user anlegen   E
-frontend valuation        E
-token mitschicken, damit nur admin es sieht  E
+disabled bei id                                     E
+admin rolle bearbeiten                              E
+zurück zum user anlegen                             E
+frontend valuation                                  E
+token mitschicken, damit nur admin es sieht         E
 
 E-Mail Validierung rudimentär zumindest, 
-ob zeichenkette dann @ dann iwas dann dot dann iwas
-Password auf hide per default
+ob zeichenkette dann @ dann iwas dann dot dann iwas Password auf hide per default       E
 isAdmin Boolean muss bei admin anlegen true sein
 form element nicht als literal sondern im html da kein dynamischer inhalt
-authToken redundant da const token schon besteht und global verfügbar   E
-auch übergaben in button funktionen von authToken nicht nötig
-return if error count über 0 keine requests senden
+authToken redundant da const token schon besteht und global verfügbar                   E
+auch übergaben in button funktionen von authToken nicht nötig                           E
+return if error count über 0 keine requests senden                                      E
 */
-<div class="mb-3 col-12 col-md-3">
-    <label for="password" class="form-label">Passwort</label>
-    <input type="password" value="${user.password}" class="form-control" id="newpassword" name="password">
-        <span class="password-toggle" onclick="togglePasswordVisibility()">Show</span>
-</div>
-
-<div class="mb-3 col-12 col-md-3">
-            <label for="password" class="form-label">Passwort</label>
-            <input type="password" class="form-control" id="password" name="password"
-                placeholder="Passwort">
-                <span class="password-toggle" onclick="createUsertogglePasswordVisibility()">Show</span>
-        </div>
 
 
 function togglePasswordVisibility() {
