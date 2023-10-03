@@ -156,6 +156,8 @@ function validateInputEmail(inputField) {
     let errorMessage = 'Bitte gültige E-Mail-Adresse eintragen.';
     // Regular expression to match a valid email address
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    $(".input-error").removeClass("input-error");
+    $(".error-message").remove();
 
     // Test the input value against the regular expression
     if (emailPattern.test(email)) {
@@ -163,12 +165,12 @@ function validateInputEmail(inputField) {
         return true;
     } else {
         // Invalid email address
-        //inputField.value = ""
+        inputField.value = ""
         //return inputField;
         //return false;
         let field = $('#email')
         displayError(field, errorMessage)
-        return false;
+        return inputField;
     }
 }
 
@@ -224,7 +226,7 @@ function createUserDisplay(user) {
     row.append(`<td>${user.streetnumber}</td>`);
     row.append(`<td>${user.username}</td>`);
     row.append(`<td> <button type="button" id="updatebuttonputrequest" class="btn btn-warning mt-3" onclick="updatebuttonputrequest(${user.id})">Edit</button></td>`);
-    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);
+    row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id}, ${user.admin})">Delete</button></td>`);
 
 
     return row; // Return the created row element
@@ -234,9 +236,13 @@ function createUserDisplay(user) {
 //  D E L E T E  R E Q U E S T //
 /////////////////////////////////
 
-function sendDeleteRequest(userId) {
-    //console.log(authToken)
+function sendDeleteRequest(userId, admin) {
+    //console.log("isAdmin_", admin)
     //var token = sessionStorage.getItem("token");
+    if (admin === true) {
+        window.alert("Cannot delete admin!");
+        return;
+    }
     if (confirm("Are you sure you want to delete this record?")) {
         $.ajax({
             url: `http://localhost:8080/api/users/${userId}`,
