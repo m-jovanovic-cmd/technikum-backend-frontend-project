@@ -13,7 +13,7 @@ $("#register-button").on("click", e => {
         "streetnumber": $("#streetNumber-registration").val()
     }
 
-    // Validierung der Daten im Frontend
+    // TODO: Validierung der Daten im Frontend
 
     $.ajax({
         url: "http://localhost:8080/api/users",
