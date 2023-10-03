@@ -149,6 +149,10 @@ function validateInput(inputField) {
     }
 }
 
+function validateInputEmail(inputField) {
+    inputField.value
+}
+
 
 // Trigger the change event to set the initial value
 isAdminSelect.dispatchEvent(new Event('change'));

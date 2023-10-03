@@ -128,6 +128,7 @@ public class UserService  {
     public UserDTO convertToUserDto(User user) {
         UserDTO userDto = new UserDTO();
         userDto.setUsername(user.getUsername());
+        userDto.setIsAdmin((user.isAdmin()));
         userDto.setStatus(user.getStatus());
         userDto.setRole(user.getRole());
         userDto.setEmail(user.getEmail());

@@ -146,22 +146,23 @@ public class UserDTO {
         return isAdmin;
     }
 
-    public void setIsAdmin(String isAdmin) {
-        this.isAdmin = Boolean.valueOf(isAdmin);
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public User convertToUser() {
-       return new User(this.gender,
-        this.username,
-        this.password,
-        this.firstname,
-        this.lastname ,
-        this.email ,
-        this.postcode,
-        this.location,
-        this.street,
-        this.streetNumber,
-        this.status,
-        this.role);
+       return new User(this.getGender(),
+        this.getIsAdmin(),
+        this.getUsername(),
+        this.getPassword(),
+        this.getFirstname(),
+        this.getLastname(),
+        this.getEmail(),
+        this.getPostcode(),
+        this.getLocation(),
+        this.getStreet(),
+        this.getStreetnumber(),
+        this.getStatus(),
+        this.getRole());
     }
 }
