@@ -42,7 +42,7 @@ var form = `<div class="container d-flex justify-content-center">
 
         <div class="mb-3 col-12 col-md-3">
             <label for="email" class="form-label">Email-Addresse</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" oninput="validateInputEmail(this)">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" onblur="validateInputEmail(this)">
         </div>
       
         <div class="mb-3 col-12 col-md-3">
@@ -166,7 +166,7 @@ function validateInputEmail(inputField) {
         //inputField.value = ""
         //return inputField;
         //return false;
-        let field = $('#' + email)
+        let field = $('#email')
         displayError(field, errorMessage)
         return false;
     }
