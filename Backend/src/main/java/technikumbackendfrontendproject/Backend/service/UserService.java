@@ -98,6 +98,8 @@ public class UserService  {
             updatedUser.setUsername(updatedUserDto.getUsername());
             logger.info("Updating STATUS: " + updatedUser.getStatus() + " -> " + updatedUserDto.getStatus());
             updatedUser.setStatus(updatedUserDto.getStatus());
+            logger.info("Updating isAdmin: " + updatedUser.isAdmin() + " -> " + updatedUserDto.getIsAdmin());
+            updatedUser.setAdmin(updatedUserDto.getIsAdmin());
             logger.info("Updating ROLE: " + updatedUser.getRole() + " -> " + updatedUserDto.getRole());
             updatedUser.setRole(String.valueOf(updatedUserDto.getRole()));
             logger.info("Updating EMAIL: " + updatedUser.getEmail() + " -> " + updatedUserDto.getEmail());

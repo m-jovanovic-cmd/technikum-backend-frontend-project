@@ -68,11 +68,12 @@ public class User {
 
     // CONSTRUCTORS
 
-    public User(Long id, String gender, String username, String password, String firstname, String lastname,
+    public User(Long id, Boolean admin, String gender, String username, String password, String firstname, String lastname,
             String email, String postcode, String location, String street, String streetnumber, String status,
             String role) {
         this.id = id;
         this.gender = gender;
+        this.admin = admin;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -217,5 +218,5 @@ public class User {
         return admin;
     }
 
-
+    public void setAdmin(Boolean admin) {this.admin = admin;}
 }

@@ -3,9 +3,6 @@ package technikumbackendfrontendproject.Backend.model.DTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import jdk.jfr.BooleanFlag;
-import org.hibernate.validator.constraints.Length;
-import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 
 public class UserDTO {
@@ -142,7 +139,7 @@ public class UserDTO {
     }
 
 
-    public @NotNull Boolean getIsAdmin() {
+    public Boolean getIsAdmin() {
         return isAdmin;
     }
 

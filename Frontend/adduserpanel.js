@@ -488,7 +488,7 @@ $(document).on("click", "#sendUpdatedUser", function (e) {
     console.log("Button clicked!");
     const user = {
         "id": $("#newuserId").val(),
-        "admin": $("#admin").val(),
+        "isAdmin": $("#admin").val(),
         "email": $("#newemail").val(),
         "firstname": $("#newfirstname").val(),
         "gender": $("#gender").val(),
