@@ -152,7 +152,8 @@ function validateInput(inputField) {
 function validateInputEmail(inputField) {
     // Get the input value
     const email = inputField.value;
-    console.log(email)
+    //console.log(email)
+    let errorMessage = 'Bitte gültige E-Mail-Adresse eintragen.';
     // Regular expression to match a valid email address
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -164,6 +165,9 @@ function validateInputEmail(inputField) {
         // Invalid email address
         //inputField.value = ""
         //return inputField;
+        //return false;
+        let field = $('#' + email)
+        displayError(field, errorMessage)
         return false;
     }
 }
@@ -229,13 +233,6 @@ function createUserDisplay(user) {
 /////////////////////////////////
 //  D E L E T E  R E Q U E S T //
 /////////////////////////////////
-
-
-//$("#sendDeleteRequest").on("click", () => {
-//    const userId = $(this).attr(`${user.id}`); // Replace with your actual attribute name
-//    console.log(sessionStorage.getItem("token"))
-//    sendDeleteRequest(userId, token);
-//});
 
 function sendDeleteRequest(userId) {
     //console.log(authToken)
