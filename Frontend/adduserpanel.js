@@ -294,7 +294,7 @@ $("#saveButton").on("click", e => {
     // Assign form input values to the user object properties
     const newUser = {
         "id": $("#userId").val(),
-        "admin": $("#admin").val(),
+        "isAdmin": $("#admin").val(),
         "email": $("#email").val(),
         "firstname": $("#firstname").val(),
         "gender": $("#gender").val(),
