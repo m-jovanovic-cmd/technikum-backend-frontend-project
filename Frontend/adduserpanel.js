@@ -42,7 +42,7 @@ var form = `<div class="container d-flex justify-content-center">
 
         <div class="mb-3 col-12 col-md-3">
             <label for="email" class="form-label">Email-Addresse</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" oninput="validateInputEmail(this)">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" onblur="validateInputEmail(this)">
         </div>
       
         <div class="mb-3 col-12 col-md-3">
@@ -180,7 +180,6 @@ isAdminSelect.dispatchEvent(new Event('change'));
 function displayError(input, message = '') {
     input.addClass("input-error");
     const parent = input.parent();
-    console.log("der parent: ", parent )
     parent.append(`<p class="error-message">${message}</p>`);
 };
 
