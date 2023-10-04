@@ -1,16 +1,12 @@
 package technikumbackendfrontendproject.Backend.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.DTO.UserDTO;
 import technikumbackendfrontendproject.Backend.model.User;
-import technikumbackendfrontendproject.Backend.repository.UserRepository;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
@@ -26,13 +22,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping("/createUserWithIsAdmin")
     @PreAuthorize("hasRole('ADMIN')")
-    //public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO)
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> createUserWithIsAdmin(@RequestBody UserDTO userDTO) {
         System.out.println("creating user (controller)");
         User createUser = userService.save(userDTO);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
+    }
+    @PostMapping
+    public ResponseEntity<Long> createUser(@RequestBody User user) {
+        userService.registerUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping

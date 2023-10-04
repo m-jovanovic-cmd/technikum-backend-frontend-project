@@ -39,6 +39,7 @@ public class UserDTO {
     @NotBlank
     @Positive
     private String streetNumber;
+
     @NotNull
     private Boolean isAdmin;
 
@@ -137,7 +138,6 @@ public class UserDTO {
     public void setStreetnumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
-
 
     public Boolean getIsAdmin() {
         return isAdmin;

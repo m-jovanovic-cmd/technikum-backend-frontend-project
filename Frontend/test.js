@@ -16,6 +16,7 @@ isAdmin Boolean muss bei admin anlegen true sein                                
 Admin undeleteable machen wenn eingeloggt                                               E
 
 Neues Problem durch isAdmin DTO
+tabelle unsichtbar machen d-none -> bootstrap
 */
 
 

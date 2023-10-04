@@ -87,7 +87,9 @@ public class User {
         this.role = role;
     }
 
-    public User(String gender, Boolean admin, String username, String password, String firstname, String lastname, String email,
+    public User(String gender,
+                Boolean admin,
+                String username, String password, String firstname, String lastname, String email,
             String postcode, String location, String street, String streetnumber, String status, String role) {
         this.gender = gender;
         this.admin = admin;

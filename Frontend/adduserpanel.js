@@ -284,7 +284,7 @@ function createUser(newUser) {
     if (errorCount > 0) return;
     console.log(authToken)
     $.ajax({
-        url: "http://localhost:8080/api/users",
+        url: "http://localhost:8080/api/users/createUserWithIsAdmin",
         type: "POST",
         cors: true,
         contentType: "application/json",
