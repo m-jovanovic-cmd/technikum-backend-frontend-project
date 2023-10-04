@@ -10,8 +10,8 @@ $("#register-button").on("click", e => {
         "postcode": $("#postcode-registration").val(),
         "location": $("#location-registration").val(),
         "street": $("#street-registration").val(),
-        "streetnumber": $("#streetNumber-registration").val(),
-        "admin": "false"
+        "streetnumber": $("#streetNumber-registration").val()
+
     }
     console.log(regData)
     $.ajax({

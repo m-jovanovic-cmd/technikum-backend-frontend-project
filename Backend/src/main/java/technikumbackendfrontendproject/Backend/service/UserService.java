@@ -64,6 +64,7 @@ public class UserService  {
     public void registerUser(User user) {
         user.setRole("Customer");
         user.setStatus("active");
+        user.setAdmin(false);
         userRepository.save(user);
     }
 
