@@ -1,4 +1,6 @@
 
+const authToken = sessionStorage.getItem("token");
+console.log(authToken)
 //tutorial: https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready)
@@ -69,6 +71,28 @@ function updateCartTotal() {
 // Call the function initially and whenever the cart changes
 updateCartTotal();
 
+/*
+Mit Token User extrahieren
+mithilfe von Configure Spring Security
+*/
+function getUserDataFromToken() {
+    try {
+        // Verify and decode the token
+        const decoded = jwt.verify(token, secretKey);
+
+        // Access user information from the decoded token
+        const userId = decoded.userId;
+        const username = decoded.username;
+        // Add more properties as needed
+
+        console.log('User ID:', userId);
+        console.log('Username:', username);
+    } catch (error) {
+        // Handle token verification errors here
+        console.error('Token verification failed:', error.message);
+    }
+
+}
 ///////////////////////////
 // G E T  R E Q U E S T //
 /////////////////////////
