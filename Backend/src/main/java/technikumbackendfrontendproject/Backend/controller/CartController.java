@@ -50,6 +50,20 @@ public class CartController {
         }
     }
 
+    @PutMapping("/update/{id}")
+    //public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody  @Valid UserDTO updatedUserDto)
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
+        try {
+            UserDTO updatedUser = userService.updateUser(id, updatedUserDto);
+
+            logger.info("Cart with id: " + id + " updated!");
+
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
 
 
 
