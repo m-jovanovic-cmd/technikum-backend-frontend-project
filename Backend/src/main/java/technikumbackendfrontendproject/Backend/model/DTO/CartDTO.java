@@ -64,7 +64,7 @@ public class CartDTO {
         this.product = product;
     }
 
-    public CartDTO(Long total, Long orderstatus, User user, Set<Position> positions, Product product) {
+    public CartDTO() {
         this.total = total;
         this.orderstatus = orderstatus;
         this.user = user;

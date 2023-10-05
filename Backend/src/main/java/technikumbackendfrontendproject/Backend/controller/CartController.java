@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
+import technikumbackendfrontendproject.Backend.model.DTO.CartDTO;
 import technikumbackendfrontendproject.Backend.service.CartService;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 
@@ -52,19 +53,15 @@ public class CartController {
 
     @PutMapping("/update/{id}")
     //public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody  @Valid UserDTO updatedUserDto)
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUserDto) {
+    public ResponseEntity<CartDTO> updateCart(@PathVariable Long id, @RequestBody CartDTO updatedCartDto) {
         try {
-            UserDTO updatedUser = userService.updateUser(id, updatedUserDto);
+            CartDTO updatedCart = cartService.updateCart(id, updatedCartDto);
 
             logger.info("Cart with id: " + id + " updated!");
 
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            return new ResponseEntity<>(updatedCart, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
-}
-
-
-
 }
