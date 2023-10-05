@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
 import technikumbackendfrontendproject.Backend.service.CartService;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 
 import java.util.logging.Logger;
 
@@ -29,9 +30,6 @@ public class CartController {
         return cartService.save(cart);
     }
 
-    @GetMapping
-    public Cart getCart()
-
     @GetMapping("/get{id}")
     public ResponseEntity<Cart> findCartById(@PathVariable Long id) {
         var cart = cartService.findById(id);
@@ -40,5 +38,19 @@ public class CartController {
         }
         return new ResponseEntity<>(cart.get(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cart> deleteCartById(@PathVariable Long id) {
+        try {
+            Cart cart = cartService.getCart(id);
+            cartService.deleteCart(id);
+            return new ResponseEntity<>(cart, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
 
 }

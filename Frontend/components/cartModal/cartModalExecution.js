@@ -69,7 +69,8 @@ function updateCartTotal() {
 // Call the function initially and whenever the cart changes
 updateCartTotal();
 
-
+//Check if cart already exists then update, otherwise create new cart
+//When delete the cart?
 
 
 /*
