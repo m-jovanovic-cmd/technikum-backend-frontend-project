@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-    
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
@@ -52,7 +51,6 @@ public class CartController {
     }
 
     @PutMapping("/update/{id}")
-    //public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody  @Valid UserDTO updatedUserDto)
     public ResponseEntity<CartDTO> updateCart(@PathVariable Long id, @RequestBody CartDTO updatedCartDto) {
         try {
             CartDTO updatedCart = cartService.updateCart(id, updatedCartDto);

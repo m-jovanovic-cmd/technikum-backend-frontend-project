@@ -22,8 +22,6 @@ $.get({
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
     //convert name to lowercase and then compare
-    //convert Type to lowercase and then compare
-
     // Filter products array inside the event listener
     const filteredProducts = products.filter(product => {
         return product.name.toLowerCase().includes(searchString) || product.type.toLowerCase().includes(searchString);
@@ -50,7 +48,6 @@ function displayAllProducts(products) {
 };
 
 function createProductDisplay(product) {
-
     const content = $(`
         <div class="col-lg-4 col-md-6 col-sm-12 my-3">
             <div class="card border border-3">
@@ -70,13 +67,4 @@ function createProductDisplay(product) {
 
     return content;
 };
-// <button type="button" id="cartModalgetProduct" class="btn btn-secondary" onclick="GetObjectAndAddToArray(${user.id})">in Wareknkorb</button>
-function GetObjectAndAddToArray(id) {
-    //get object
-    //put it in array
-    //send to cartModal
-    //check productsDisplay && cartModalExecution && detailseite_produkte.js
-    //can i call a function from another .js? or is there a better way? (pretty sure lol)
-}
 
-//https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
