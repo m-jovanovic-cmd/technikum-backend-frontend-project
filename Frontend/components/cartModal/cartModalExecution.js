@@ -69,19 +69,66 @@ function updateCartTotal() {
 // Call the function initially and whenever the cart changes
 updateCartTotal();
 
+///////////////////////////
+// G E T  R E Q U E S T //
+/////////////////////////
+function getCartTest(userId) {
+    $.ajax({
+        url: `http://localhost:8080/api/carts`,
+        type: "GET",
+        cors: true,
+        headers: {},
+        success: (carts) => {
+            console.log(carts)
+            if (carts.userId === userId) {
+                id == carts.id
+                $.ajax({
+                    url: `http://localhost:8080/api/carts/get${id}`,
+                    cors: true,
+                    headers: {},
+                    success: (users) => {
+                        displayAllProductsInCart(products, cart);
+                        console.log(products, cart)
+                    },
+                    error: console.error
+                });
+            }
+
+        },
+        error: console.error
+    });
+
+}
+////////////////////
+// POST REQEUEST //
+///////////////////
+function createCart(newCart) {
+    $.ajax({
+        url: "http://localhost:8080/api/carts",
+        type: "POST",
+        cors: true,
+        contentType: "application/json",
+        data: JSON.stringify(newCart),
+        success: (response) => {
+            // Display the created user or perform other actions here
+            console.log("Cart created:", response);
+            window.alert("Cart created successfully!");
+
+        },
+        error: (error) => {
+            console.log(newCart)
+            // Handle errors here if needed
+            console.error("Error:", error);
+        }
+    });
+}
 //Check if cart already exists then update, otherwise create new cart
 //When delete the cart?
-function displayAllProductsInCart(products) {
-    const productsContainer = $("#productsContainer");
-    productsContainer.empty();
-
-    let row;
+function displayAllProductsInCart(products, cart) {
+    const tableBody = $("#table tbody");
     for (let i = 0; i < products.length; i++) {
-        if (i % 3 === 0) {
-            row = $(`<div class="row"></div>`);
-            productsContainer.append(row);
-        }
-        row.append(createProductDisplay(products[i]));
+        const cartDisplay = createProductDisplayForCart(product[i], cart);
+        tableBody.append(cartDisplay);
     };
 };
 
@@ -95,7 +142,7 @@ function createProductDisplayForCart(product, cart) {
             <td>${product.name}</td>
             <td class="cart-price cart-column">${product.price}€</td>
             <td class="qty">
-                <input type="number" class="form-control input-quantity" id="input1" value="1">
+                <input type="number" class="form-control input-quantity" id="input1" value=${cart.amount}>
             </td>
             <td>
                 <button class="btn btn-danger btn-sm remove-item text-white"
@@ -155,29 +202,5 @@ $.get({
 //how to display 2 identical products? => couting how many ids, then do price * amout of ids counted in loop
 //pass with a link like in test.js (row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);)
 
-function createProductCartModalDisplay(product) {
 
-    const content = $(`
-    <tr>
-    <td class="w-25">
-        <img src="./images/products/CharmingClaude.jpg${product.imageUrl}" class="img-fluid img-thumbnail"
-            alt="Sheep">
-    </td>
-    <td>Charming Claude${product.name}</td>
-    <td>10000€ ${product.price}</td>
-    <td class="qty"><input type="text" class="form-control" id="input1" value="2">
-    </td>
-    <td>10000€${product.price}</td>
-    <td>
-
-        <a href="#" class="btn btn-danger btn-sm remove-item text-white"
-            data-item-id="1">Remove</a>
-        <i class="fa fa-times"></i>
-        </a>
-    </td>
-</tr>`
-    );
-
-    return content;
-};
 */ 
