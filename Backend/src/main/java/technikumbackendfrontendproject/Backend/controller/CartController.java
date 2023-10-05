@@ -1,13 +1,13 @@
 package technikumbackendfrontendproject.Backend.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
 import technikumbackendfrontendproject.Backend.service.CartService;
+
+import java.util.logging.Logger;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -15,6 +15,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private CartService cartService;
 
@@ -27,4 +28,17 @@ public class CartController {
     public Cart create(@RequestBody Cart cart) {
         return cartService.save(cart);
     }
+
+    @GetMapping
+    public Cart getCart()
+
+    @GetMapping("/get{id}")
+    public ResponseEntity<Cart> findCartById(@PathVariable Long id) {
+        var cart = cartService.findById(id);
+        if (cart.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cart.get(), HttpStatus.OK);
+    }
+
 }

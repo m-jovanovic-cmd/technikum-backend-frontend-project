@@ -4,13 +4,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity(name = "cart")
 public class Cart {
@@ -33,6 +27,10 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     @JsonBackReference
     private Set<Position> positions;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = true)
+    private Product product;
 
     // Constructors
 
@@ -76,6 +74,13 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Set<Position> getPositions() {
