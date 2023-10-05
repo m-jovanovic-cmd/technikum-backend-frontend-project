@@ -56,12 +56,13 @@ public class CartService {
             throw new EntityNotFoundException("User with id: " + existingCartID + " does not exist!");
         } else {
             Cart updatedCart = existingCart.get();
-
             // Update the user information with values from the DTO
             logger.info("Updating TOTAL: " + updatedCart.getTotal() + " -> " + updatedCartDto.getTotal());
             updatedCart.setTotal(updatedCartDto.getTotal());
             logger.info("Updating ORDERSTATUS: " + updatedCart.getOrderstatus() + " -> " + updatedCartDto.getOrderstatus());
             updatedCart.setOrderstatus(updatedCartDto.getOrderstatus());
+            logger.info("Updating AMOUNT: " + updatedCart.getAmount() + " -> " + updatedCartDto.getAmount());
+            updatedCart.setAmount(updatedCartDto.getAmount());
             logger.info("Updating POSITION: " + updatedCart.getPositions() + " -> " + updatedCartDto.getPositions());
             updatedCart.setPositions(updatedCartDto.getPositions());
             //use this, to change user-id from unlooged to logged in user?
@@ -80,6 +81,7 @@ public class CartService {
         CartDTO cartDto = new CartDTO();
         cartDto.setTotal(cart.getTotal());
         cartDto.setOrderstatus((cart.getOrderstatus()));
+        cartDto.setAmount((cart.getAmount()));
         cartDto.setPositions(cart.getPositions());
         cartDto.setUser(cart.getUser());
         cartDto.setProduct(cart.getProduct());

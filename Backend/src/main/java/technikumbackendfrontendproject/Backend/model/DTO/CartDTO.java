@@ -1,5 +1,6 @@
 package technikumbackendfrontendproject.Backend.model.DTO;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import technikumbackendfrontendproject.Backend.model.Position;
 import technikumbackendfrontendproject.Backend.model.Product;
@@ -13,6 +14,10 @@ public class CartDTO {
 
     @NotBlank
     private Long orderstatus;
+
+
+    @NotBlank
+    private Long amount;
 
     @NotBlank
     private User user;
@@ -38,6 +43,13 @@ public class CartDTO {
 
     public void setOrderstatus(Long orderstatus) {
         this.orderstatus = orderstatus;
+    }
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
     public User getUser() {
@@ -67,6 +79,7 @@ public class CartDTO {
     public CartDTO() {
         this.total = total;
         this.orderstatus = orderstatus;
+        this.amount = amount;
         this.user = user;
         this.positions = positions;
         this.product = product;

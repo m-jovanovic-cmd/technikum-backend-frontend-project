@@ -85,22 +85,25 @@ function displayAllProductsInCart(products) {
     };
 };
 
-function createProductDisplayForCart(product) {
+function createProductDisplayForCart(product, cart) {
     const content = $(`
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card border border-3">
-                <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
-                <div class="card-body">
-                    <h4 class="card-title text-center">${product.name}</h4>
-                    <p>Type: ${product.type}<br>Verfügbar: ${product.quantity}<br>Preis: ${product.price}€</p>
-                    <div class="d-flex justify-content-between">
-                        <a href="./detailseite_produkte.html?id=${product.id}" class="btn btn-light" role="button">Details</a>
-                       
-                        <button type="button" class="btn btn-secondary">in Warenkorb</button>
-                    </div>
-                </div>
-            </div>
-        </div>`
+        <tr class="cart-row">
+            <td class="w-25">
+                <img src="${product.imageUrl}" class="img-fluid img-thumbnail"
+                    alt="Sheep">
+            </td>
+            <td>${product.name}</td>
+            <td class="cart-price cart-column">${product.price}€</td>
+            <td class="qty">
+                <input type="number" class="form-control input-quantity" id="input1" value="1">
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm remove-item text-white"
+                    type="button">Entfernen</button>
+                <i class="fa fa-times"></i>
+            </td>
+        </tr>
+        `
     );
 
     return content;

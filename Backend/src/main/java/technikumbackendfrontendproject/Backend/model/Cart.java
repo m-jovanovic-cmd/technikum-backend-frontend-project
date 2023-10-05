@@ -17,6 +17,9 @@ public class Cart {
     @Column(name = "total")
     private Long total;
 
+    @Column(name = "amount")
+    private Long amount;
+
     @Column(name = "orderstatus")
     private Long orderstatus;
 
@@ -67,6 +70,14 @@ public class Cart {
         this.orderstatus = orderstatus;
     }
 
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
     public User getUser() {
         return user;
     }
@@ -88,5 +99,6 @@ public class Cart {
 
     public void setPositions(Set<Position> positions) {
         this.positions = positions;
-    }  
+    }
+
 }
