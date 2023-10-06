@@ -75,6 +75,7 @@ updateCartTotal();
 Mit Token User extrahieren
 mithilfe von Configure Spring Security
 */
+
 function getUserDataFromToken() {
     try {
         // Verify and decode the token
@@ -93,6 +94,16 @@ function getUserDataFromToken() {
     }
 
 }
+$.get({
+    url: "http://localhost:8080/api/validateToken",
+    headers: { "Authorization": authToken },
+    data: {},
+    success: (data) => {
+        console.log(data)
+    },
+    error: console.error
+});
+
 ///////////////////////////
 // G E T  R E Q U E S T //
 /////////////////////////
