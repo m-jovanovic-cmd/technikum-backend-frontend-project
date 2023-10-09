@@ -12,7 +12,7 @@ import technikumbackendfrontendproject.Backend.service.AuthenticationService;
 
 @RestController
 public class AuthenticationController {
-        
+
     private final AuthenticationService authenticationService;
 
     @Autowired
@@ -31,5 +31,4 @@ public class AuthenticationController {
         return true;
     }
 
-    // Ich pushe hier nur einen neuen Kommentar für git actions
 }

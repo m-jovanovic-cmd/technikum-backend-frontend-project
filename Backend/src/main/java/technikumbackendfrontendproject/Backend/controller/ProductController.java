@@ -5,6 +5,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,12 @@ import jakarta.validation.Valid;
 import org.springframework.web.multipart.MultipartFile;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.DTO.ProductDTO;
+import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.ProductService;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -34,6 +39,7 @@ public class ProductController {
         return productService.findAll();
     }
 
+
     @GetMapping("/{type}")
     public List<Product> findAllProductsByType(@PathVariable String type) {
         return productService.findByType(type);
@@ -42,7 +48,7 @@ public class ProductController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> create(@RequestBody @Valid ProductDTO productDTO) {
-        Product product = productService.save(fromDTO(productDTO), productDTO.getTaxId());
+        Product product = productService.save(productDTO.convertToProduct(), productDTO.getTaxId());
         return ResponseEntity.created(URI.create("http://localhost:8080/api/products")).body(product);
     }
 
@@ -79,12 +85,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    private static Product fromDTO(ProductDTO productDTO) {
-        return new Product(productDTO.getName(),
-                productDTO.getDescription(),
-                productDTO.getImageUrl(),
-                productDTO.getPrice(),
-                productDTO.getQuantity(),
-                productDTO.getType());
-    }
+
+
+
 }

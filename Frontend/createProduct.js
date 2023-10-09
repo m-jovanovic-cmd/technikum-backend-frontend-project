@@ -16,7 +16,6 @@ $("#createProductButton").on("click", e =>{
         "taxId": $("#taxIdInput").val()
     }
 
-
     $.ajax({
         url: "http://localhost:8080/api/products",
         type: "POST",
@@ -33,7 +32,7 @@ $("#createProductButton").on("click", e =>{
                 for (let err of error.responseJSON.errors) {
                     const input = $("#" + err.field + "Input");
                     input.addClass("input-error");
-    
+
                     const parent = input.parent();
                     parent.append(`<p class="error-message">${err.defaultMessage}</p>`);
                 }

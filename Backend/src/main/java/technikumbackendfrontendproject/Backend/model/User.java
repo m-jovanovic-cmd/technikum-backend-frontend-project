@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity(name = "user")
 public class User {
@@ -12,60 +13,71 @@ public class User {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    
-    @Column(name = "gender")
+
+    @NotBlank
+    @Column(name = "gender", nullable = false)
     private String gender;
 
+    @NotBlank
     @Column(name = "username", nullable = false)
     private String username;
 
     //TO DO should be hashed
     //SHA1 oder SHA256 und salting
+    @NotBlank
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "admin", nullable = false)
-    private boolean admin;
+    private Boolean admin;
 
+    @NotBlank
     @Column(name = "firstname", nullable = false)
-    private String firstName;
+    private String firstname;
 
+    @NotBlank
     @Column(name = "lastname", nullable = false)
-    private String lastName;
+    private String lastname;
 
+    @NotBlank
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "postcode")
+    @NotBlank
+    @Column(name = "postcode", nullable = false)
     private String postcode;
 
-    @Column(name = "location")
+    @NotBlank
+    @Column(name = "location", nullable = false)
     private String location;
 
-    @Column(name = "street")
+    @NotBlank
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "streetnumber")
+    @NotBlank
+    @Column(name = "streetnumber", nullable = false)
     private String streetnumber;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
-
-    @Column(name = "role")
+    
+    @Column(name = "role", nullable = false)
     private String role;
 
 
     // CONSTRUCTORS
 
-    public User(Long id, String gender, String username, String password, String firstName, String lastName,
+    public User(Long id, Boolean admin, String gender, String username, String password, String firstname, String lastname,
             String email, String postcode, String location, String street, String streetnumber, String status,
             String role) {
         this.id = id;
         this.gender = gender;
+        this.admin = admin;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -75,13 +87,16 @@ public class User {
         this.role = role;
     }
 
-    public User(String gender, String username, String password, String firstName, String lastName, String email,
+    public User(String gender,
+                Boolean admin,
+                String username, String password, String firstname, String lastname, String email,
             String postcode, String location, String street, String streetnumber, String status, String role) {
         this.gender = gender;
+        this.admin = admin;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.postcode = postcode;
         this.location = location;
@@ -129,20 +144,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -204,4 +219,6 @@ public class User {
     public boolean isAdmin() {
         return admin;
     }
+
+    public void setAdmin(Boolean admin) {this.admin = admin;}
 }

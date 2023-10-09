@@ -376,3 +376,28 @@ footer img:hover {
 #imageUrlResponse {
     background-color: #e7e7e7;
 }
+
+
+/*Toggle Password*/
+/* Initially hide the password input */
+/*TODO JESSI: Checken ob css nötig da attr password schon gesetzt? */
+.password-container input[type="password"] {
+    display: none;
+}
+
+/* Style the "Show" button */
+.password-toggle {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Show the password input when hovered or clicked on the "Show" button */
+.password-container:hover input[type="password"],
+.password-toggle.clicked+input[type="password"] {
+    display: block;
+}
+
+/* Change the text of the "Show" button when clicked */
+.password-toggle.clicked {
+    color: red;
+}

@@ -30,9 +30,11 @@ public class SecurityConfig {
     // Methods
     // /////////////////////////////////////////////////////////////////////////
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-                    // Disable csrf
+
+        // Disable csrf
         httpSecurity.csrf().disable()
                     // Enable cors
                     .cors()
@@ -40,20 +42,15 @@ public class SecurityConfig {
                     // Set session management to stateless
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
-                    // Allow unauthorized requests to certain endpoints
-                    .authorizeHttpRequests().requestMatchers(
-                        "/login", 
-                        "/api/users",
-                        "/api/products/**",
-                        "/public/**",
-                        "/api/taxes"
-                        ).permitAll()
+                    // Allow unauthorized requests to certain endpoints TODO JESSI: Entferne open end access bei /api/users/**
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/products", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()
                     // Add filter to validate tokens with every request
                     .addFilterBefore(new AuthenticationFilter(tokenService),
                                      UsernamePasswordAuthenticationFilter.class);
+
 
         return httpSecurity.build();
     }
