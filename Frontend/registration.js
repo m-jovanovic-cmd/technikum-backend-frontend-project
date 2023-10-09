@@ -24,10 +24,7 @@ $("#register-button").on("click", e => {
         data: JSON.stringify(regData),
         success: () => {
             // Display the created user or perform other actions here
-            // TODO JESSI: Check ob alert stattfindet
             location.replace('/Frontend/index.html');
-            window.alert("User created successfully!");
-
         },
         error: (error) => {
             console.log(newUser)

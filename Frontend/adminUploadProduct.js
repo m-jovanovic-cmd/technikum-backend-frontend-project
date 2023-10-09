@@ -66,13 +66,17 @@ function uploadProductData(event) {
     for (let key in product) {
         if (product.hasOwnProperty(key) && product[key] === '') {
             errorCount++;
-            let field = $('#' + key)
-            displayError(field, errorMessage)
+            let field = $('#' + key);
+            displayError(field, errorMessage);
         }
     };
     if (!fileInput || fileInput.value == '') {
-        displayError( $('#imageUpload'), errorMessage)
+        displayError( $('#imageUpload'), errorMessage);
     };
+    if (product.name.length < 4) {
+        errorCount++;
+        displayError( $('#name'), 'Name muss mind. 4 Zeichen lang sein.');
+    }
 
     if(errorCount > 0) return;
 
@@ -86,9 +90,7 @@ function uploadProductData(event) {
         headers: { "Authorization": token },
         data: fileData,
         success: (response) => {
-            console.log(typeof(response));
             product = { ...product, imageUrl: response };
-            console.log(product)
             uploadProductWithUrl(product, token);
         },
         error: function(error) {

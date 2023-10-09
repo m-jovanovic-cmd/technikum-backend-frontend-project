@@ -119,7 +119,7 @@ public class UserService  {
             updatedUser.setPostcode(updatedUserDto.getPostcode());
             //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
             updatedUser.setStreet(updatedUserDto.getStreet());
-            logger.info("Updating STEETNUMBER: " + updatedUser.getStreetnumber() + " -> " + updatedUserDto.getStreetnumber());
+            logger.info("Updating STREETNUMBER: " + updatedUser.getStreetnumber() + " -> " + updatedUserDto.getStreetnumber());
             updatedUser.setStreetnumber(updatedUserDto.getStreetnumber());
 
             // Save the updated user
