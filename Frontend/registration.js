@@ -13,7 +13,8 @@ $("#register-button").on("click", e => {
         "streetnumber": $("#streetNumber-registration").val()
 
     }
-    console.log(regData)
+    // TODO: Validierung der Daten im Frontend
+
     $.ajax({
 
         url: "http://localhost:8080/api/users",
@@ -23,7 +24,7 @@ $("#register-button").on("click", e => {
         data: JSON.stringify(regData),
         success: () => {
             // Display the created user or perform other actions here
-            console.log("User created:", regData);
+            // TODO JESSI: Check ob alert stattfindet
             location.replace('/Frontend/index.html');
             window.alert("User created successfully!");
 

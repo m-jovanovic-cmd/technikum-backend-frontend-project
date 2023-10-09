@@ -3,6 +3,8 @@ renderSessionButton();
 function renderSessionButton() {
     const token = sessionStorage.getItem('token');
 
+    // Validierung schreiben ob token "echt" ist durch API Request
+
     const buttonContainer = $("#sessionActionButton");
     buttonContainer.empty();
 
@@ -31,5 +33,5 @@ function renderSessionButton() {
 function logout(event) {
     event.preventDefault();
     sessionStorage.removeItem('token');
-    location.reload();
+    location.replace('/Frontend/index.html');
 }

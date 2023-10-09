@@ -1,10 +1,15 @@
 package technikumbackendfrontendproject.Backend.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.multipart.MultipartFile;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.repository.ProductRepository;
 import technikumbackendfrontendproject.Backend.repository.TaxRepository;
@@ -61,9 +66,28 @@ public class ProductService {
         return save(product2);
     }
 
+    public String uploadImage(MultipartFile file) {
+        String destination = Paths.get("").toAbsolutePath().toString();
+        destination = destination.substring(0, destination.length() - "/technikum-backend-frontend-project/Backend".length()) + "/data/images/products";
+        File directory = new File(destination);
+        directory.mkdirs();
+        var fileName = file.getOriginalFilename();
+        Path uploadPath = Paths.get(destination, fileName);
+        var finalDestination = destination+ "/" + fileName;
+        try {
+            file.transferTo(uploadPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return finalDestination;
+    }
+
     public Product getProduct(Long id) {
+        System.out.print("In Service gekommen");
         var product = productRepository.findById(id);
         if (product.isEmpty()) {
+            System.out.print("Rückgabe war leer?");
             throw new EntityNotFoundException();
         }
         Product product2 = product.get();

@@ -9,9 +9,6 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-}
-
-body {
     font-family: sans-serif;
 }
 
@@ -28,13 +25,13 @@ h5 {
 }
 
 .content {
-    width: 100%, 1080px;
-    margin: 10px 15px 10px 15px;
+    width: 100%;
     font-size: 20px;
     line-height: 30px;
     text-align: justify;
     color: #7e8daf;
     padding: 0 2em 0 2em;
+
 }
 
 #impressum h1,
@@ -53,7 +50,7 @@ h5 {
     margin: 0px;
 }
 
-header {
+header.hero {
     width: 100%;
     height: 80vh;
     background: url(/Frontend/images/backgroundwolke.jpg) no-repeat 50% 50%;
@@ -376,9 +373,14 @@ footer img:hover {
     border: 1px solid black;
 }
 
+#imageUrlResponse {
+    background-color: #e7e7e7;
+}
+
 
 /*Toggle Password*/
 /* Initially hide the password input */
+/*TODO JESSI: Checken ob css nötig da attr password schon gesetzt? */
 .password-container input[type="password"] {
     display: none;
 }

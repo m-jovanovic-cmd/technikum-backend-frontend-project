@@ -25,7 +25,7 @@ public class SecurityConfig {
     public SecurityConfig(TokenService tokenService) {
         this.tokenService = tokenService;
     }
-
+ 
     // /////////////////////////////////////////////////////////////////////////
     // Methods
     // /////////////////////////////////////////////////////////////////////////
@@ -36,25 +36,20 @@ public class SecurityConfig {
 
         // Disable csrf
         httpSecurity.csrf().disable()
-                // Enable cors
-                .cors()
-                .and()
-                // Set session management to stateless
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                // Allow unauthorized requests to certain endpoints
-                .authorizeHttpRequests().requestMatchers("/login",
-                        "/api/users/**",
-                        "/api/users",
-                        "/api/users/delete/{id}",
-                        "/api/products",
-                        "/public/**").permitAll()
-                // Authenticate all other requests
-                .anyRequest().authenticated()
-                .and()
-                // Add filter to validate tokens with every request
-                .addFilterBefore(new AuthenticationFilter(tokenService),
-                        UsernamePasswordAuthenticationFilter.class);
+                    // Enable cors
+                    .cors()
+                    .and()
+                    // Set session management to stateless
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    // Allow unauthorized requests to certain endpoints TODO JESSI: Entferne open end access bei /api/users/**
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/products", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
+                    // Authenticate all other requests
+                    .anyRequest().authenticated()
+                    .and()
+                    // Add filter to validate tokens with every request
+                    .addFilterBefore(new AuthenticationFilter(tokenService),
+                                     UsernamePasswordAuthenticationFilter.class);
 
 
         return httpSecurity.build();

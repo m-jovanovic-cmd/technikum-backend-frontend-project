@@ -22,4 +22,9 @@ public class CartService {
     public Cart findByUserId(Long userID) {
         return cartRepository.findByUserId(userID);
     }
+
+    // Test für git actions
+    public Cart findByIdontKnow(Long userId) {
+        return cartRepository.findByUserId(userId);
+    }
 }

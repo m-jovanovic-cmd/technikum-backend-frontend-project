@@ -52,6 +52,7 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
         this.type = type;
+        this.status = true;
     }
 
     public Product() {

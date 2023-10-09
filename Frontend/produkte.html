@@ -12,21 +12,29 @@
             crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" defer crossorigin="anonymous"></script>
-        <script src="components/navbar/loadNavbar.js" defer></script>
-        <script src="components/footer/loadFooter.js" defer></script>
-        <script src="components/loginModal/loginModal.js" defer></script>
-        <script src="productsDisplay.js" defer></script>
+        <script src="./components/navbar/loadNavbar.js" defer></script>
+        <script src="./components/footer/loadFooter.js" defer></script>
+        <script src="./productsDisplay.js" defer></script>
         <title>Produkte</title>
     </head>
-
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <h1>Produkte</h1>
         <div class="main">
+            <div class="content">
+                <h1>Produkte</h1>
+                <div class="searchBar row g-0 d-flex justify-content-end">
+                    <input 
+                        class="col-12 col-md-6 col-lg-4  my-3 border border-3 text-center rounded" 
+                        type="text" 
+                        name="searchbar" 
+                        id="searchBar"
+                        placeholder="Search for a product" 
+                    \>
+                </div>
+            </div>
             <div class="content" id="productsContainer"></div>
         </div>
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
     </body>
-
 </html>
