@@ -25,6 +25,7 @@ $("#register-button").on("click", e => {
         success: () => {
             // Display the created user or perform other actions here
             location.replace('/Frontend/index.html');
+
         },
         error: (error) => {
             console.log(newUser)
