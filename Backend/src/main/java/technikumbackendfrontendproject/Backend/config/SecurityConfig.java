@@ -42,8 +42,7 @@ public class SecurityConfig {
                     // Set session management to stateless
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
-                    // Allow unauthorized requests to certain endpoints TODO JESSI: Entferne open end access bei /api/users/**
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users/**", "/api/products", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/api/users/update/{id}","/api/users/get{id}","/api/products", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()
