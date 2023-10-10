@@ -8,7 +8,7 @@ function renderSessionButton() {
 
     let button;
 
-    if(!token) {
+    if (!token) {
         button = $(
             `<div class="test">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -25,7 +25,14 @@ function renderSessionButton() {
             </div>`
         );
         buttonContainer.append(button);
-    } 
+        button = $(
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#openCartModalButton">
+                    Warenkorb
+            </button>`
+        );
+        buttonContainer.append(button);
+    }
 }
 
 function logout(event) {

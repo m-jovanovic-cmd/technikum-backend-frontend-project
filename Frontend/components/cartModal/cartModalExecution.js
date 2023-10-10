@@ -1,4 +1,8 @@
 
+//get info out of admin
+//make cart modal only visible if you logged in
+//make buttons add to cart only visible if logged in 
+
 const authToken = sessionStorage.getItem("token");
 console.log(authToken)
 //tutorial: https://www.youtube.com/watch?v=YeFzkC2awTM&t=23s&ab_channel=WebDevSimplified
