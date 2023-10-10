@@ -98,6 +98,8 @@ function getUserDataFromToken() {
     }
 
 }
+
+/*
 $.get({
     url: "http://localhost:8080/api/validateToken",
     headers: { "Authorization": authToken },
@@ -107,6 +109,8 @@ $.get({
     },
     error: console.error
 });
+*/
+
 
 ///////////////////////////
 // G E T  R E Q U E S T //
