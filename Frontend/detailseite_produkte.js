@@ -81,12 +81,25 @@ function displayProduct(product) {
 
 
 function parseJwt(token) {
+    // Step 1: Split the token into its three parts: header, payload, and signature
     var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
 
+    // Step 2: Replace characters that are not URL-safe
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+
+    // Step 3: Decode the base64-encoded payload
+    var jsonPayload = decodeURIComponent(
+        //Base64 is a binary-to-text encoding scheme
+        window.atob(base64)  // Step 4: Decode the base64 to binary
+            .split('')
+            .map(function (c) {
+                // Step 5: Convert binary to hexadecimal representation
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join('')
+    );
+
+    // Step 6: Parse the JSON payload into a JavaScript object
     return JSON.parse(jsonPayload);
 }
 
