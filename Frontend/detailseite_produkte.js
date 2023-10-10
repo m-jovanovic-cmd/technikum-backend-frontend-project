@@ -64,7 +64,7 @@ function displayProduct(product) {
                                     <p>Preis: ${product.price}€</p>
                                     <div class="d-flex justify-content-between">
                                     <a href="./produkte.html" class="btn btn-light" role="button">Zurück</a>
-                                    <button type="button" id="sendDeleteRequest" class="btn btn-secondary" onclick="sendRequest()>in Warenkorb</button>
+                                    <button type="button" id="sendRequestCart" class="btn btn-secondary" onclick="sendRequest()">in Warenkorb</button>
                                     </div>
                                 </div>
                         </div>
@@ -87,9 +87,9 @@ function sendRequest() {
         type: "GET",
         cors: true,
         contentType: "application/json",
-        success: (cart) => {
-            console.log(cart)
-            cartID = cart.id
+        success: (response) => {
+            console.log(response)
+            //cartID = cart.id
 
         },
         error: function (xhr, status, error) {
@@ -109,7 +109,7 @@ function sendRequest() {
             contentType: "application/json",
             success: (response) => {
                 // After successful deletion, reload the list of users
-                location.reload(true);
+                console.log("Cart erfolgreich updated:" + response)
             },
             error: function (xhr, status, error) {
                 console.log("Status: " + status);
