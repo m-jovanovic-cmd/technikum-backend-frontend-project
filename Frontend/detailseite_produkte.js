@@ -79,17 +79,17 @@ function displayProduct(product) {
 };
 
 function sendRequest() {
-    var payloadData = parseJwt(token)
-    var userId = payloadData.id
+    var payloadData = parseJwt(token);
+    var userId = payloadData.id;
 
+    // First AJAX request to check if a cart with the user exists
     $.ajax({
         url: `http://localhost:8080/api/carts/get${userId}`,
         type: "GET",
         cors: true,
         contentType: "application/json",
-        success: (response) => {
-            console.log(response)
-            //cartID = cart.id
+        success: function (response) {
+            console.log(response);
 
         },
         error: function (xhr, status, error) {
@@ -98,94 +98,93 @@ function sendRequest() {
             console.log(xhr.responseText);
         }
     });
+}
 
-    //wenn cart with user existiert dann update die kart mit put
-    //daran noch arbeiten, dass sich menge und amount vergrößern
-    if (response == 200) {
-        $.ajax({
-            url: `http://localhost:8080/api/carts/update${userId}`,
-            type: "PUT",
-            cors: true,
-            contentType: "application/json",
-            success: (response) => {
-                // After successful deletion, reload the list of users
-                console.log("Cart erfolgreich updated:" + response)
-            },
-            error: function (xhr, status, error) {
-                console.log("Status: " + status);
-                console.log("Error: " + error);
-                console.log(xhr.responseText);
-            }
-        });
+function sendRequest(userId) {
+    // Get product_id from the URL
+    var currentURL = window.location.href;
+    var lastChar = currentURL.charAt(currentURL.length - 1);
+    var product_id = parseInt(lastChar);
 
-        //sonst kreiere eine neue Cart mit Post
-    } else {
-
-        //beim erstellen ist der amount zuerst immer 1, amount gehört sowieso in zwischentabelle
-        var amount = 1
-        var user_id = userId
-
-        //get product id from url http://127.0.0.1:5501/Frontend/detailseite_produkte.html?id=2
-        var currentURL = window.location.href;
-        console.log(currentURL);
-        var lastChar = currentURL.charAt(inputString.length - 1);
-        var product_id = parseInt(lastChar);
-
-        const newCart = {
-            "total": "",
-            "amount": amount,
-            "orderstatus": "",
-            "user_id": user_id,
-            "product_id": product_id,
-
+    $.ajax({
+        url: `http://localhost:8080/api/carts/update${userId}`,
+        type: "PUT",
+        cors: true,
+        contentType: "application/json",
+        success: function (response) {
+            console.log("Cart erfolgreich updated:" + response);
+        },
+        error: function (xhr, status, error) {
+            console.log("Status: " + status);
+            console.log("Error: " + error);
+            console.log(xhr.responseText);
         }
-        $.ajax({
-            url: `http://localhost:8080/api/cart`,
-            type: "POST",
-            cors: true,
-            contentType: "application/json",
-            data: JSON.stringify(newCart),
-            success: (success) => {
-                console.log("Cart erfolgreich angelegt:" + success)
-            },
-            error: function (xhr, status, error) {
-                console.log("Status: " + status);
-                console.log("Error: " + error);
-                console.log(xhr.responseText);
-            }
-        });
+    });
+}
+/*
+function createCart(userId) {
+    // Get product_id from the URL
+    var currentURL = window.location.href;
+    var lastChar = currentURL.charAt(currentURL.length - 1);
+    var product_id = parseInt(lastChar);
 
+    var amount = 1;
+
+    const newCart = {
+        "total": "",
+        "amount": amount,
+        "orderstatus": "",
+        "user_id": userId,
+        "product_id": product_id
     };
 
-
-    function parseJwt(token) {
-        // Step 1: Split the token into its three parts: header, payload, and signature
-        var base64Url = token.split('.')[1];
-
-        // Step 2: Replace characters that are not URL-safe
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-
-        // Step 3: Decode the base64-encoded payload
-        var jsonPayload = decodeURIComponent(
-            //Base64 is a binary-to-text encoding scheme
-            window.atob(base64)  // Step 4: Decode the base64 to binary
-                .split('')
-                .map(function (c) {
-                    // Step 5: Convert binary to hexadecimal representation
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                })
-                .join('')
-        );
-
-        // Step 6: Parse the JSON payload into a JavaScript object
-        return JSON.parse(jsonPayload);
-    }
-
-    var payloadData = parseJwt(token);
-
-    console.log(payloadData);
-    console.log(payloadData.id);      // 1
-    console.log(payloadData.sub);     // "t"
-    console.log(payloadData.admin);   // true
-    console.log(payloadData.exp);     // 1696929729
+    $.ajax({
+        url: "http://localhost:8080/api/cart",
+        type: "POST",
+        cors: true,
+        contentType: "application/json",
+        data: JSON.stringify(newCart),
+        success: function (response) {
+            console.log("Cart erfolgreich angelegt:" + response);
+        },
+        error: function (xhr, status, error) {
+            console.log("Status: " + status);
+            console.log("Error: " + error);
+            console.log(xhr.responseText);
+        }
+    });
 }
+*/
+
+
+function parseJwt(token) {
+    // Step 1: Split the token into its three parts: header, payload, and signature
+    var base64Url = token.split('.')[1];
+
+    // Step 2: Replace characters that are not URL-safe
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+
+    // Step 3: Decode the base64-encoded payload
+    var jsonPayload = decodeURIComponent(
+        //Base64 is a binary-to-text encoding scheme
+        window.atob(base64)  // Step 4: Decode the base64 to binary
+            .split('')
+            .map(function (c) {
+                // Step 5: Convert binary to hexadecimal representation
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join('')
+    );
+
+    // Step 6: Parse the JSON payload into a JavaScript object
+    return JSON.parse(jsonPayload);
+}
+
+var payloadData = parseJwt(token);
+
+// console.log(payloadData);
+// console.log(payloadData.id);      // 1
+// console.log(payloadData.sub);     // "t"
+// console.log(payloadData.admin);   // true
+// console.log(payloadData.exp);     // 1696929729
+

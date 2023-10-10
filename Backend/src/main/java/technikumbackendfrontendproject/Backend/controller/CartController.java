@@ -52,14 +52,15 @@ public class CartController {
 
     @PutMapping("/update{id}")
     //find cart with userId, jeder user hat nur eine cart
-    public ResponseEntity<CartDTO> updateCart(@PathVariable Long id, @RequestBody CartDTO updatedCartDto) {
+    public ResponseEntity<CartDTO> updateCart(@PathVariable Long userID, @RequestBody CartDTO updatedCartDto) {
         try {
-            CartDTO updatedCart = cartService.updateCart(id, updatedCartDto);
+            CartDTO updatedCart = cartService.updateCart(userID, updatedCartDto);
 
-            logger.info("Cart with id: " + id + " updated!");
+            logger.info("Cart with userID: " + userID + " updated!");
 
             return new ResponseEntity<>(updatedCart, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
+
             return ResponseEntity.notFound().build();
         }
     }

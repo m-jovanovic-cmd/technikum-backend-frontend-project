@@ -57,19 +57,15 @@ public class CartService {
         } else {
             Cart updatedCart = existingCart.get();
             // Update the user information with values from the DTO
-            logger.info("Updating TOTAL: " + updatedCart.getTotal() + " -> " + updatedCartDto.getTotal());
-            updatedCart.setTotal(updatedCartDto.getTotal());
-            logger.info("Updating ORDERSTATUS: " + updatedCart.getOrderstatus() + " -> " + updatedCartDto.getOrderstatus());
-            updatedCart.setOrderstatus(updatedCartDto.getOrderstatus());
-            logger.info("Updating AMOUNT: " + updatedCart.getAmount() + " -> " + updatedCartDto.getAmount());
-            updatedCart.setAmount(updatedCartDto.getAmount());
+            logger.info("Updating TOTAL: " + updatedCart.getTotal() + " -> " + updatedCartDto.getTotal()+updatedCartDto.getTotal());
+            updatedCart.setTotal(updatedCartDto.getTotal()+updatedCartDto.getTotal());
+            logger.info("Updating AMOUNT: " + updatedCart.getAmount() + " -> " + updatedCartDto.getAmount()+1);
+            updatedCart.setAmount(updatedCartDto.getAmount()+1);
             logger.info("Updating POSITION: " + updatedCart.getPositions() + " -> " + updatedCartDto.getPositions());
             updatedCart.setPositions(updatedCartDto.getPositions());
             //use this, to change user-id from unlooged to logged in user?
             logger.info("Updating USER-ID: " + updatedCart.getUser() + " -> " + updatedCartDto.getUser());
             updatedCart.setUser(updatedCartDto.getUser());
-            logger.info("Updating PRODUCT: " + updatedCart.getProduct() + " -> " + updatedCartDto.getProduct());
-            updatedCart.setProduct(updatedCartDto.getProduct());
 
             // Save the updated user
             cartRepository.save(updatedCart);
