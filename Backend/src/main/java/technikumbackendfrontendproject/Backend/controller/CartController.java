@@ -31,12 +31,12 @@ public class CartController {
     }
 
     @GetMapping("/get{id}")
-    public ResponseEntity<Cart> findCartById(@PathVariable Long id) {
-        var cart = cartService.findById(id);
-        if (cart.isEmpty()) {
+    public ResponseEntity<Cart> findCartByUserId(@PathVariable Long userID) {
+        var cart = cartService.findByUserId(userID);
+        if (cart.getPositions().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cart.get(), HttpStatus.OK);
+        return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -50,7 +50,8 @@ public class CartController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update{id}")
+    //find cart with userId, jeder user hat nur eine cart
     public ResponseEntity<CartDTO> updateCart(@PathVariable Long id, @RequestBody CartDTO updatedCartDto) {
         try {
             CartDTO updatedCart = cartService.updateCart(id, updatedCartDto);

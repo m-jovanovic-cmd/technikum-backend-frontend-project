@@ -64,7 +64,7 @@ function displayProduct(product) {
                                     <p>Preis: ${product.price}€</p>
                                     <div class="d-flex justify-content-between">
                                     <a href="./produkte.html" class="btn btn-light" role="button">Zurück</a>
-                                    <button type="button" class="btn btn-secondary">in Warenkorb</button>
+                                    <button type="button" id="sendDeleteRequest" class="btn btn-secondary" onclick="sendRequest()>in Warenkorb</button>
                                     </div>
                                 </div>
                         </div>
@@ -78,37 +78,114 @@ function displayProduct(product) {
 
 };
 
+function sendRequest() {
+    var payloadData = parseJwt(token)
+    var userId = payloadData.id
+
+    $.ajax({
+        url: `http://localhost:8080/api/carts/get${userId}`,
+        type: "GET",
+        cors: true,
+        contentType: "application/json",
+        success: (cart) => {
+            console.log(cart)
+            cartID = cart.id
+
+        },
+        error: function (xhr, status, error) {
+            console.log("Status: " + status);
+            console.log("Error: " + error);
+            console.log(xhr.responseText);
+        }
+    });
+
+    //wenn cart with user existiert dann update die kart mit put
+    //daran noch arbeiten, dass sich menge und amount vergrößern
+    if (response == 200) {
+        $.ajax({
+            url: `http://localhost:8080/api/carts/update${userId}`,
+            type: "PUT",
+            cors: true,
+            contentType: "application/json",
+            success: (response) => {
+                // After successful deletion, reload the list of users
+                location.reload(true);
+            },
+            error: function (xhr, status, error) {
+                console.log("Status: " + status);
+                console.log("Error: " + error);
+                console.log(xhr.responseText);
+            }
+        });
+
+        //sonst kreiere eine neue Cart mit Post
+    } else {
+
+        //beim erstellen ist der amount zuerst immer 1, amount gehört sowieso in zwischentabelle
+        var amount = 1
+        var user_id = userId
+
+        //get product id from url http://127.0.0.1:5501/Frontend/detailseite_produkte.html?id=2
+        var currentURL = window.location.href;
+        console.log(currentURL);
+        var lastChar = currentURL.charAt(inputString.length - 1);
+        var product_id = parseInt(lastChar);
+
+        const newCart = {
+            "total": "",
+            "amount": amount,
+            "orderstatus": "",
+            "user_id": user_id,
+            "product_id": product_id,
+
+        }
+        $.ajax({
+            url: `http://localhost:8080/api/cart`,
+            type: "POST",
+            cors: true,
+            contentType: "application/json",
+            data: JSON.stringify(newCart),
+            success: (success) => {
+                console.log("Cart erfolgreich angelegt:" + success)
+            },
+            error: function (xhr, status, error) {
+                console.log("Status: " + status);
+                console.log("Error: " + error);
+                console.log(xhr.responseText);
+            }
+        });
+
+    };
 
 
-function parseJwt(token) {
-    // Step 1: Split the token into its three parts: header, payload, and signature
-    var base64Url = token.split('.')[1];
+    function parseJwt(token) {
+        // Step 1: Split the token into its three parts: header, payload, and signature
+        var base64Url = token.split('.')[1];
 
-    // Step 2: Replace characters that are not URL-safe
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        // Step 2: Replace characters that are not URL-safe
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
 
-    // Step 3: Decode the base64-encoded payload
-    var jsonPayload = decodeURIComponent(
-        //Base64 is a binary-to-text encoding scheme
-        window.atob(base64)  // Step 4: Decode the base64 to binary
-            .split('')
-            .map(function (c) {
-                // Step 5: Convert binary to hexadecimal representation
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join('')
-    );
+        // Step 3: Decode the base64-encoded payload
+        var jsonPayload = decodeURIComponent(
+            //Base64 is a binary-to-text encoding scheme
+            window.atob(base64)  // Step 4: Decode the base64 to binary
+                .split('')
+                .map(function (c) {
+                    // Step 5: Convert binary to hexadecimal representation
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+        );
 
-    // Step 6: Parse the JSON payload into a JavaScript object
-    return JSON.parse(jsonPayload);
+        // Step 6: Parse the JSON payload into a JavaScript object
+        return JSON.parse(jsonPayload);
+    }
+
+    var payloadData = parseJwt(token);
+
+    console.log(payloadData);
+    console.log(payloadData.id);      // 1
+    console.log(payloadData.sub);     // "t"
+    console.log(payloadData.admin);   // true
+    console.log(payloadData.exp);     // 1696929729
 }
-
-var payloadData = parseJwt(token);
-
-console.log(payloadData);
-console.log(payloadData.id);      // 1
-console.log(payloadData.sub);     // "t"
-console.log(payloadData.admin);   // true
-console.log(payloadData.exp);     // 1696929729
-
-
