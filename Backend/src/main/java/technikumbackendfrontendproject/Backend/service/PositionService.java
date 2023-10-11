@@ -15,16 +15,18 @@ import technikumbackendfrontendproject.Backend.repository.UserRepository;
 public class PositionService {
     
     private final PositionRepository positionRepository;
-    private final UserRepository userRepositiory;
+    private final UserRepository userRepository;
 
+    private final UserService userService;
     private final CartService cartService;
     private final ProductService productService;
 
 
-    public PositionService(PositionRepository positionRepository, UserRepository userRepositiory, CartService cartService, ProductService productService) {
+    public PositionService(PositionRepository positionRepository, UserRepository userRepository, UserService userService, CartService cartService, ProductService productService) {
         this.positionRepository = positionRepository;
+        this.userService = userService;
         this.cartService = cartService;
-        this.userRepositiory = userRepositiory;
+        this.userRepository = userRepository;
         this.productService = productService;
     }
 
@@ -36,7 +38,7 @@ public class PositionService {
         Cart cart = cartService.findByUserId(userId);
 
         if (cart == null)  {
-            Optional<User> user = userRepositiory.findById(userId);
+            Optional<User> user = userRepository.findById(userId);
 
             if (user.isPresent()) {
                 cart = cartService.save(new Cart(user.get()));
@@ -45,15 +47,43 @@ public class PositionService {
             }
         }
 
-        Optional<Product> product = productService.findById(productId);
-
-        if (product.isEmpty()) {
-            throw new RuntimeException("Product does not exist");
-        }
+        Product product = productService.findById(productId);
 
         position.setCart(cart);
-        position.setProduct(product.get());
+        position.setProduct(product);
 
         return positionRepository.save(position);
     }
+
+    public Position create(Long userId, Long productId) {
+       User user = userService.findById(userId);
+       Product product = productService.findById(productId);
+       // This is faster :)
+       Cart cart = user.getCart();
+       // Cart cart = cartService.findByUserId(userId);
+
+        Position position = new Position();
+        position.setCart(cart);
+        position.setProduct(product);
+        position.setQuantity(1);
+
+        return positionRepository.save(position);
+    }
+
+    public Position update(Position position, Boolean isAdded) {
+        Integer quantity = position.getQuantity();
+        if (isAdded) {
+            position.setQuantity(quantity + 1);
+        } else if (quantity <= 0) {
+            throw new IllegalArgumentException("Product quantity cannot be: " + quantity);
+        } else if (quantity == 1){
+            positionRepository.delete(position);
+            return null;
+        } else {
+            position.setQuantity(quantity - 1);
+        }
+        return positionRepository.save(position);
+    }
+
+
 }

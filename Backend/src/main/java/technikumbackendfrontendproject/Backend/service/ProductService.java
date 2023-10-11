@@ -3,6 +3,7 @@ package technikumbackendfrontendproject.Backend.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Product;
@@ -24,8 +25,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
+    public Product findById(Long id) {
+        try {
+            return productRepository.findById(id).get();
+        } catch(ObjectNotFoundException e) {
+            throw new RuntimeException("no user for this id: "+ id);
+        }
+
     }
 
     public List<Product> findByType(String type) {

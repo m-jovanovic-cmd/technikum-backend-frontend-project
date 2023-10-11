@@ -1,17 +1,23 @@
 package technikumbackendfrontendproject.Backend.service;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
 import technikumbackendfrontendproject.Backend.model.DTO.CartDTO;
+import technikumbackendfrontendproject.Backend.model.Position;
+import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.CartRepository;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
 public class CartService {
-
+    private PositionService positionService;
     private CartRepository cartRepository;
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -23,8 +29,34 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    public Cart createCart(User user) {
+
+            Cart cart = new Cart();
+            cart.setUser(user);
+            cartRepository.save(cart);
+            return cart;
+    }
+
+    public void checkIfCartIsExisting(User user, Product product,  Boolean isAdded) {
+        Cart usercart = user.getCart();
+
+        if (usercart == null) {
+            createCart(user);
+            Position position = positionService.create(user.getId(), product.getId());
+        } else {
+            Position position = positionService.findById(user.getId());
+            positionService.update(position, isAdded);
+        }
+
+    }
+
     public Cart findByUserId(Long userID) {
-        return cartRepository.findByUserId(userID);
+        try {
+            return cartRepository.findByUserId(userID).get();
+        } catch(ObjectNotFoundException e) {
+            throw new RuntimeException("no cart for this id: "+ userID);
+        }
+
     }
 
     public Optional<Cart> findById(Long id) {
@@ -59,8 +91,6 @@ public class CartService {
             // Update the user information with values from the DTO
             logger.info("Updating TOTAL: " + updatedCart.getTotal() + " -> " + updatedCartDto.getTotal()+updatedCartDto.getTotal());
             updatedCart.setTotal(updatedCartDto.getTotal()+updatedCartDto.getTotal());
-            logger.info("Updating AMOUNT: " + updatedCart.getAmount() + " -> " + updatedCartDto.getAmount()+1);
-            updatedCart.setAmount(updatedCartDto.getAmount()+1);
             logger.info("Updating POSITION: " + updatedCart.getPositions() + " -> " + updatedCartDto.getPositions());
             updatedCart.setPositions(updatedCartDto.getPositions());
             //use this, to change user-id from unlooged to logged in user?
@@ -76,11 +106,8 @@ public class CartService {
     public CartDTO convertToCartDto(Cart cart) {
         CartDTO cartDto = new CartDTO();
         cartDto.setTotal(cart.getTotal());
-        cartDto.setOrderstatus((cart.getOrderstatus()));
-        cartDto.setAmount((cart.getAmount()));
         cartDto.setPositions(cart.getPositions());
         cartDto.setUser(cart.getUser());
-        cartDto.setProduct(cart.getProduct());
         return cartDto;
     }
 

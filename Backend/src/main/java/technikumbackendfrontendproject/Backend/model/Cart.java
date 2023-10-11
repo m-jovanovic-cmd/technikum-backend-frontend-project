@@ -15,25 +15,15 @@ public class Cart {
     private Long id;
 
     @Column(name = "total")
-    private Long total;
+    private Double total = 0.0;
 
-    @Column(name = "amount")
-    private Long amount;
-
-    @Column(name = "orderstatus")
-    private Long orderstatus;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @OneToMany(mappedBy = "cart")
     @JsonBackReference
     private Set<Position> positions;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = true)
-    private Product product;
 
     // Constructors
 
@@ -54,28 +44,12 @@ public class Cart {
         this.id = id;
     }
 
-    public Long getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public void setTotal(Double total) {
         this.total = total;
-    }
-
-    public Long getOrderstatus() {
-        return orderstatus;
-    }
-
-    public void setOrderstatus(Long orderstatus) {
-        this.orderstatus = orderstatus;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
     }
 
     public User getUser() {
@@ -86,12 +60,6 @@ public class Cart {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     public Set<Position> getPositions() {
         return positions;

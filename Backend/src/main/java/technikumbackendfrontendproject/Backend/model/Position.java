@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Positive;
 
 @Entity(name = "position")
 public class Position {
@@ -26,6 +27,7 @@ public class Position {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Positive
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 

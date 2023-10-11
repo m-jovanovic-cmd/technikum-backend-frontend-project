@@ -10,13 +10,11 @@ import java.util.Set;
 
 public class CartDTO {
     @NotBlank
-    private Long total;
+    private Double total;
 
     @NotBlank
     private Long orderstatus;
 
-
-    @NotBlank
     private Long amount;
 
     @NotBlank
@@ -29,11 +27,11 @@ public class CartDTO {
     private Product product;
 
     // Getter & Setter
-    public Long getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

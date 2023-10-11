@@ -1,9 +1,6 @@
 package technikumbackendfrontendproject.Backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "user")
 public class User {
@@ -54,8 +51,12 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    // wenn user gelöscht wird, dann wird cart auch gelöscht
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cart cart;
 
-    // CONSTRUCTORS
+
+// CONSTRUCTORS
 
     public User(Long id, String gender, String username, String password, String firstName, String lastName,
             String email, String postcode, String location, String street, String streetnumber, String status,
@@ -203,5 +204,13 @@ public class User {
 
     public boolean isAdmin() {
         return admin;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
