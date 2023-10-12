@@ -58,7 +58,7 @@ public class CartController {
 
     @PutMapping("/{id}")
     //find cart with userId, jeder user hat nur eine cart
-    public ResponseEntity<Cart> updateCartWithUserId(@RequestBody Long userId, @RequestBody Long productId, @RequestBody Boolean isAdded) {
+    public ResponseEntity<Cart> updateCartWithUserId(@PathVariable Long userId, @RequestBody Long productId, @RequestBody Boolean isAdded) {
         try {
             User user = userService.findById(userId);
             Product product = productService.findById(productId);

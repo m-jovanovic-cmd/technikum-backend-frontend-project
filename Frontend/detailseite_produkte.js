@@ -115,7 +115,7 @@ function sendRequest() {
     console.log("ProductId: " + productId)
 
     var dataForCart = {
-        userId: userId,
+        //userId: userId,
         productId: productId,
         isAdded: isAdded
     }
