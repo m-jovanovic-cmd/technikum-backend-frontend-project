@@ -145,38 +145,72 @@ function getCartTest(userId) {
 ////////////////////
 // POST REQEUEST //
 ///////////////////
-function createCart(newCart) {
-    $.ajax({
-        url: "http://localhost:8080/api/carts",
-        type: "POST",
-        cors: true,
-        contentType: "application/json",
-        data: JSON.stringify(newCart),
-        success: (response) => {
-            // Display the created user or perform other actions here
-            console.log("Cart created:", response);
-            window.alert("Cart created successfully!");
 
-        },
-        error: (error) => {
-            console.log(newCart)
-            // Handle errors here if needed
-            console.error("Error:", error);
-        }
-    });
-}
+
+
 //Check if cart already exists then update, otherwise create new cart
 //When delete the cart?
 function displayAllProductsInCart(products, cart) {
     const tableBody = $("#table tbody");
     for (let i = 0; i < products.length; i++) {
-        const cartDisplay = createProductDisplayForCart(product[i], cart);
+        const cartDisplay = createProductDisplayForCart(cart);
         tableBody.append(cartDisplay);
     };
 };
+function parseJwt(token) {
+    // Step 1: Split the token into its three parts: header, payload, and signature
+    var base64Url = token.split('.')[1];
 
-function createProductDisplayForCart(product, cart) {
-    const content = $(`
+    // Step 2: Replace characters that are not URL-safe
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+
+    // Step 3: Decode the base64-encoded payload
+    var jsonPayload = decodeURIComponent(
+        //Base64 is a binary-to-text encoding scheme
+        window.atob(base64)  // Step 4: Decode the base64 to binary
+            .split('')
+            .map(function (c) {
+                // Step 5: Convert binary to hexadecimal representation
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join('')
+    );
+
+    // Step 6: Parse the JSON payload into a JavaScript object
+    return JSON.parse(jsonPayload);
+}
+
+var payloadData = parseJwt(token);
+
+function getAllPositionsFromOneUser(userId) {
+    $.ajax({
+        url: `http://localhost:8080/api/positions/${userId}`,
+        type: "GET",
+        cors: true,
+        headers: {},
+        success: (positions) => {
+            console.log(positions)
+            return positions
+        },
+        error: console.error
+    });
+}
+
+
+
+function createProductDisplayForCart(cart) {
+    var currentURL = window.location.href;
+    var userId = parseInt(payloadData.id);
+    var cartId = cart.id
+
+    var listWithPositions = getAllPositionsFromOneUser(userId)
+
+    console.log(listWithPositions)
+
+    for (position in positions) {
+        var product = position.productId
+
+        const content = $(`
         <tr class="cart-row">
             <td class="w-25">
                 <img src="${product.imageUrl}" class="img-fluid img-thumbnail"
@@ -185,7 +219,7 @@ function createProductDisplayForCart(product, cart) {
             <td>${product.name}</td>
             <td class="cart-price cart-column">${product.price}€</td>
             <td class="qty">
-                <input type="number" class="form-control input-quantity" id="input1" value=${cart.amount}>
+                <input type="number" class="form-control input-quantity" id="input1" value=${position.amount}>
             </td>
             <td>
                 <button class="btn btn-danger btn-sm remove-item text-white"
@@ -194,56 +228,44 @@ function createProductDisplayForCart(product, cart) {
             </td>
         </tr>
         `
-    );
+        );
 
-    return content;
+        return content;
+    }
+
 };
 
 /*
-//////////////////////////
-// G E T  R E Q U E S T //
-//////////////////////////
-//TO-DO
-// make button get id from url
-//make call to BE to get the product
-//display the product on the cartModal wiht help from js (now it is hardcoded)
-//make remove button work
-//
-
-//make here an array and add the product,to be displayed later
-const arraywithcloudobjects = [];
-// => get the product into the card
-// => save the info and call it from everywhere (in an array?)
-
-//this approach only work on detailseite, how to do it on the produkte side?
-function getCurrentId() {
-    const url = window.location.href;
-    urlObject = new URL(url);
-    return urlObject.searchParams.get('id');
-};
-
-//activated after pressing the button on the detailspage
-$.get({
-    id: getCurrentId(),
-    url: "http://localhost:8080/api/products/details/" + id,
-    cors: true,
-    headers: {},
-    success: (product) => {
-        console.log(product);
-
-        //adding the object to the array
-        arraywithcloudobjects.push(product)
-
-        //createProductCartModalDisplay(products) => do this in an extra function 
-        //(activated when clicking the right button)
-    },
-    error: console.error
-});
-
-//click event on right button (already exists)
-//display there all products with the help in a loop get the objects out
-//how to display 2 identical products? => couting how many ids, then do price * amout of ids counted in loop
-//pass with a link like in test.js (row.append(`<td><button type="button" id="sendDeleteRequest" class="btn btn-danger mt-3" onclick="sendDeleteRequest(${user.id})">Delete</button></td>`);)
-
-
-*/ 
+<tr class="cart-row">
+                            <td class="w-25">
+                                <img src="./images/products/CharmingClaude.jpg" class="img-fluid img-thumbnail"
+                                    alt="Sheep">
+                            </td>
+                            <td>Charming Claude</td>
+                            <td class="cart-price cart-column">4.5€</td>
+                            <td class="qty">
+                                <input type="number" class="form-control input-quantity" id="input1" value="3">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm remove-item text-white"
+                                    type="button">Entfernen</button>
+                                <i class="fa fa-times"></i>
+                            </td>
+                        </tr>
+                        <tr class="cart-row">
+                            <td class="w-25">
+                                <img src="./images/products/DropletDamian.jpg" class="img-fluid img-thumbnail"
+                                    alt="Sheep">
+                            </td>
+                            <td>Droplet Damian</td>
+                            <td class="cart-price cart-column">10.3€</td>
+                            <td class="qty">
+                                <input type="number" class="form-control input-quantity" id="input2" value="1">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm remove-item text-white"
+                                    type="button">Entfernen</button>
+                                <i class="fa fa-times"></i>
+                            </td>
+                        </tr>
+*/

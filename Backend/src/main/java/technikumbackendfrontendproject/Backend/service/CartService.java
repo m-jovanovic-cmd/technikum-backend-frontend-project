@@ -10,8 +10,6 @@ import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.CartRepository;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -37,18 +35,20 @@ public class CartService {
             return cart;
     }
 
-    public void checkIfCartIsExisting(User user, Product product,  Boolean isAdded) {
+    public Cart checkIfCartIsExisting(User user, Product product, Boolean isAdded) {
         Cart usercart = user.getCart();
 
         if (usercart == null) {
-            createCart(user);
+            usercart = createCart(user);
             Position position = positionService.create(user.getId(), product.getId());
-        } else {
-            Position position = positionService.findById(user.getId());
-            positionService.update(position, isAdded);
-        }
 
+        } else {
+            Position position = positionService.findByUserId(user.getId());
+            positionService.update(position, isAdded);
+            }
+        return usercart;
     }
+
 
     public Cart findByUserId(Long userID) {
         try {

@@ -34,6 +34,8 @@ public class PositionService {
         return positionRepository.findById(id);
     }
 
+    public Position findByUserId(Long userId) {return findByUserId(userId);}
+
     public Position save(Position position, Long userId, Long productId) {
         Cart cart = cartService.findByUserId(userId);
 

@@ -6,8 +6,12 @@ import org.springframework.web.bind.annotation.*;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
 import technikumbackendfrontendproject.Backend.model.DTO.CartDTO;
+import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.service.CartService;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
+import technikumbackendfrontendproject.Backend.service.ProductService;
+import technikumbackendfrontendproject.Backend.service.UserService;
 
 import java.util.logging.Logger;
 
@@ -19,6 +23,8 @@ public class CartController {
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private CartService cartService;
+    private UserService userService;
+    private ProductService productService;
 
     public CartController(CartService cartService) {
         this.cartService = cartService;
@@ -47,6 +53,23 @@ public class CartController {
             return new ResponseEntity<>(cart, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}")
+    //find cart with userId, jeder user hat nur eine cart
+    public ResponseEntity<Cart> updateCartWithUserId(@RequestBody Long userId, @RequestBody Long productId, @RequestBody Boolean isAdded) {
+        try {
+            User user = userService.findById(userId);
+            Product product = productService.findById(productId);
+            Cart workOnCart = cartService.checkIfCartIsExisting(user, product, isAdded);
+
+            logger.info("Cart with userID: " + userId + "got updated or created!");
+
+            return new ResponseEntity<>(workOnCart, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+
+            return ResponseEntity.notFound().build();
         }
     }
 

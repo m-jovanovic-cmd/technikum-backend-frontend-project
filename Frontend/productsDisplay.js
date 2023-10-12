@@ -76,7 +76,7 @@ function createProductDisplay(product) {
                     <div class="d-flex justify-content-between">
                         <a href="./detailseite_produkte.html?id=${product.id}" class="btn btn-light" role="button">Details</a>
                        
-                        <button type="button" class="btn btn-secondary">in Warenkorb</button>
+                        
                     </div>
                 </div>
             </div>
@@ -85,6 +85,6 @@ function createProductDisplay(product) {
         return content;
     }
 
-
+    //<button type="button" class="btn btn-secondary">in Warenkorb</button>
 };
 

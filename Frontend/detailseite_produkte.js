@@ -100,61 +100,41 @@ function sendRequest() {
     });
 }
 
-function sendRequest(userId) {
+function sendRequest() {
     // Get product_id from the URL
     var currentURL = window.location.href;
+    var userId = parseInt(payloadData.id);
+    //var userId = payloadData.id;
+    console.log("UserId: " + userId)
+
+    //is Added is here always true, because you cannot remove product, if you click in warenkorb geben, it either adds new product or increases it by one
+    var isAdded = true
     var lastChar = currentURL.charAt(currentURL.length - 1);
-    var product_id = parseInt(lastChar);
+    var productId = parseInt(lastChar);
+    //var productId = lastChar;
+    console.log("ProductId: " + productId)
+
+    var dataForCart = {
+        userId: userId,
+        productId: productId,
+        isAdded: isAdded
+    }
+    console.log("dataForCart: " + JSON.stringify(dataForCart));
 
     $.ajax({
-        url: `http://localhost:8080/api/carts/update${userId}`,
+        url: `http://localhost:8080/api/carts/${userId}`,
         type: "PUT",
         cors: true,
         contentType: "application/json",
+        data: JSON.stringify(dataForCart), // Convert the data object to a JSON string
         success: function (response) {
-            console.log("Cart erfolgreich updated:" + response);
+            console.log("Cart erfolgreich updated/kreiert:" + response);
         },
-        error: function (xhr, status, error) {
-            console.log("Status: " + status);
+        error: (error) => {
             console.log("Error: " + error);
-            console.log(xhr.responseText);
         }
     });
 }
-/*
-function createCart(userId) {
-    // Get product_id from the URL
-    var currentURL = window.location.href;
-    var lastChar = currentURL.charAt(currentURL.length - 1);
-    var product_id = parseInt(lastChar);
-
-    var amount = 1;
-
-    const newCart = {
-        "total": "",
-        "amount": amount,
-        "orderstatus": "",
-        "user_id": userId,
-        "product_id": product_id
-    };
-
-    $.ajax({
-        url: "http://localhost:8080/api/cart",
-        type: "POST",
-        cors: true,
-        contentType: "application/json",
-        data: JSON.stringify(newCart),
-        success: function (response) {
-            console.log("Cart erfolgreich angelegt:" + response);
-        },
-        error: function (xhr, status, error) {
-            console.log("Status: " + status);
-            console.log("Error: " + error);
-            console.log(xhr.responseText);
-        }
-    });
-}
-*/
 
 
 function parseJwt(token) {
