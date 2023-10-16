@@ -1,7 +1,9 @@
 package technikumbackendfrontendproject.Backend.service;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
@@ -13,13 +15,18 @@ import technikumbackendfrontendproject.Backend.repository.UserRepository;
 
 @Service
 public class PositionService {
-    
+    @Autowired
     private final PositionRepository positionRepository;
+    @Autowired
     private final UserRepository userRepository;
-
+    @Autowired
     private final UserService userService;
+    @Autowired
     private final CartService cartService;
+    @Autowired
     private final ProductService productService;
+
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     public PositionService(PositionRepository positionRepository, UserRepository userRepository, UserService userService, CartService cartService, ProductService productService) {
@@ -58,10 +65,12 @@ public class PositionService {
     }
 
     public Position create(Long userId, Long productId) {
+        logger.info("in positionService");
        User user = userService.findById(userId);
        Product product = productService.findById(productId);
        // This is faster :)
        Cart cart = user.getCart();
+
        // Cart cart = cartService.findByUserId(userId);
 
         Position position = new Position();

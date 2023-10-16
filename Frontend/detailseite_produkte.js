@@ -122,12 +122,13 @@ function sendRequest() {
     console.log("dataForCart: " + JSON.stringify(dataForCart));
 
     $.ajax({
-        url: `http://localhost:8080/api/carts/${userId}`,
+        url: `http://localhost:8080/api/carts/${userId}/${productId}/${isAdded}`,
         type: "PUT",
         cors: true,
         contentType: "application/json",
-        data: JSON.stringify(dataForCart), // Convert the data object to a JSON string
+        //data: JSON.stringify(dataForCart), // Convert the data object to a JSON string
         success: function (response) {
+            window.alert("Product added to Warenkorb successfully!");
             console.log("Cart erfolgreich updated/kreiert:" + response);
         },
         error: (error) => {

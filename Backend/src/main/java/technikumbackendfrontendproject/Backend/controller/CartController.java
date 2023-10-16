@@ -1,5 +1,6 @@
 package technikumbackendfrontendproject.Backend.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,9 @@ public class CartController {
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private CartService cartService;
+    @Autowired
     private UserService userService;
+    @Autowired
     private ProductService productService;
 
     public CartController(CartService cartService) {
@@ -56,12 +59,20 @@ public class CartController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{userId}/{productId}/{isAdded}")
     //find cart with userId, jeder user hat nur eine cart
-    public ResponseEntity<Cart> updateCartWithUserId(@PathVariable Long userId, @RequestBody Long productId, @RequestBody Boolean isAdded) {
+    public ResponseEntity<Cart> updateCartWithUserId(@PathVariable Long userId, @PathVariable Long productId, @PathVariable Boolean isAdded) {
+        logger.info("Ich bin in Methode");
+        User user = userService.findById(userId);
+        logger.info("user:" + user.getUsername());
+        logger.info("userId:" + userId);
+        logger.info("isAdded:" + isAdded);
+
+        Product product = productService.findById(productId);
+        logger.info("Product: " + product.getName());
         try {
-            User user = userService.findById(userId);
-            Product product = productService.findById(productId);
+            //User user = userService.findById(userId);
+
             Cart workOnCart = cartService.checkIfCartIsExisting(user, product, isAdded);
 
             logger.info("Cart with userID: " + userId + "got updated or created!");
@@ -73,7 +84,7 @@ public class CartController {
         }
     }
 
-    @PutMapping("/update{id}")
+    @PutMapping("/update/{id}")
     //find cart with userId, jeder user hat nur eine cart
     public ResponseEntity<CartDTO> updateCart(@PathVariable Long userID, @RequestBody CartDTO updatedCartDto) {
         try {

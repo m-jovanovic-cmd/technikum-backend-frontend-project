@@ -38,8 +38,10 @@ public class CartService {
     public Cart checkIfCartIsExisting(User user, Product product, Boolean isAdded) {
         Cart usercart = user.getCart();
 
+
         if (usercart == null) {
             usercart = createCart(user);
+           // Position position = positionService.create(user.getId(), product.getId());
             Position position = positionService.create(user.getId(), product.getId());
 
         } else {
