@@ -200,11 +200,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }  
+    }
 
     public boolean isAdmin() {
         return admin;
     }
+
+    public void setAdmin(Boolean admin) {this.admin = admin;}
+
 
     public Cart getCart() {
         return cart;
