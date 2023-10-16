@@ -1,11 +1,7 @@
 package technikumbackendfrontendproject.Backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 
 @Entity(name = "Product")
 
@@ -38,8 +34,9 @@ public class Product {
     @Column(name = "status")
     private boolean status;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "taxId", nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "taxId")
     private Tax tax;
 
     

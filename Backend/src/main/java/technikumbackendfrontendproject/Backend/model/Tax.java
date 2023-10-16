@@ -19,6 +19,15 @@ public class Tax {
     @Column(name = "factor")
     private double factor;
 
+    public Tax() {
+    }
+
+    public Tax(Long id, String name, double factor) {
+        this.id = id;
+        this.name = name;
+        this.factor = factor;
+    }
+
 
     // Getter & Setter
 
