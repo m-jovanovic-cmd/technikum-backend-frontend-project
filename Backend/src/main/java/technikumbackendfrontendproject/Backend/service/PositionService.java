@@ -3,6 +3,7 @@ package technikumbackendfrontendproject.Backend.service;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,14 @@ public class PositionService {
         return positionRepository.findById(id);
     }
 
-    public Position findByUserId(Long userId) {return findByUserId(userId);}
+    public Position findByUserId(Long userId) {
+        try {
+            return positionRepository.findByUserId(userId).get();
+        } catch(ObjectNotFoundException e) {
+            throw new RuntimeException("No Position for user with id: "+ userId);
+        }
+
+    }
 
     public Position save(Position position, Long userId, Long productId) {
         Cart cart = cartService.findByUserId(userId);

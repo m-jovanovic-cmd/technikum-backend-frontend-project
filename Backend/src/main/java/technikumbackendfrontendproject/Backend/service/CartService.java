@@ -2,6 +2,7 @@ package technikumbackendfrontendproject.Backend.service;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
@@ -10,6 +11,7 @@ import technikumbackendfrontendproject.Backend.model.Position;
 import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.CartRepository;
+import technikumbackendfrontendproject.Backend.repository.UserRepository;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -17,13 +19,17 @@ import java.util.logging.Logger;
 @Service
 public class CartService {
     @Autowired
+    @Lazy
     private PositionService positionService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CartRepository cartRepository;
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public CartService(CartRepository cartRepository) {
-        this.cartRepository = cartRepository;
-    }
+
 
     public Cart save(Cart cart) {
         return cartRepository.save(cart);
@@ -34,6 +40,10 @@ public class CartService {
             Cart cart = new Cart();
             cart.setUser(user);
             cartRepository.save(cart);
+            user.setCart(cart);
+            userRepository.save(user);
+
+            // SAVE?
             return cart;
     }
 
@@ -43,7 +53,7 @@ public class CartService {
 
         if (usercart == null) {
             usercart = createCart(user);
-            
+            //Position position = new Position(user.getId(), product.getId());
             Position position = positionService.create(user.getId(), product.getId());
 
         } else {

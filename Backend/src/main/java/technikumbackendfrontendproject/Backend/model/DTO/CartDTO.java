@@ -16,15 +16,21 @@ public class CartDTO {
     private Long orderstatus;
 
     private Long amount;
-
+    //Long userId
     @NotBlank
     private User user;
 
-    @NotBlank
-    private Set<Position> positions;
+    //Set<PositionDTO>
 
+    private Set<PositionDTO> positionDTO;
+
+    private  Long UserId;
+
+/*
     @NotBlank
     private Product product;
+
+ */
 
     // Getter & Setter
     public Double getTotal() {
@@ -58,28 +64,20 @@ public class CartDTO {
         this.user = user;
     }
 
-    public Set<Position> getPositions() {
-        return positions;
-    }
 
-    public void setPositions(Set<Position> positions) {
-        this.positions = positions;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     public CartDTO() {
         this.total = total;
         this.orderstatus = orderstatus;
         this.amount = amount;
         this.user = user;
-        this.positions = positions;
-        this.product = product;
+    }
+
+    public CartDTO(Double total, Long orderstatus, Long amount, Set<PositionDTO> positionDTO, Long userId) {
+        this.total = total;
+        this.orderstatus = orderstatus;
+        this.amount = amount;
+        this.positionDTO = positionDTO;
+        UserId = userId;
     }
 }

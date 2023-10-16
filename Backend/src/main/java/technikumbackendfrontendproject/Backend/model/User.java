@@ -13,7 +13,7 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     //TO DO should be hashed
@@ -53,6 +53,7 @@ public class User {
 
     // wenn user gelöscht wird, dann wird cart auch gelöscht
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
 

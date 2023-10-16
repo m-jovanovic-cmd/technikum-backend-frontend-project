@@ -61,7 +61,7 @@ public class CartController {
 
     @PutMapping("/{userId}/{productId}/{isAdded}")
     //find cart with userId, jeder user hat nur eine cart
-    public ResponseEntity<Cart> updateCartWithUserId(@PathVariable Long userId, @PathVariable Long productId, @PathVariable Boolean isAdded) {
+    public ResponseEntity<CartDTO> updateCartWithUserId(@PathVariable Long userId, @PathVariable Long productId, @PathVariable Boolean isAdded) {
         logger.info("Ich bin in Methode");
         User user = userService.findById(userId);
         logger.info("user:" + user.getUsername());
@@ -76,7 +76,6 @@ public class CartController {
             Cart workOnCart = cartService.checkIfCartIsExisting(user, product, isAdded);
 
             logger.info("Cart with userID: " + userId + "got updated or created!");
-
             return new ResponseEntity<>(workOnCart, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
 

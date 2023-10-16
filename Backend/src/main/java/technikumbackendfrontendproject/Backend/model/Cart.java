@@ -17,8 +17,7 @@ public class Cart {
     @Column(name = "total")
     private Double total = 0.0;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "cart")
     private User user;
 
     @OneToMany(mappedBy = "cart")
