@@ -1,6 +1,7 @@
 package technikumbackendfrontendproject.Backend.service;
 
 import org.hibernate.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 
 @Service
 public class CartService {
+    @Autowired
     private PositionService positionService;
     private CartRepository cartRepository;
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -41,7 +43,7 @@ public class CartService {
 
         if (usercart == null) {
             usercart = createCart(user);
-           // Position position = positionService.create(user.getId(), product.getId());
+            
             Position position = positionService.create(user.getId(), product.getId());
 
         } else {
