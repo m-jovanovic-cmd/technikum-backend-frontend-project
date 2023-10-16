@@ -36,6 +36,7 @@ public class ProductServiceTest {
         product1.setImageUrl("\\Frontend\\images\\products\\DropletDamian.jpg");
         product1.setPrice(1);
         product1.setQuantity(1);
+        product1.setType("Ultima");
         product1.setStatus(true);
 
         Product product2 = new Product();
@@ -44,6 +45,7 @@ public class ProductServiceTest {
         product1.setImageUrl("\\Frontend\\images\\products\\RainyRon.jpg");
         product1.setPrice(2);
         product1.setQuantity(2);
+        product1.setType("Rare");
         product1.setStatus(true);
 
         Product product3 = new Product();
@@ -52,6 +54,7 @@ public class ProductServiceTest {
         product1.setImageUrl("\\Frontend\\images\\products\\CharmingClaude.jpg");
         product1.setPrice(3);
         product1.setQuantity(3);
+        product1.setType("Epic");
         product1.setStatus(true);
 
         productRepository.saveAll(List.of(product1, product2, product3));
@@ -79,7 +82,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    void findById(){
+    void findByIdTest(){
 
         List<Product> allProducts = assertDoesNotThrow(() -> productService.findAll());
 
@@ -90,5 +93,22 @@ public class ProductServiceTest {
                 () -> productService.findById(wrongId));
 
     }
+    //findByType
+    @Test
+    void findByTypeTest() {
+        String productType = "Ultima";
+        List<Product> typeProducts = productService.findByType(productType);
+        System.out.println(typeProducts);
+
+        assertEquals(1, typeProducts.size());
+
+        Product firstProduct = typeProducts.get(0);
+        System.out.println(firstProduct);
+        assertEquals("Ultima", firstProduct.getType());
+    }
+
+    //save
+
+
 
 }
