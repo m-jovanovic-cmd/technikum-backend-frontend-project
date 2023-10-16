@@ -28,7 +28,6 @@ $("#register-button").on("click", e => {
 
         },
         error: (error) => {
-            console.log(newUser)
             // Handle errors here if needed
             console.error("Error:", error);
         }

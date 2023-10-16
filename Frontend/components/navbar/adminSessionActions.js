@@ -23,7 +23,7 @@ function renderAdminActions() {
                         <li class="nav-item active">
                             <a href="./adminUploadProduct.html" class="nav-link">ADD PRODUCT</a>
                         </li>               
-                  </ul>`
+                    </ul>`
                 );
 
                 actionContainer.append(action);

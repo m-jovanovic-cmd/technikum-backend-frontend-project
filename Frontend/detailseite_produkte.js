@@ -30,7 +30,7 @@ function displayProduct(product) {
         <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="row">                   
                 <div class="card border border-3 ">
-                        <img class="card-img-top p-2" src="${product.imageUrl}" alt="Ein Bild von ${product.name}">
+                        <img class="card-img-top p-2" src="./${product.imageUrl}" alt="Ein Bild von ${product.name}">
                             <div class="card-body">
                                 <h1 class="card-title text-center">${product.name}</h4>
                                 <p class="card-text">${product.description}</p>

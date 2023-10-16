@@ -1,5 +1,10 @@
 {
     "liveServer.settings.port": 5501,
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.compile.nullAnalysis.mode": "disabled"
+    "java.compile.nullAnalysis.mode": "disabled",
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/",  // Exclude the .vscode folder
+        "node_modules/", // Exclude node_modules folder
+        "Uploads" // Exclude your custom folder
+      ],
 }
