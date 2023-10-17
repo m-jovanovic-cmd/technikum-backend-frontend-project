@@ -88,31 +88,35 @@ public class ProductServiceTest {
 
     @Test
     void findByIdTest() {
-
+        // Get list of all products from ProductService -> no exceptions are thrown
         List<Product> allProducts = assertDoesNotThrow(() -> productService.findAll());
 
+        // Extract ID of first product from the list
         final Long productId = allProducts.stream().findFirst().get().getId();
-        final Long wrongId = 999999L;
+
+        // Retrieve a product with valid ID -> ensuring no exceptions are thrown
         Product product = assertDoesNotThrow(() -> productService.findById(productId));
-        assertThrows(RuntimeException.class,
-                () -> productService.findById(wrongId));
 
     }
 
     @Test
     void findByWrongIdTest() {
-
+        // Get list of all products from ProductService -> no exceptions are thrown
         List<Product> allProducts = assertDoesNotThrow(() -> productService.findAll());
 
+        // Get ID of first product from the list
         final Long productId = allProducts.stream().findFirst().get().getId();
+
+        // Define invalid product ID
         final Long wrongId = 999999L;
+
+        // Ensure that calling 'findById' with the invalid product ID throws a RuntimeException
         Product product = assertDoesNotThrow(() -> productService.findById(productId));
         assertThrows(RuntimeException.class,
                 () -> productService.findById(wrongId));
 
     }
 
-    // findByType
     @Test
     void findByTypeTest() {
         String productType = "Ultima";
@@ -168,12 +172,15 @@ public class ProductServiceTest {
     }
     @Test
     void saveCorrectlyProductTest() {
+        // Get the list of products before the test to ensure its initial size
         List<Product> products = productRepository.findAll();
         assertEquals(3, products.size());
 
+        // Create a new Tax object and save it to be associated with the product
         Tax tax = new Tax();
         taxRepository.save(tax);
 
+        // Create a new product
         Product product = new Product();
         product.setName("CharmingClaude3");
         product.setDescription("Test3");
@@ -184,11 +191,15 @@ public class ProductServiceTest {
         product.setStatus(true);
         product.setTax(tax);
 
+        // Save the new product  in ProductService
         productService.save(product);
+
+        // Retrieve the list of products again after saving and check if the size has increased by one
         List<Product> productsAdded = productRepository.findAll();
         assertEquals(4, productsAdded.size());
-        productRepository.deleteAll();
 
+        // Clean up by deleting the newly added product to restore the original state
+        productRepository.deleteAll();
     }
 
 
