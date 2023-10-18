@@ -7,20 +7,22 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import technikumbackendfrontendproject.Backend.model.DTO.UserDTO;
 import technikumbackendfrontendproject.Backend.model.User;
+import technikumbackendfrontendproject.Backend.security.UserPrincipal;
 import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
+import technikumbackendfrontendproject.Backend.service.TokenService;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     @Autowired
     private UserService userService;
+    @Autowired
+    private TokenService tokenService;
 
     /**
      * Create a new user in the system with administrative privileges.
@@ -46,6 +48,7 @@ public class UserController {
      * @param user The User entity representing the new user to be created.
      * @return ResponseEntity with an HTTP status code (OK) indicating a successful creation.
      */
+
     @PostMapping
     public ResponseEntity<Long> createUser(@RequestBody User user) {
         userService.registerUser(user);
@@ -125,11 +128,7 @@ public class UserController {
         try {
             // Attempt to update the user's information
             UserDTO updatedUser = userService.updateUser(id, updatedUserDto);
-
-            // Log that the user has been updated
-            logger.info("User with id: " + id + " updated!");
-
-            // Return a response with the updated UserDTO
+            // Log that the user has been updated            // Return a response with the updated UserDTO
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             // Return a 'Not Found' response if the user is not found
@@ -137,6 +136,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getUserId")
+    public String getUserId(@RequestHeader("Authorization") String token) {
+        token = token.substring(7);
+        Optional<UserPrincipal> user = tokenService.parseToken(token);
+
+        if (user.isPresent()) {
+            return String.valueOf(user.get().getUserID());
+        } else {
+            return "Token does not contain a valid 'id'";
+        }
+    }
 }
-
-

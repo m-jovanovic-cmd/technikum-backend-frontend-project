@@ -29,42 +29,9 @@ public class UserService  {
      * @return The User object that has been saved.
      */
     public User save(UserDTO userDTO) {
-        System.out.println("saving user (service)");
 
         // Convert the provided UserDTO into a User object and save it to the repository.
         return userRepository.save(userDTO.convertToUser());
-    }
-
-
-
-    /**
-     * Update or create a user in the system based on the provided User object.
-     *
-     * @param user The User object to be updated or added.
-     * @return A message indicating whether the user was updated or added successfully.
-     */
-    public String updateUser(User user) {
-        boolean resourceFound = false;
-
-        // Iterate through all existing users to find a matching ID.
-        for (User currentUser : findAll()) {
-            if (currentUser.getId() == user.getId()) {
-                // Update the user with the provided user's data.
-                currentUser.setId(user.getId());
-                // You may need to update other user attributes here.
-                resourceFound = true;
-                break; // No need to continue searching once the user is found and updated.
-            }
-        }
-
-        if (!resourceFound) {
-            // If the user doesn't exist, add them to the list of users.
-            findAll().add(user);
-            return "User Added Successfully";
-        }
-
-        // Return a message indicating that the user was updated successfully.
-        return "User Updated Successfully";
     }
 
 
@@ -125,8 +92,8 @@ public class UserService  {
         if (user.isEmpty()) {
             throw new EntityNotFoundException();
         }
-        User user2 = user.get();
-        return user2;
+        User newUser = user.get();
+        return newUser;
     }
 
     /**
@@ -223,7 +190,3 @@ public class UserService  {
     }
 
 }
-
-
-
-

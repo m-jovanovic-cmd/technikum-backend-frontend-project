@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import technikumbackendfrontendproject.Backend.model.DTO.PositionDTO;
 
 @Entity(name = "position")
 public class Position {
@@ -18,15 +19,14 @@ public class Position {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    @JsonManagedReference
+    @JoinColumn(name = "cart_id", referencedColumnName = "id", nullable = false)
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
 
-    @Column(name = "quantity)", nullable = false)
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
 
@@ -37,6 +37,12 @@ public class Position {
 
     public Position(Long id, Integer quantity) {
         this.id = id;
+        this.quantity = quantity;
+    }
+
+    public Position(Cart cart, Product product, Integer quantity) {
+        this.cart = cart;
+        this.product = product;
         this.quantity = quantity;
     }
     
@@ -68,5 +74,13 @@ public class Position {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public PositionDTO convertToDTO() {
+        PositionDTO positionDTO = new PositionDTO();
+        positionDTO.setId(this.getId());
+        positionDTO.setProductId(this.getProduct().getId());
+        positionDTO.setQuantity(this.getQuantity());
+        return positionDTO;
     }
 }

@@ -1,5 +1,6 @@
 package technikumbackendfrontendproject.Backend.service;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
@@ -20,7 +21,11 @@ public class CartService {
     }
 
     public Cart findByUserId(Long userID) {
-        return cartRepository.findByUserId(userID);
+        try {
+            return cartRepository.findByUserId(userID);
+        } catch (ObjectNotFoundException e) {
+            return null;
+        }
     }
 
     // Test für git actions
