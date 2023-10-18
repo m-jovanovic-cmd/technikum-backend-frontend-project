@@ -68,26 +68,33 @@ public class ProductService {
 
     public String uploadImage(MultipartFile file) {
         String destination = Paths.get("").toAbsolutePath().toString();
-        destination = destination.substring(0, destination.length() - "/technikum-backend-frontend-project/Backend".length()) + "/data/images/products";
+        destination = destination.substring(0, destination.length() - "/Backend".length()) + "/Uploads/images";
         File directory = new File(destination);
         directory.mkdirs();
         var fileName = file.getOriginalFilename();
         Path uploadPath = Paths.get(destination, fileName);
-        var finalDestination = destination+ "/" + fileName;
+
         try {
             file.transferTo(uploadPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        int index = destination.indexOf("/Uploads/");
+
+        String result = "";
+        if (index != -1) {
+            result = destination.substring(index);
+        } else {
+            System.out.println("Substring not found.");
+        }
+        var finalDestination = result + "/" + fileName;
 
         return finalDestination;
     }
 
     public Product getProduct(Long id) {
-        System.out.print("In Service gekommen");
         var product = productRepository.findById(id);
         if (product.isEmpty()) {
-            System.out.print("Rückgabe war leer?");
             throw new EntityNotFoundException();
         }
         Product product2 = product.get();
