@@ -38,7 +38,7 @@ public class UserController {
 
         // Create a new user with administrative privileges
         User createUser = userService.save(userDTO);
-
+        System.out.println(createUser);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
 
@@ -73,7 +73,7 @@ public class UserController {
      * @param id The unique identifier of the user to be retrieved.
      * @return ResponseEntity containing the found User if it exists, or a 'Not Found' response if the user is not found.
      */
-    @GetMapping("/get/{id}")
+    @GetMapping("/get{id}")
     public ResponseEntity<User> findUserById(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
@@ -94,6 +94,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
         try {
+            System.out.println("Im here");
             // Attempt to retrieve the user by their identifier
             User user = userService.getUser(id);
 

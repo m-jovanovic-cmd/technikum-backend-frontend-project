@@ -142,7 +142,7 @@ public class UserService  {
             updatedUser.setEmail(updatedUserDto.getEmail());
             //logger.info("Updating GENDER: " + updatedUser.getGender() + " -> " + updatedUserDto.getGender());
             updatedUser.setGender(updatedUserDto.getGender());
-            //logger.info("Updating FIRSTNAME: " + updatedUser.getFirstname() + " -> " + updatedUserDto.getFirstname());
+           // logger.info("Updating FIRSTNAME: " + updatedUser.getFirstname() + " -> " + updatedUserDto.getFirstname());
             updatedUser.setFirstname(updatedUserDto.getFirstname());
             //logger.info("Updating LASTNAME: " + updatedUser.getLastname() + " -> " + updatedUserDto.getLastname());
             updatedUser.setLastname(updatedUserDto.getLastname());
@@ -154,7 +154,7 @@ public class UserService  {
             updatedUser.setPostcode(updatedUserDto.getPostcode());
             //logger.info("Updating USERNAME: " + updatedUser.getUsername() + " -> " + updatedUserDto.getUsername());
             updatedUser.setStreet(updatedUserDto.getStreet());
-            logger.info("Updating STREETNUMBER: " + updatedUser.getStreetnumber() + " -> " + updatedUserDto.getStreetnumber());
+           // logger.info("Updating STREETNUMBER: " + updatedUser.getStreetnumber() + " -> " + updatedUserDto.getStreetnumber());
             updatedUser.setStreetnumber(updatedUserDto.getStreetnumber());
 
             // Save the updated user
