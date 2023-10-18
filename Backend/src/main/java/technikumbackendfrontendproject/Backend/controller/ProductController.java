@@ -77,11 +77,9 @@ public class ProductController {
     @GetMapping("/details/{id}")
     public ResponseEntity<Product> findProductById(@PathVariable Long id) {
         try {
-            System.out.print("In Controller gekommen");
             Product product = productService.getProduct(id);
             return new ResponseEntity<>(product, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            System.out.print("In Fehler gekommen");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

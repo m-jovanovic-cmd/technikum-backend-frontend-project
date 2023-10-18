@@ -1,10 +1,8 @@
 package technikumbackendfrontendproject.Backend.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import technikumbackendfrontendproject.Backend.model.Cart;
 import technikumbackendfrontendproject.Backend.service.CartService;
@@ -26,5 +24,14 @@ public class CartController {
     @PostMapping
     public Cart create(@RequestBody Cart cart) {
         return cartService.save(cart);
+    }
+
+    @GetMapping("{userId}")
+    public ResponseEntity<Cart> findCartById(@PathVariable Long userId) {
+        Cart cart = cartService.findByUserId(userId);
+        if(cart.getPositions().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return  new ResponseEntity<>(cart, HttpStatus.OK);
     }
 }

@@ -1,35 +1,22 @@
-//https://www.youtube.com/watch?v=wxz5vJ1BWrc&ab_channel=JamesQQuick
 let products = [];
-
 const searchBar = document.getElementById('searchBar');
 
-// Make an API request to fetch products
 $.get({
     url: "http://localhost:8080/api/products",
     cors: true,
     headers: {},
     success: (data) => {
-        // Populate the products array with the fetched data
         products = data;
-
-        // Display all products initially
         displayAllProducts(products);
     },
     error: console.error
 });
 
-// Add event listener to the search bar
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
-    //convert name to lowercase and then compare
-    //convert Type to lowercase and then compare
-
-    // Filter products array inside the event listener
     const filteredProducts = products.filter(product => {
         return product.name.toLowerCase().includes(searchString) || product.type.toLowerCase().includes(searchString);
     });
-
-    //console.log(filteredProducts);
     displayAllProducts(filteredProducts)
 });
 

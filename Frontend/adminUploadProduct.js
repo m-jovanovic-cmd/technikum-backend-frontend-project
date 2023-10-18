@@ -8,7 +8,6 @@ $.ajax({
     contentType: "application/json",
     data: {},
     success: success => {
-        console.log(success);
     },
     error: error => {
         console.log(error);
@@ -27,7 +26,6 @@ $.get({
 });
 
 function displayAllTaxOptions(taxes) {
-    console.log(taxes);
     const taxSelectElement = $("#taxId");
     let taxOptions = ``;
     taxes.map((tax) => {

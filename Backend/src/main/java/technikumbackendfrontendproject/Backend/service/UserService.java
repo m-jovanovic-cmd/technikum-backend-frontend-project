@@ -21,33 +21,9 @@ public class UserService  {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
    }
-    /*
-
-    public User save(User user) {
-        user.setStatus(String.valueOf(true));
-        return userRepository.save(user);
-    }
-    */
 
     public User save(UserDTO userDTO) {
-        System.out.println("saving user (service)");
         return userRepository.save(userDTO.convertToUser());
-    }
-
-
-    public String updateUser(User user) {
-        //exist in the user object - yes - update, no - create/add
-        boolean resourceFound = false;
-        for(User currentUser: findAll()) {
-            if(currentUser.getId() == user.getId()) {
-                currentUser.setId(user.getId());
-            }
-        }
-        if(!resourceFound){
-            findAll().add(user);
-            return "User Added Successfully";
-        }
-    return "User Updated Successfully";
     }
 
     public void deleteUser(Long id) {
@@ -77,8 +53,8 @@ public class UserService  {
         if (user.isEmpty()) {
             throw new EntityNotFoundException();
         }
-        User user2 = user.get();
-        return user2;
+        User newUser = user.get();
+        return newUser;
     }
 
     public Optional<User> findById(Long id) {
@@ -147,7 +123,3 @@ public class UserService  {
     }
 
 }
-
-
-
-

@@ -21,10 +21,7 @@ public class Cart {
     private Long id;
 
     @Column(name = "total")
-    private Long total;
-
-    @Column(name = "orderstatus")
-    private Long orderstatus;
+    private double total;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
@@ -37,12 +34,13 @@ public class Cart {
     // Constructors
 
     public Cart() {
+        this.total = 0;
     }
 
     public Cart(User user) {
         this.user = user;
+        this.total = 0;
     }
-
 
     // Getter & Setter
 
@@ -54,20 +52,12 @@ public class Cart {
         this.id = id;
     }
 
-    public Long getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public void setTotal(double total) {
         this.total = total;
-    }
-
-    public Long getOrderstatus() {
-        return orderstatus;
-    }
-
-    public void setOrderstatus(Long orderstatus) {
-        this.orderstatus = orderstatus;
     }
 
     public User getUser() {
@@ -84,5 +74,5 @@ public class Cart {
 
     public void setPositions(Set<Position> positions) {
         this.positions = positions;
-    }  
+    }
 }
