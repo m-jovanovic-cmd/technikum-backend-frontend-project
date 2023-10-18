@@ -1,0 +1,1 @@
+$("#cartModalContainer").load("/Frontend/components/cartModal/cartModal.html");

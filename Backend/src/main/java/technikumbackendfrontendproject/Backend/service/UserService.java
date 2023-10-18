@@ -102,8 +102,12 @@ public class UserService  {
      * @param id The ID of the user to retrieve.
      * @return An Optional containing the User object if found, or an empty Optional if not found.
      */
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        var userOptional = userRepository.findById(id);
+        if(userOptional.isEmpty()) {
+            throw new RuntimeException();
+        }
+        return userOptional.get();
     }
 
 

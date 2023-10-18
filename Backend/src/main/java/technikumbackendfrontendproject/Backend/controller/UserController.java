@@ -75,15 +75,12 @@ public class UserController {
      */
     @GetMapping("/get/{id}")
     public ResponseEntity<User> findUserById(@PathVariable Long id) {
-        var user = userService.findById(id);
-        if (user.isEmpty()) {
-            // Return a 'Not Found' response if the user is not found
+        try {
+            return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
+        } catch(RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        // Return a response with the found User
-        return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
-
 
     /**
      * Delete a user by their unique identifier.

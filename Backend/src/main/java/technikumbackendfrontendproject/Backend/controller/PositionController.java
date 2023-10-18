@@ -4,7 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.service.CartService;
 import technikumbackendfrontendproject.Backend.service.PositionService;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -14,7 +18,7 @@ public class PositionController {
 
     private final PositionService positionService;
     
-    public PositionController(PositionService positionService) {
+    public PositionController(PositionService positionService, CartService cartService) {
         this.positionService = positionService;
     }
 
