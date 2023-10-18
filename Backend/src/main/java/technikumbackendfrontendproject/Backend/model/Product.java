@@ -7,6 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+/**
+ * Entity class representing a product in the system's inventory.
+ *
+ * This class establishes a Many-to-One relationship with the Tax entity, indicating that many products can have one associated tax.
+ *
+ * @ManyToOne Relationship: Many Products to One Tax
+ * @JoinColumn: Specifies the foreign key (taxId) that links a product to its associated tax.
+ */
 @Entity(name = "Product")
 
 public class Product {

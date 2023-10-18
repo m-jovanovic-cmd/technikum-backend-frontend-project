@@ -24,12 +24,22 @@ public class TaxController {
         this.taxRepository = taxRepository;
     }
 
-
+    /**
+     * Retrieve a list of all tax entities in the system.
+     *
+     * @return A list of Tax entities representing all available tax records in the system.
+     */
     @GetMapping
     public List<Tax> findAll() {
         return taxRepository.findAll();
     }
 
+    /**
+     * Create a new tax record in the system.
+     *
+     * @param tax The Tax entity containing the tax information for creation.
+     * @return The created Tax entity with an HTTP status code 'Created' indicating a successful creation.
+     */
     @PostMapping
     @ResponseStatus(code = CREATED)
     public Tax create(@RequestBody Tax tax) {

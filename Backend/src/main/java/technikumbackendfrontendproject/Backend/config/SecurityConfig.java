@@ -30,7 +30,14 @@ public class SecurityConfig {
     // Methods
     // /////////////////////////////////////////////////////////////////////////
 
-
+    /**
+     * Configure the security filter chain for the application.
+     * This method sets up security-related configurations, including disabling CSRF protection,
+     * enabling CORS, setting session management to stateless, and specifying authorization rules for different endpoints.
+     *
+     * @param httpSecurity The HttpSecurity object used to configure security settings.
+     * @return A configured SecurityFilterChain for the application.
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 

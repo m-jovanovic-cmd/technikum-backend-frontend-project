@@ -20,11 +20,22 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    /**
+     * Authenticate a user with the provided login credentials and return an authentication token.
+     *
+     * @param loginDTO The LoginDTO containing the username and password for authentication.
+     * @return A string containing a bearer token if authentication is successful.
+     */
     @PostMapping("/login")
     public String login(@RequestBody LoginDTO loginDTO) {
         return "Bearer " + authenticationService.login(loginDTO.getUsername(), loginDTO.getPassword());
     }
 
+    /**
+     * Check if the current user has 'ADMIN' role privileges.
+     *
+     * @return A Boolean indicating whether the current user has 'ADMIN' role privileges.
+     */
     @GetMapping("/isadmin")
     @PreAuthorize("hasRole('ADMIN')")
     public Boolean isAdmin() {
