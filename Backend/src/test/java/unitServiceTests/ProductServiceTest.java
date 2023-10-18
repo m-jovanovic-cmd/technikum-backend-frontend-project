@@ -1,4 +1,4 @@
-package service;
+package unitServiceTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,11 +11,9 @@ import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.Tax;
 import technikumbackendfrontendproject.Backend.repository.ProductRepository;
 import technikumbackendfrontendproject.Backend.repository.TaxRepository;
-import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.ProductService;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //BackendApplication = Main

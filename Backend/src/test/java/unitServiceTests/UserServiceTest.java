@@ -1,7 +1,5 @@
-package service;
+package unitServiceTests;
 
-import jakarta.xml.bind.ValidationException;
-import org.hibernate.ObjectNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,7 @@ import technikumbackendfrontendproject.Backend.BackendApplication;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
 import technikumbackendfrontendproject.Backend.service.UserService;
-import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
