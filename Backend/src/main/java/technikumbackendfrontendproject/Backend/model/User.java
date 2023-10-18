@@ -6,6 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Entity class representing a user in the system, storing user-specific information including personal details,
+ * authentication credentials, and role assignments.
+ *
+ * Foreign Key: Cart -> Connects Cart and User.
+ * Each User can only have one cart.
+ */
 @Entity(name = "user")
 public class User {
 
@@ -214,8 +221,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }  
+    }
 
+    /**
+     * Check if the user has admin privileges.
+     *
+     * @return true if the user is an admin, false otherwise.
+     */
     public boolean isAdmin() {
         return admin;
     }

@@ -28,10 +28,20 @@ public class TokenService {
     // Methoden
     ////////////////////////////////////////////////////////
 
+    /**
+     * Generates a JWT (JSON Web Token) for a given user, including user-related claims and an expiration date.
+     *
+     * @param user The User for whom the JWT is generated.
+     * @return A JWT token string with user claims and expiration information.
+     */
     public String generateToken(User user) {
+        // Calculate the expiration date based on the current time and a defined expiration duration.
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRES_IN);
+
+        // Create a cryptographic key based on the JWT_SECRET.
         Key key = Keys.hmacShaKeyFor(JWT_SECRET.getEncoded());
 
+        // Build the JWT token with user-related claims and the expiration date.
         return Jwts.builder()
             .claim("id", user.getId())
             .claim("sub", user.getUsername())

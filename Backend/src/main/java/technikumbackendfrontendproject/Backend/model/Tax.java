@@ -5,6 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+/**
+ * Entity class representing a tax category used for calculating taxes in the system.
+ * This Table is called by Product
+ */
 @Entity(name = "tax")
 public class Tax {
 
