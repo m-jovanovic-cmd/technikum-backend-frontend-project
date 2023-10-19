@@ -73,7 +73,7 @@ public class UserController {
      * @param id The unique identifier of the user to be retrieved.
      * @return ResponseEntity containing the found User if it exists, or a 'Not Found' response if the user is not found.
      */
-    @GetMapping("/get{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<User> findUserById(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);

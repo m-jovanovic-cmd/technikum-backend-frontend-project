@@ -1,6 +1,8 @@
 package technikumbackendfrontendproject.Backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import technikumbackendfrontendproject.Backend.model.DTO.LoginDTO;
 import technikumbackendfrontendproject.Backend.service.AuthenticationService;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 
 @RestController
 public class AuthenticationController {
@@ -27,7 +30,7 @@ public class AuthenticationController {
      * @return A string containing a bearer token if authentication is successful.
      */
     @PostMapping("/login")
-    public String login(@RequestBody LoginDTO loginDTO) {
+    public String login (@RequestBody LoginDTO loginDTO){
         return "Bearer " + authenticationService.login(loginDTO.getUsername(), loginDTO.getPassword());
     }
 
