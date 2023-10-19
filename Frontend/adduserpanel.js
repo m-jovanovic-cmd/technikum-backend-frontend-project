@@ -342,7 +342,7 @@ function updatebuttonputrequest(userId) {
 function getUser(userId) {
 
     $.ajax({
-        url: `http://localhost:8080/api/users/get${userId}`,
+        url: `http://localhost:8080/api/users/get/${userId}`,
         type: "GET",
         cors: true,
         headers: {},
