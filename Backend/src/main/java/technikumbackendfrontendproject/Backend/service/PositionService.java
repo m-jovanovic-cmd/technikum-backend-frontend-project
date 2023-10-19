@@ -13,6 +13,7 @@ import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.PositionRepository;
 import technikumbackendfrontendproject.Backend.repository.ProductRepository;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
+import technikumbackendfrontendproject.Backend.security.UserPrincipal;
 
 @Service
 public class PositionService {
@@ -33,9 +34,9 @@ public class PositionService {
         return positionRepository.findById(id);
     }
 
-    public HttpStatus addOneProductToCart(Long userId, Long productId) {
-        Cart cart = cartService.findByUserId(userId);
-        Optional<User> user = userRepository.findById(userId);
+    public HttpStatus addOneProductToCart(Optional<UserPrincipal> userPrincipal, Long productId) {
+        Cart cart = cartService.findByUserId(userPrincipal.get().getUserID());
+        Optional<User> user = userRepository.findById(userPrincipal.get().getUserID());
         Optional<Product> product = productRepository.findById(productId);
 
         if(cart == null) {
@@ -71,9 +72,9 @@ public class PositionService {
         return HttpStatus.NOT_FOUND;
     }
 
-    public HttpStatus removeOneProductFromCart(Long userId, Long productId) {
-        Cart cart = cartService.findByUserId(userId);
-        Optional<User> user = userRepository.findById(userId);
+    public HttpStatus removeOneProductFromCart(Optional<UserPrincipal> userPrincipal, Long productId) {
+        Cart cart = cartService.findByUserId(userPrincipal.get().getUserID());
+        Optional<User> user = userRepository.findById(userPrincipal.get().getUserID());
         Optional<Product> product = productRepository.findById(productId);
 
         if(cart != null && user.isPresent() && product.isPresent()) {
@@ -86,13 +87,16 @@ public class PositionService {
                 return HttpStatus.NOT_FOUND;
             } else if (cartPosition.getQuantity() <= 1){
                 positionRepository.delete(cartPosition);
-                return HttpStatus.OK;
             } else {
                 cartPosition.setQuantity(cartPosition.getQuantity() - 1);
-                return HttpStatus.OK;
+                positionRepository.save(cartPosition);
             }
+        } else {
+            return HttpStatus.NOT_FOUND;
         }
-        return HttpStatus.NOT_FOUND;
+        cart.setTotal((cart.getTotal() - product.get().getPrice()));
+        cartService.save(cart);
+        return HttpStatus.OK;
     }
 
     public List<Position> findAllPositionsByCartId(Long cartId) {

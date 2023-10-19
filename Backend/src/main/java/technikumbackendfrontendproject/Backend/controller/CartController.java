@@ -52,7 +52,7 @@ public class CartController {
         return  new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
-    @GetMapping("/getProducts")
+    @GetMapping("/getCart")
     public CartModalDTO getAllProductsFromUser(@AuthenticationPrincipal Optional<UserPrincipal> user) {
         Cart cart = cartService.findByUserId(user.get().getUserID());
         if(cart != null) {

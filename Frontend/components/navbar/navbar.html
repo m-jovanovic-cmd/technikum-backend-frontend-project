@@ -1,6 +1,7 @@
 <script src="components/navbar/sessionActionButton.js" defer></script>
 <script src="components/loginModal/loginModal.js" defer></script>
 <script src="components/navbar/adminSessionActions.js" defer></script>
+<script src="components/cartModal/cartModal.js" defer></script>
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <a href="/Frontend/index.html" class="navbar-brand mb-0 h1 ps-3">
         CLOUD-IA
@@ -46,6 +47,9 @@
             </li>
             <li class="nav-item active ms-0 ms-md-auto">
                 <div id="sessionActionButton"></div>
+            </li>
+            <li class="nav-item active ms-0 mt-2 mt-md-0">
+                <div onClick="getCart()" id="cartButton"></div>
             </li>
         </ul>
     </div>

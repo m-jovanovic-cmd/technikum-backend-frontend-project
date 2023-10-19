@@ -2,13 +2,14 @@ package technikumbackendfrontendproject.Backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import technikumbackendfrontendproject.Backend.model.Product;
+import technikumbackendfrontendproject.Backend.security.UserPrincipal;
 import technikumbackendfrontendproject.Backend.service.CartService;
 import technikumbackendfrontendproject.Backend.service.PositionService;
 
-import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -22,16 +23,16 @@ public class PositionController {
         this.positionService = positionService;
     }
 
-    @PostMapping("/{userId}/{productId}")
+    @PostMapping("/{productId}")
     @ResponseStatus(code = CREATED)
-    public ResponseEntity<String> createPosition(@PathVariable Long userId, @PathVariable Long productId) {
-        positionService.addOneProductToCart(userId, productId);
+    public ResponseEntity<String> createPosition(@AuthenticationPrincipal Optional<UserPrincipal> user, @PathVariable Long productId) {
+        positionService.addOneProductToCart(user, productId);
         return new ResponseEntity<>("Produkt dem Warenkorb hinzugefügt", HttpStatus.CREATED);
     }
 
-    @PutMapping("/{userId}/{productId}")
-    public ResponseEntity<String> removePosition(@PathVariable Long userId, @PathVariable Long productId) {
-        HttpStatus status = positionService.removeOneProductFromCart(userId, productId);
+    @PutMapping("/{productId}")
+    public ResponseEntity<String> removePosition(@AuthenticationPrincipal Optional<UserPrincipal> user, @PathVariable Long productId) {
+        HttpStatus status = positionService.removeOneProductFromCart(user, productId);
         return new ResponseEntity<>("Produkt dem Warenkorb hinzugefügt", status);
     }
 }

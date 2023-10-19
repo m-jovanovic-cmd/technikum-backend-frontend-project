@@ -1,95 +1,115 @@
-const token = sessionStorage.getItem("token");
-
-Veränderung -> Get Request -> zeichnen die Tables neu
-
-getCart();
-
-async function getCart() {
-    const token = sessionStorage.getItem("token");
-    const userId = await getUserId(token);
-
-    if (userId) {
-        try {
-            const response = await fetch(`http://localhost:8080/api/positions/${userId}/${productId}`, {
-                method: "POST",
-                headers: {
-                    "Authorization": token,
-                    "Content-Type": "application/json"
-                }
-            });
-        if (!response.ok) {
-            console.log("Error: " + response.status);
+function getCart() {
+    $.ajax({
+        url: "http://localhost:8080/api/carts/getCart",
+        type: "GET",
+        dataType: "json",
+        headers: { "Authorization": sessionStorage.getItem('token')},
+        contentType: "application/json",
+        data: {},
+        success: (data) => {
+            let cart = data;
+            displayCart(cart);
+        },
+        error: error => {
+            console.log(error);
         }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
+    })
 }
 
-async function getUserId(token) {
-    try {
-        const response = await fetch("http://localhost:8080/api/users/getUserId", {
-            method: "GET",
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        } else {
-            console.log("Error: " + response.status);
-        }
-    } catch (error) {
-        console.error("Error:", error);
+function displayCart(cart) {
+    let productListContent = ``;
+    let cartItemsContainer = $("#cartBodyContainer");
+    let cartTotalContainer = $("#cartTotalContainer");
+    cartTotalContainer.empty();
+    cartItemsContainer.empty();
+    cart.productList.forEach(product => {
+        productListContent +=
+            `<tr class="cart-row">
+                <td>${product.name}</td>
+                <td class="cart-price cart-column">
+                    ${product.price} €
+                </td>
+                <td class="qty">
+                    ${product.amount}
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="removeItem(${product.id})" type="button">–</button>
+                    <button class="btn btn-success btn-sm" onclick="addItem(${product.id})" type="button">+</button>
+                </td>
+            </tr>`
+    });
+    cartTotalContent = `<div>${cart.total.toFixed(2)} €</div>`;
+    if(cart.productList.length === 0) {
+        cartTotalContent = `<p>Der Warenkorb ist leer.</p>`
     }
-}
-
-
-
-const content = $(`
-<tr class="cart-row">
-    <td class="w-25">
-        <img src="${product.imageUrl}" class="img-fluid img-thumbnail"
-            alt="Sheep">
-    </td>
-    <td>${product.name}</td>
-    <td class="cart-price cart-column">${product.price}€</td>
-    <td class="qty">
-        <input type="number" class="form-control input-quantity" id="input1" value=${position.amount}>
-    </td>
-    <td>
-        <button class="btn btn-danger btn-sm remove-item text-white"
-            type="button">Entfernen</button>
-        <i class="fa fa-times"></i>
-    </td>
-</tr>
-`
-);
-
-
-<h5>Total: <span class="price text-success">0.00€</span></h5>
-
-function ready() {
-    //console.log(removeCartItemButtons);
-    var quantityInputs = document.getElementsByClassName('form-control input-quantity')
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
-        input.addEventListener('change', quantityChanged)
-    }
-}
-
-
-
-
-//Check if cart already exists then update, otherwise create new cart
-//When delete the cart?
-function displayAllProductsInCart(products, cart) {
-    const tableBody = $("#table tbody");
-    for (let i = 0; i < products.length; i++) {
-        const cartDisplay = createProductDisplayForCart(cart);
-        tableBody.append(cartDisplay);
-    };
+    cartItemsContainer.append(productListContent);
+    cartTotalContainer.append(cartTotalContent);
 };
+
+async function removeItem(productId) {
+    const token = sessionStorage.getItem('token');
+  
+    try {
+      const response = await fetch(`http://localhost:8080/api/positions/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}),
+      });
+  
+      if (response.ok) {
+        getCart();
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Fetch Error:", error);
+    }
+}
+
+async function addItem(productId) {
+    const token = sessionStorage.getItem('token');
+  
+    try {
+      const response = await fetch(`http://localhost:8080/api/positions/${productId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}),
+      });
+  
+      if (response.ok) {
+        getCart();
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Fetch Error:", error);
+    }
+}
+
+
+
+/* NOTES: Wieso Ging das nicht?
+async function removeItem(productId) {
+    $.ajax({
+        url: "http://localhost:8080/api/positions/" + productId,
+        type: "PUT",
+        dataType: "json",
+        headers: { "Authorization": sessionStorage.getItem('token')},
+        contentType: "application/json",
+        data: {},
+        success: () => {
+            console.log("BRO");
+            getCart();
+        },
+        error: error => {
+            console.log(error);
+        }
+    })
+};
+*/

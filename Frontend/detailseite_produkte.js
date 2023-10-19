@@ -49,43 +49,17 @@ function displayProduct(product) {
 
 async function addToCart(productId) {
     const token = sessionStorage.getItem("token");
-    const userId = await getUserId(token);
 
-    if (userId) {
-        try {
-            const response = await fetch(`http://localhost:8080/api/positions/${userId}/${productId}`, {
-                method: "POST",
-                headers: {
-                    "Authorization": token,
-                    "Content-Type": "application/json"
-                }
-            });
-        if (!response.ok) {
-            console.log("Error: " + response.status);
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/api/positions/${productId}`,
+        cors: true,
+        headers: {"Authorization": token,},
+        success: (success) => {
+           console.log(success)
+        },
+        error: (error) => {
+            console.log(error)
         }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
-}
-
-async function getUserId(token) {
-    try {
-        const response = await fetch("http://localhost:8080/api/users/getUserId", {
-            method: "GET",
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        } else {
-            console.log("Error: " + response.status);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
+    });
 }
