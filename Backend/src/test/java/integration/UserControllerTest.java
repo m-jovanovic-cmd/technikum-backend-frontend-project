@@ -116,22 +116,22 @@ public class UserControllerTest {
         userRepository.deleteAll();
 
     }
-
-
-
-
-
-    /*
-     @Test
+    @Test
     void getAllUsersTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/users")
-                //        .header("Authorization", adminToken)
+                        //        .header("Authorization", adminToken)
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()", Matchers.is(2)))
                 .andExpect(jsonPath("$.[*]").isNotEmpty());
 
     }
+
+
+
+
+    /*
+
 
     @Test
     void getUserIdByTokenTest() throws Exception {
