@@ -23,6 +23,13 @@ public class Tax {
     @Column(name = "factor")
     private double factor;
 
+    public Tax(long l, String tax, double v) {
+    }
+
+    public Tax() {
+
+    }
+
 
     // Getter & Setter
 
