@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import technikumbackendfrontendproject.Backend.BackendApplication;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
+import technikumbackendfrontendproject.Backend.service.EntityNotFoundException;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
 import java.util.List;
@@ -95,6 +96,23 @@ public class UserServiceTest {
         List<User> allUsersAfter = assertDoesNotThrow(() -> userRepository.findAll());
         int userCountAfter = allUsersAfter.size();
         assertEquals(initialUserCount, userCountAfter);
+    }
+
+    @Test
+    void getUserTest() {
+        List<User> allUsers = assertDoesNotThrow(() -> userRepository.findAll());
+        // Extract ID of first user from list
+        final Long userId = allUsers.stream().findFirst().get().getId();
+        User user = assertDoesNotThrow(() -> userService.findById(userId));
+    }
+
+    @Test
+    void getEmptyUserTest() {
+        List<User> allUsers = assertDoesNotThrow(() -> userRepository.findAll());
+        // Extract ID of first user from list
+        Long wrongId = 9999999L;
+        assertThrows(RuntimeException.class,
+                () -> userService.findById(wrongId));
     }
 
 

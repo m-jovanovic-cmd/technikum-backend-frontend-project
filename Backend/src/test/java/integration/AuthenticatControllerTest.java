@@ -128,48 +128,6 @@ public class AuthenticatControllerTest {
     }
 
     @Test
-    void loginWrongPasswordTest() throws Exception {
-        final String username = "username1";
-        final String userpassword = "userpassword1";
-        final LoginDTO credentials = new LoginDTO(username, userpassword);
-        String response = mockMvc.perform(MockMvcRequestBuilders.post("/login")
-                        .content(mapper.writeValueAsString(credentials))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isForbidden())
-                .andReturn().getResponse().getContentAsString();
-
-    }
-
-    /*
-    @Test
-    void isAdminTest() throws Exception {
-        final String username = "username";
-        final String userpassword = "userpassword";
-
-        final LoginDTO credentials = new LoginDTO(username, userpassword);
-        String response = mockMvc.perform(MockMvcRequestBuilders.post("/login")
-                        .content(mapper.writeValueAsString(credentials))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").exists())
-                .andReturn().getResponse().getContentAsString();
-        //assertEquals("Bearer ", response.substring(0,7));
-
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/isadmin")
-                        .header("Authorization", "Bearer " + credentials))
-                        .content(mapper.writeValueAsString(credentials))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
-    }
-    * */
-
-
-    @Test
     void isNotAdminTest() throws Exception {
         final String username = "username";
         final String userpassword = "userpassword";

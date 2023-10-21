@@ -22,11 +22,15 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import technikumbackendfrontendproject.Backend.BackendApplication;
 import technikumbackendfrontendproject.Backend.model.DTO.LoginDTO;
+import technikumbackendfrontendproject.Backend.model.Product;
 import technikumbackendfrontendproject.Backend.model.User;
 import technikumbackendfrontendproject.Backend.repository.UserRepository;
 import technikumbackendfrontendproject.Backend.service.AuthenticationService;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -56,9 +60,6 @@ public class UserControllerTest {
 
     private String userToken = "";
     private String adminToken = "";
-
-    public UserControllerTest() {
-    }
 
 
     //Annotation ->setup method -> runs before each test run
@@ -129,48 +130,27 @@ public class UserControllerTest {
 
 
 
-
-    /*
-
-
-    @Test
-    void getUserIdByTokenTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/getUserId")
-                        .header("Authorization", adminToken))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[*]").isNotEmpty());
-    }
-
-    @Test
-    void getUserIdByWrongTokenTest() throws Exception {
-       String wrongToken = "";
-        mockMvc.perform(MockMvcRequestBuilders.get("/getUserId")
-                        .header("Authorization", wrongToken))
-                .andExpect(status().isForbidden());
-
-    }
-    * */
-
-
-
-
     @Test
     void getUserByWrongId() throws Exception {
         Long id = 1L;
         mockMvc.perform(MockMvcRequestBuilders.get("/api/users/get/{id}", id)
                         .header("Authorization", adminToken))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isNotFound());
     }
-
-    /*
-     @Test
+    @Test
     void getUserById() throws Exception {
-        Long id = 999L;
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/users/get/{id}", id)
+        List<User> allUsers = assertDoesNotThrow(() -> userService.findAll());
+
+        // Extract ID of first product from the list
+        final Long userId = allUsers.stream().findFirst().get().getId();
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/users/get/{id}", userId)
                         .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists());
     }
+
+    /*
+
 
     *@Test
     void deleteUserRightIdTest() {

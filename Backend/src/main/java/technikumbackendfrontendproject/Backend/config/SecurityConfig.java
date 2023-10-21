@@ -49,7 +49,7 @@ public class SecurityConfig {
                     // Set session management to stateless
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
-                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/api/users/update/{id}","/api/users/get{id}","/api/products","/api/products/details/{id}", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
+                    .authorizeHttpRequests().requestMatchers("/login", "/api/users", "/api/users/update/{id}","/api/users/get/{id}","/api/products/{type}","/api/products","/api/products/details/{id}", "/api/users/delete/{id}", "/public/**", "/api/taxes").permitAll()
                     // Authenticate all other requests
                     .anyRequest().authenticated()
                     .and()
