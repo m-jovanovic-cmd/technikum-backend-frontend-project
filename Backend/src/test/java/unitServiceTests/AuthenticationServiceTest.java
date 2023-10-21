@@ -19,7 +19,7 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
+//2
 @SpringBootTest(classes = BackendApplication.class)
 @ActiveProfiles("test")
 public class AuthenticationServiceTest {

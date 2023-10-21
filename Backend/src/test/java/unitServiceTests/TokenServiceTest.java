@@ -16,22 +16,18 @@ import technikumbackendfrontendproject.Backend.service.TokenService;
 import java.util.List;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
 
+//3
 @SpringBootTest(classes = BackendApplication.class)
 @ActiveProfiles("test")
 public class TokenServiceTest {
     @Autowired
     private TokenService tokenService;
-
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private AuthenticationService authenticationService;
 
     //executed before each test method

@@ -12,11 +12,10 @@ import technikumbackendfrontendproject.Backend.repository.*;
 import technikumbackendfrontendproject.Backend.service.CartService;
 import technikumbackendfrontendproject.Backend.service.UserService;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
+//2
 
 @SpringBootTest(classes = BackendApplication.class)
 @ActiveProfiles("test")
@@ -64,20 +63,9 @@ public class CartServiceTest {
         userRepository.save(user4);
 
         Cart cart = new Cart();
-        cart.setUser(user4);
-        //cart.setPositions();
+        //cart.setUser(user4);
         cart.setTotal(200.0);
         cartRepository.save(cart);
-    /*
-    * Position position = new Position();
-        position.setCart(cart);
-        position.setProduct(product1);
-        position.setQuantity(2);
-        positionRepository.save(position);
-
-        cart.setPositions((Set<Position>) position);
-    * */
-
 
     }
 
@@ -90,6 +78,7 @@ public class CartServiceTest {
         positionRepository.deleteAll();
     }
 
+
     @Test
     void findByUserIdTest(){
 
@@ -100,4 +89,18 @@ public class CartServiceTest {
         Cart cart= assertDoesNotThrow(() -> cartRepository.findByUserId(userId));
 
     }
+
+    @Test
+    void findByWrongUserIdTest(){
+        Long wrongId = 992222L;
+        List<Cart> carts = (List<Cart>) cartRepository.findByUserId(wrongId);
+        // Check if carts is null or empty
+        if (carts == null || carts.isEmpty()) {
+            // Handle the case where carts is null or empty (no results found)
+        } else {
+            fail("Expected no results, but found " + carts.size() + " results.");
+        }
+
+    }
+
 }
