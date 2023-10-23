@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +31,13 @@ public class ProductService {
     }
 
     public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
+        try {
+            return productRepository.findById(id);
+        } catch(ObjectNotFoundException e) {
+            throw new RuntimeException("no user for this id: "+ id);
+        }
     }
+
 
     public List<Product> findByType(String type) {
         return productRepository.findByType(type);
