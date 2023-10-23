@@ -30,28 +30,33 @@ public class TokenServiceTest {
     @Autowired
     private AuthenticationService authenticationService;
 
-    //executed before each test method
+    // executed before each test method
     @BeforeEach
+    void setup() {
+        User user1 = new User("weiblich", false, "username", "passwort", "firstname", "lastname", "mail@mail.at",
+                "1111", "Lustenau", "Straße", "2", "Aktiv", "User");
+        User user2 = new User("männlich", false, "user123", "mypassword123", "John", "Doe", "johndoe@email.com", "1234",
+                "New York", "Main Street", "5", "Aktiv", "User");
+        User user3 = new User("weiblich", false, "inactiveuser", "securepass", "Alice", "Johnson", "alice@email.com",
+                "5678", "Los Angeles", "Park Avenue", "10", "Inaktiv", "User");
+        User user4 = new User("männlich", true, "admin", "adminpass123", "Admin", "Smith", "admin@admin.com", "4321",
+                "Chicago", "Admin Street", "1", "Aktiv", "Administrator");
+        // The userRepository is being used to save these User objects -> saved into
+        // database to save and retrieve data later
+        userRepository.saveAll(List.of(user1, user2, user3, user4));
+    }
 
-        void setup(){
-            User user1 = new User("weiblich", false,"username", "passwort", "firstname", "lastname", "mail@mail.at", "1111", "Lustenau", "Straße", "2", "Aktiv", "User" );
-            User user2 = new User("männlich", false, "user123", "mypassword123", "John", "Doe", "johndoe@email.com", "1234", "New York", "Main Street", "5", "Aktiv", "User");
-            User user3 = new User("weiblich", false, "inactiveuser", "securepass", "Alice", "Johnson", "alice@email.com", "5678", "Los Angeles", "Park Avenue", "10", "Inaktiv", "User");
-            User user4 = new User("männlich", true, "admin", "adminpass123", "Admin", "Smith", "admin@admin.com", "4321", "Chicago", "Admin Street", "1", "Aktiv", "Administrator");
-            //The userRepository is being used to save these User objects -> saved into database to save and retrieve data later
-            userRepository.saveAll(List.of(user1, user2, user3, user4));
-        }
+    // Annotation -> JUnit -> method is always executed after each test
+    @AfterEach
+    // no return (void) -> executed after each test method.
+    void tearDown() {
+        // remove all records from the database
+        userRepository.deleteAll();
 
-        //Annotation -> JUnit ->  method is always executed after each test
-        @AfterEach
-        //no return (void) -> executed after each test method.
-        void tearDown() {
-            //remove all records from the database
-            userRepository.deleteAll();
+    }
 
-        }
-    //generate Token
-    //parse Token
+    // generate Token
+    // parse Token
     @Test
     void parseTokenTest() {
         final User customer = userRepository.findAll().stream()
@@ -62,18 +67,11 @@ public class TokenServiceTest {
         Optional<UserPrincipal> var = assertDoesNotThrow(() -> tokenService.parseToken(customerToken));
         UserPrincipal userDetails = assertDoesNotThrow(() -> var.get());
 
-        /*assertAll(
-                () -> assertEquals(customer.getId(), userDetails.getUserID()),
-                () -> assertEquals(customer.getUsername(), userDetails.getUsername()),
-                () -> assertEquals(customer.getRole(), userDetails.getClass())
-        );*/
-
     }
-
 
     @Test
     void isAdminTest() {
-        
+
         // Find an admin user in the UserRepository and generate a token for them.
         final User admin = userRepository.findAll().stream()
                 .filter(u -> u.getUsername().equals("admin"))
@@ -102,4 +100,3 @@ public class TokenServiceTest {
     }
 
 }
-
