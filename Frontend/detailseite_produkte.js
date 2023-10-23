@@ -37,6 +37,7 @@ function displayProduct(product) {
                             <p>Verfügbar: ${product.quantity}</p>
                             <p>Preis: ${product.price}€</p>
                             <button type="button" onClick="addToCart(${product.id})" class="btn btn-secondary">in Warenkorb</button>
+                            <a href="./produkte.html" class="btn btn-light" role="button">Alle Produkte</a>
                             <span class="d-none" id="cartCheckmark">&#10004;</span>
                         </div>
                     </div>
@@ -55,11 +56,11 @@ async function addToCart(productId) {
         type: "POST",
         url: `http://localhost:8080/api/positions/${productId}`,
         cors: true,
-        headers: {"Authorization": token,},
+        headers: { "Authorization": token, },
         success: (success) => {
-           console.log(success);
-           popCartButton();
-           handleSuccess("Produkt hinzufügen");
+            console.log(success);
+            popCartButton();
+            handleSuccess("Produkt hinzufügen");
         },
         error: (error) => {
             console.log(error)
@@ -72,7 +73,7 @@ function popCartButton() {
     const cartCheckmark = $('#cartCheckmark');
     cartCheckmark.toggleClass('d-none d-inline-block')
     cartButton.toggleClass('btn-primary btn-success');
-    
+
     setTimeout(() => {
         cartButton.toggleClass('btn-primary btn-success');
         cartCheckmark.toggleClass('d-none d-inline-block')
