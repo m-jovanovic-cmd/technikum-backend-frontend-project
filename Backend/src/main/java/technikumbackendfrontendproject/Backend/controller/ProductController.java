@@ -121,6 +121,10 @@ public class ProductController {
         }
     }
 
-
-
+    @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> saveEditedProduct(@RequestBody ProductDTO productDTO) {
+        Product newProduct = productService.save(productDTO.convertToProductWithId(), productDTO.getTaxId());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 }

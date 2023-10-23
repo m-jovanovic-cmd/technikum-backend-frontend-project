@@ -63,6 +63,17 @@ public class Product {
         this.status = true;
     }
 
+    public Product(Long id, String name, String description, String imageUrl, double price, int quantity, String type) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.quantity = quantity;
+        this.type = type;
+        this.status = true;
+    }
+
     public Product() {
     }
 

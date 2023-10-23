@@ -23,15 +23,21 @@
                     Neues Produkt erstellen
                 </div>
                 <div class="card-body">
-                    <form onsubmit="uploadProductData(event)">
+                    <form id="productForm" onsubmit="uploadProductData(event)">
                         <div class="row">
+                            <div class="row d-none">
+                                <div class="col-3 my-2">
+                                    <label class="form-label" for="productId">Produkt ID</label>
+                                    <input class="form-control" readonly="readonly" id="productId" name="productId" type="text"/>
+                                </div>
+                            </div>
                             <div class="col-12 col-md-6 col-lg-4 my-2">
                                 <label class="form-label" for="name">Produktname</label>
                                 <input class="form-control" id="name" name="name" type="text" />
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 my-2">
                                 <label class="form-label" for="description">Beschreibung</label>
-                                <input class="form-control" id="description" name="description" type="text" />
+                                <textarea class="form-control" id="description" name="description" type="text"></textarea>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4 my-2">
                                 <label class="form-label" for="price">Stückpreis brutto</label>
@@ -59,12 +65,33 @@
                             <div class="col-12 col-md-6 col-lg-6 my-2">
                                 <label class="form-label" for="imageUpload">Produktbild auswählen</label>
                                 <input class="form-control" type="file" name="imageUpload" id="imageUpload"/>
+                                <div id="currentImageUrl"></div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-success" type="submit">Upload</button>
+                            <button id="uploadButton" class="btn btn-success" type="submit">Upload</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="card my-4">
+                <div class="card-header">
+                    Produkte bearbeiten
+                </div>
+                <div class="card-body">
+                    <table id="editProductTable" class="table table-striped">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Beschreibung</th>
+                            <th scope="col">Bild</th>
+                            <th scope="col">Preis</th>
+                            <th scope="col">Quantität</th>
+                            <th scope="col">Typ</th>
+                            <th scope="col">Steuerklasse</th>
+                            <th scope="col">Aktion</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

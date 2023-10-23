@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,18 +15,24 @@
         <script src="components/navbar/loadNavbar.js" defer></script>
         <script src="components/footer/loadFooter.js" defer></script>
         <script src="detailseite_produkte.js" defer></script>
+        <script src="./components/successHandler/successHandler.js" defer></script>
         <title>Produkt Detailansicht</title>
     </head>
-
     <body>
         <div class="sticky-top" id="navbarContainer"></div>
-        <h1>Produkt im Detail</h1>
-        <div class="main">
-            <div id="productContainer"></div>
-        </div>
+        <main>
+            <div class="content">
+                <h1>Produkt im Detail</h1>
+                <div>
+                    <a class="btn btn-secondary ms-3" role="button" href="./produkte.html" style="color:white";>Zurück</a>
+                </div>
+                <div class="main">
+                    <div id="productContainer"></div>
+                </div>
+            </div>
+        </main>
         <div id="footerContainer"></div>
         <div id="loginModalContainer"></div>
         <div id="cartModalContainer"></div>
     </body>
-
 </html>

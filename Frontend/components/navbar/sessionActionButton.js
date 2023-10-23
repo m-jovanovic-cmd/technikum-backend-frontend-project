@@ -4,7 +4,7 @@ function renderSessionButton() {
     const token = sessionStorage.getItem('token');
 
     const buttonContainer = $("#sessionActionButton");
-    const cartButtonContainer = $("#cartButton");
+    const cartButtonContainer = $("#cartButtonContainer");
     buttonContainer.empty();
 
     let button;
@@ -28,7 +28,7 @@ function renderSessionButton() {
         buttonContainer.append(button);
         cartButton = $(
             `<div>
-                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#cartModal">
+                <button onClick="getCart()" id="cartButton" type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#cartModal">
                         Warenkorb
                 </button>
             </div>`

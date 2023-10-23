@@ -115,4 +115,15 @@ public class ProductDTO {
                 this.quantity,
                 this.type);
     }
+
+    public Product convertToProductWithId() {
+        return new Product(
+                this.id,
+                this.name,
+                this.description,
+                this.imageUrl,
+                this.price,
+                this.quantity,
+                this.type);
+    }
 }
