@@ -121,7 +121,6 @@ isAdminSelect.addEventListener('change', function () {
     }
 });
 
-
 //show/hide password
 function createUsertogglePasswordVisibility() {
     const passwordInput = document.getElementById("password");
@@ -295,8 +294,8 @@ function createUser(newUser) {
             console.log("User created:", response);
             location.reload(true);
             window.alert("User created successfully!");
-
         },
+
         error: (error) => {
             console.log(newUser)
             // Handle errors here if needed
