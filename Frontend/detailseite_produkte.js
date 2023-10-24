@@ -37,7 +37,6 @@ function displayProduct(product) {
                             <p>Verfügbar: ${product.quantity}</p>
                             <p>Preis: ${product.price}€</p>
                             <button type="button" onClick="addToCart(${product.id})" class="btn btn-secondary">in Warenkorb</button>
-                            <a href="./produkte.html" class="btn btn-light" role="button">Alle Produkte</a>
                             <span class="d-none" id="cartCheckmark">&#10004;</span>
                         </div>
                     </div>
